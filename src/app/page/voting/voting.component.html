@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Flash Messages -->
+
+<div class="text-center bg-dark" *ngIf="flashMessage"
+style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
+padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
+
+{{flashMessage}} <img src="assets/correct.png" style="width: 5%;">
+
+</div>
+
+<div class="container-fluid full" style="background-image: url(assets/bg.png);">
+
+	<div class="row user p-5 text-center">
+
+		<div class="col-sm-6">
+			<span> -- {{username}} </span>
+		</div>
+
+		<div class="col-sm-6">
+			<span> -- {{indexnumber}} </span>
+
+		</div>
+
+	</div>
+
+	<div class="container-fluid">
+
+		 <!-- Progress bar -->
+
+     <!--div class="progressbar">
+      <div class="progress" id="progress"></div>
+      
+      <div
+        class="progress-step"
+      *ngFor="let x of categories" attr.data-title={{x}} ></div>
+    </div-->
+
+    <form [formGroup]="votes" (ngSubmit)="show()">
+
+	 <div class="table-responsive form-step-active mt-5 card" *ngFor="let x of categories" >
+	 	<h6 class="card-header" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;"> {{x.category}} </h6>
+    <table class="table table-light table-striped table-hover collapse" [id]="'x'+x.count" >
+      <thead>
+        <tr class="text-center">
+          <th>Candidate #</th>
+          <th>Photo</th>
+          <th>Candidate Name</th>
+          <th>Selection</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+       	<tr class="text-center" *ngFor="let y of candidates" >
+
+      		<td *ngIf="y.category === x.category"> {{y.count}} </td>
+      		<td *ngIf="y.category === x.category"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
+      		<td *ngIf="y.category === x.category"> {{y.name}} </td>
+      		<td *ngIf="y.category === x.category"> <input type="radio" [value]=y.name formControlName={{x.category}} > </td>
+
+      	</tr>
+
+      </tbody>
+    </table>
+
+    <!--div class="btns-group">
+        <button type="button" class="btn btn-prev">Previous</button>
+        <button type="button" class="btn btn-next">Next</button>
+      </div-->
+
+      <div class="card-footer text-center"> 0 </div>
+
+  </div>
+
+  <div class="text-center mt-5 font-weight-bold">
+        <button type="submit" class="m-auto btn-submit p-3 bg"> Submit Vote </button>
+      </div>
+
+</form>
+		
+
+</div>
+
+</div>

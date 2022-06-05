@@ -1,0 +1,87 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 class="text-center">Registration Form</h1>
+    <!-- Progress bar -->
+
+     <div class="progressbar">
+      <div class="progress" id="progress"></div>
+      
+      <div
+        class="progress-step progress-step-active"
+        data-title="Intro"
+      ></div>
+      <div class="progress-step" data-title="Contact"></div>
+      <div class="progress-step" data-title="ID"></div>
+      <div class="progress-step" data-title="Password"></div>
+    </div>
+  
+    <!-- Steps -->
+    <div class="form-step form-step-active">
+      <div class="input-group">
+        <label for="username">Username</label> 
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['username'].errors">** This Field is required</small>
+        <input type="text" name="username" id="username" formControlName="username">
+      </div>
+      <div class="input-group">
+        <label for="position">Position</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['position'].errors">** This Field is required</small>
+        <input type="text" name="position" id="position" formControlName="position" />
+      </div>
+      <div class="">
+        <button type="button" class="btn btn-next width-50 ml-auto">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step">
+      <div class="input-group">
+        <label for="phone">Phone</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['phone'].errors">** This Field is required</small>
+        <input type="text" name="phone" id="phone" formControlName="phone" >
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['email'].errors">** This Field is required</small>
+        <input type="text" name="email" id="email" formControlName="email">
+      </div>
+      <div class="btns-group">
+        <button type="button" class="btn btn-prev">Previous</button>
+        <button type="button" class="btn btn-next">Next</button>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="dob">Date of Birth</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['dob'].errors">** This Field is required</small>
+        <input type="date" name="dob" id="dob" formControlName="dob">
+      </div>
+      <div class="input-group">
+        <label for="ID">National ID</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['id'].errors">** This Field is required</small>
+        <input type="number" name="ID" id="ID" formControlName="id">
+      </div>
+      <div class="btns-group">
+        <button type="button" class="btn btn-prev">Previous</button>
+        <button type="button" class="btn btn-next">Next</button>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="password">Password</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['password'].errors">** This Field is required</small>
+        <input type="password" name="password" id="password" formControlName="password">
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <small class="text-danger" style="padding-left: 2%;" *ngIf="submit && f['confirmPassword'].errors">** This Field is required</small>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          >
+      </div>
+      <div class="btns-group">
+        <button type="button" class="btn btn-prev">Previous</button>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+  </form>

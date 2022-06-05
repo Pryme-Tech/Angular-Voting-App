@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<div style="position: absolute; top: 2%; left: 35%; background: black; color: white; width:30%; font-weight: bold;" class="p-2 text-center" *ngIf="status">
+ Registration Successful <span class="badge badge-light m-2" style="background-color: white; color: black;" id="countdown">4</span> </div>
+
+<div class="container-fluid full pt-5">
+
+<span style="color: transparent;">f</span>
+
+<form class="p-4 mt-1 animate__animated animate__bounce" [formGroup]="register" (ngSubmit)="onSubmit()">
+
+  <h3> Register </h3>
+
+  <h1> {{ user}}</h1>
+
+  <div class="mt-5 form-group">
+  <label class="form-label m-auto pb-2 text-dark"> Full Name: </label>
+  <input class="form-control m-auto" type="text" placeholder="Full Name" formControlName="name">
+</div>
+
+<div class="mt-5 form-group">
+  <label class="form-label m-auto pb-2 text-dark"> Index Number: </label>
+  <input class="form-control m-auto" type="text" placeholder="index number" formControlName="indexNumber" (input)="up(this.data)" #data>
+</div>
+
+<div class="mt-5 text-center">
+<button class="btn btn-submit" type="submit"> Submit </button>
+  </div>
+
+</form>
+
+</div>

@@ -1,0 +1,277 @@
+<nav class="main-header" style="height: 5vh;">
+	<!-- Flash Messages -->
+
+<div class="text-center bg-success" *ngIf="flashMessage"
+style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 30%; 
+padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
+
+{{flashMessage}}
+
+</div>
+
+</nav>
+
+<!-- Side NavBar -->
+
+<aside class="main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" >
+
+	<div class="text-center" style="border: 2px solid; background-color: black;"> <a class="p-3 px-4 text-white" href="#" style="background-color: black; font-weight: bold; letter-spacing: .2rem;"> CANDIDATES <i class="fa-solid fa-circle-check"></i> </a>  </div>
+
+</aside>
+
+<!-- End Side NavBar -->
+
+
+
+<div class="content-wrapper" >
+
+<div class="container-fluid px-5" style="position: relative; min-height: 95vh;">
+
+
+	<span style="color: transparent;"> f </span>
+
+
+	<!--div class="container elevation-5 mt-5" #see>
+		some content
+	</div-->
+
+
+<!---  Add category -->
+
+	<div class="add_category_rm justify-content-center d-flex flex-column" id="addcategory" >
+
+		<h6 class="bg-success mx-auto elevation-5 text-center py-5" id="submitCategoryMessage"> {{submitCategoryMessage}} </h6>
+
+		<div class="catform m-auto">
+
+			<div class="bg-light text-right">
+				<i class="fas fa-times-circle text-danger" id="hideAddCategory" style="font-style: normal; cursor: pointer;">Close</i>
+			</div>
+
+			<form class="bg-dark elevation-5 m-auto p-5" id="categoryform">
+
+					 <div class="form-group">
+                       <label for="name"> Name Of Category: </label>
+                       <input type="text" class="form-control" placeholder="Enter Category Name" id="name" [formControl]="addCategory">
+                      </div>
+
+                      <div class="text-right">
+                      <button type="button" class="btn btn-success" id="submitCategory" >Add Category</button>
+                  </div>
+
+			</form>
+
+		</div>
+
+		</div>
+
+		<!-- End Add Category -->
+
+		<!---  Add Candidates form -->
+
+	<div class="add_candidate_rm justify-content-center d-flex flex-column position-fixed" id="addcategory" #add_candidate_rm>
+
+		<h6 class="bg-success mx-auto elevation-5 text-center py-5" id="submitCandidateMessage"> {{submitCandidateMessage}} </h6>
+
+		<div class="canform m-auto">
+
+			<div class="bg-light text-right">
+				<i class="fas fa-times-circle text-danger" id="hideAddCandidate" style="font-style: normal; cursor: pointer;" (click)="toggleAddCandidate(this.add_candidate_rm,'close')">Close</i> 
+			</div>
+
+			<form class="bg-dark elevation-5 m-auto p-5" id="candidateform" [formGroup]="addCandidate" (ngSubmit)="submitCandidate()">
+
+				<div class="form-group">
+                       <label for="name"> Category: </label>
+                       <input type="text" Disabled class="form-control" placeholder="Enter Category Name" id="name" formControlName="category" >
+                      </div>
+
+					 <div class="form-group mt-4">
+                       <label for="name"> Name Of Candidate: </label>
+                       <input type="text" class="form-control" placeholder="Enter Candidate Name" id="name" formControlName="name" >
+                      </div>
+
+                      <!--div class="form-group mt-4">
+                       <label for="name"> Photo: </label>
+                       <input type="text" class="form-control" id="name"  >
+                      </div-->
+
+                      <div class="form-group mt-4">
+
+                      	<div class="row">
+
+                      	<div class="col-sm-5 py-5">
+                       <label for="photo"> Upload Image: </label>
+                       <input type="file" class="form-control" id="photo" formControlName="photo" #file (change)="imagePreview(file.files)" >
+                   </div>
+
+                   <div class="col-sm-7" >
+                   	<h5 class="text-center py-4"> Image Preview </h5>
+                   	<!--p *ngIf="src"> {{src.length}} </p-->
+                   	<div class="m-auto" style="margin-bottom: 3% !important; height: 350px; border-radius: .2rem; width: 300px; border: 1px dotted;">
+                   		<img [src]="src" style="width: inherit; height: inherit;" />
+                   	</div>
+                   </div>
+
+                      </div>
+                  </div>
+
+                      <div class="text-right">
+                      <button type="submit" class="btn btn-success" id="submitCategory" >Add Candidate</button>
+                  </div>
+
+			</form>
+
+		</div>
+
+		</div>
+
+		<!-- End Add Candidates form -->
+
+		<!---  Update Candidates form -->
+
+	<div class="add_candidate_rm justify-content-center d-flex flex-column" id="addcategory" #update_candidate>
+
+		<h6 class="bg-success mx-auto elevation-5 text-center py-5" id="submitCandidateMessage"> {{submitCandidateMessage}} </h6>
+
+		<div class="canform m-auto">
+
+			<div class="bg-light text-right">
+				<i class="fas fa-times-circle text-danger" id="hideAddCandidate" style="font-style: normal; cursor: pointer;" (click)="toggleAddCandidate(this.update_candidate,'close')">Close</i> 
+			</div>
+
+			<form class="bg-dark elevation-5 m-auto p-5" id="candidateform" [formGroup]="updateCandidate" (ngSubmit)="submitUpdateCandidate()">
+
+				<div class="form-group">
+                       <label for="name"> Category: </label>
+                       <input type="text" Disabled class="form-control" placeholder="Enter Category Name" id="name" formControlName="category" >
+                      </div>
+
+					 <div class="form-group mt-4">
+                       <label for="name"> Name Of Candidate: </label>
+                       <input type="text" class="form-control" placeholder="Enter Category Name" id="name" formControlName="name" >
+                      </div>
+
+                      <div class="form-group mt-4">
+                       <label for="name"> Photo: </label>
+                       <input type="text" class="form-control" placeholder="Enter Category Name" id="name" formControlName="photo" >
+                      </div>
+
+                      <div class="form-group mt-4">
+
+                      	<div class="row">
+
+                      	<div class="col-sm-5 py-5">
+                       <label for="photo"> Upload Image: </label>
+                       <input type="file" class="form-control" id="photo"  #file (change)="imagePreview(file.files)" >
+                   </div>
+
+                   <div class="col-sm-7" >
+                   	<h5 class="text-center py-4"> Image Preview </h5>
+                   	<!--p *ngIf="src"> {{src.length}} </p-->
+                   	<div class="m-auto" style="margin-bottom: 3% !important; height: 350px; border-radius: .2rem; width: 300px; border: 1px dotted;">
+                   		<img [src]="src" style="width: inherit; height: inherit;" />
+                   	</div>
+                   </div>
+
+                      </div>
+                  </div>
+
+                      <div class="text-right">
+                      <button type="submit" class="btn btn-success" id="submitCategory" >Update Candidate</button>
+                  </div>
+
+			</form>
+
+		</div>
+
+		</div>
+
+		<!-- End Update Candidates form -->
+
+		<!-- Category view with candidates in each category -->
+
+	<div class="card mt-5">
+
+		<div class="card-header text-center font-weight-bold" style="font-size: 2em;"> CATEGORIES </div>
+
+		<div class="card-body" >
+
+			<div class="text-right mb-3">
+
+			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" > <i class="fas fa-plus"> </i> Add New </button>
+
+		</div>
+
+			<div class="card" *ngFor="let y of categories">
+
+				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.count" style="color: green;"> {{y.category}} </div>
+
+				<div class="card-body collapse" [id]="'x'+y.count" >
+
+					<div class="text-right mb-3">
+
+			<button class="btn btn-light showAddCandidate" #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(this.add_candidate_rm,y.category) > <i class="fas fa-plus" > </i> Add Candidate </button>
+
+		</div>
+
+					<ol>
+
+						<div *ngFor="let x of candidates">
+
+						<li class="mt-5" *ngIf="x.category === y.category">
+
+							<div class="row">
+
+								<div class="col">
+
+									<div class="m-auto" style="border: 1px solid; width: max-content; border-radius: 1rem; overflow: hidden;"> <img class="rounded" style="width: 100px;" [src]=x.photo> </div>
+
+								</div>
+
+								<div class="col">
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<h6> {{x.name}} </h6>
+
+								</div>
+
+								</div>
+
+								<div class="col-2 bg-light" >
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<button class="btn btn-success" (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo)> Edit Candidate </button>
+
+									<button class="btn btn-danger mt-2" (click)=deleteCandidate(x.name,x.category) [value]="x.name"> Delete Candidate </button>
+
+								</div>
+
+								</div>
+
+							</div>
+
+						</li>
+
+					</div>
+
+					</ol>
+
+				</div>
+
+
+				<div class="card-footer text-center font-weight-bold">
+<span style="color: green; font-size: 1.2em;"> 5 </span>
+				</div>
+
+			</div>
+
+		</div>
+
+</div>
+
+<!-- End Of Category View -->
+
+</div>

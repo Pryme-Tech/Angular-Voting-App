@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<div class="container-fluid full">
+<span style="color: transparent;"> f </span>
+<form class="p-4 mt-5 animate__animated animate__bounce" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <h3> Enter Index Number </h3>
+
+<div class="mt-4 form-group">
+  <div style="color: red;" *ngIf="status===false"><small> sorry Index Number does not exist. </small> </div>
+  <label class="form-label m-auto pb-2 text-dark"> Index Number: </label>
+  
+  <input class="form-control m-auto" type="text" placeholder="index number" formControlName="indexNumber" (input)="subSubmit()">
+</div>
+
+<div class="mt-5 text-center">
+<button class="btn btn-submit" type="submit"> Submit </button>
+  </div>
+
+</form>
+
+</div>
