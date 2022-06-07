@@ -46,7 +46,7 @@ const validateVoter = (request, response) => {
 
   pool.query(`SELECT * FROM users WHERE index_number = '${index}'`, (se,d) => {
     if (se) {
-      throw se
+      response.json("error")
     }
 
     //if(d.rows > 1){

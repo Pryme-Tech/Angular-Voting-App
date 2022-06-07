@@ -37,7 +37,11 @@ router.post('/add/candidate',(req,res)=>{
 
   //res.json(extension)
 
-  pool.query(`INSERT INTO candidates(name,photo,category,candidate_id) VALUES('${name}','${fileName}','${category}','${uniqid('Can_')}')`, (se,d) => {
+  pool.query(`SELECT category_id FROM categories WHERE category='${category}' `,(x,y)=>{
+
+    let category_id = y.rows[0].category_id
+
+      pool.query(`INSERT INTO candidates(name,photo,category,candidate_id) VALUES('${name}','${fileName}','${category_id}','${uniqid('Can_')}')`, (se,d) => {
     if (se) {
       res.json("DatabaseError")
       return;
@@ -72,6 +76,8 @@ router.post('/add/candidate',(req,res)=>{
      }
     
  // }
+  })
+
   })
 
 })
@@ -253,6 +259,29 @@ router.get('/del/:data/:category',(request, response) => {
 
 router.get('/d/:e',(req,res) => {
   res.json(req.params.e)
+})
+
+router.post('/test',(req,res)=>{
+ // res.json(req.body)
+
+ x = []
+
+  for(key in req.body){
+  
+    pool.query(`SELECT * FROM categories WHERE category='${req.body[key]}'` , (a,b)=>{
+
+      if(a){
+        throw a
+      }
+
+      if(b){
+        x.push('hello')
+      }
+    })
+  }
+
+  res.json(x)
+
 })
 
 module.exports = router;

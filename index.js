@@ -10,6 +10,8 @@ var categories = require('./categories.js');
 
 var candidates = require('./candidates.js');
 
+var getvotes = require('./getvotes.js');
+
 const db = require('./db.js')
 
 express()
@@ -35,6 +37,8 @@ express()
 .use('/categories', categories )
 
 .use('/candidates', candidates )
+
+.use('/getvotes' , getvotes)
 
 .post('/',(req,res)=>{
 
