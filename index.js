@@ -18,6 +18,10 @@ let port = process.env.PORT || 4000;
 
 express()
 
+.get('/',(req,res)=>{
+	res.json('you\'ve reached the server')
+})
+
 .use(bodyParser.urlencoded({ extended: true }))
 
 .use(bodyParser.json({limit: '10mb'}))
