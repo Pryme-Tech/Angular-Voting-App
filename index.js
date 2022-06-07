@@ -14,6 +14,8 @@ var getvotes = require('./getvotes.js');
 
 const db = require('./db.js')
 
+let port = process.env.PORT || 4000;
+
 express()
 
 .use(bodyParser.urlencoded({ extended: true }))
@@ -46,6 +48,6 @@ express()
 
 })
 
-.listen(4000,console.log('running'))
+.listen(port,console.log(`running on port ${port} `))
 
 
