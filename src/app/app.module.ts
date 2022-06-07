@@ -14,16 +14,28 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { VoteComponent } from './page/vote/vote.component';
 import { VotingComponent } from './page/voting/voting.component';
-import { AdminComponent } from './page/admin/admin.component';
+import { AdminComponent } from './Administrator/admin/admin.component';
+import { Page404Component } from './page404/page404.component';
+import { CandidatesComponent } from './Administrator/candidates/candidates.component';
+import { VotesComponent } from './Administrator/votes/votes.component';
 
 
 const routes: Routes = [
   { path: 'form', component: FirstComponent },
-  { path: 'test', component: SecondComponent},
+  { path: 'home', component: SecondComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'vote', component: VoteComponent},
   { path: 'votepage', component: VotingComponent},
-  { path: 'admin', component: AdminComponent}
+
+  { path: 'admin', component: AdminComponent,
+  children:[
+  {path: "candidates", component: CandidatesComponent },
+  {path: "votes", component: VotesComponent},
+  {path: '', redirectTo: "candidates", pathMatch: 'full'}
+  ]},
+
+  {path: '', redirectTo: "home", pathMatch: 'full'},
+  {path: '**', component: Page404Component}
 ];
 
 @NgModule({
@@ -35,7 +47,10 @@ const routes: Routes = [
     ThirdComponent,
     VoteComponent,
     VotingComponent,
-    AdminComponent
+    AdminComponent,
+    Page404Component,
+    CandidatesComponent,
+    VotesComponent
   ],
   imports: [
     BrowserModule,

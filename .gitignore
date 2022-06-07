@@ -40,6 +40,7 @@ testem.log
 #backend
 /backend
 /firebase-debug.log
+/shopygh
 
 # System files
 .DS_Store

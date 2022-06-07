@@ -17,7 +17,7 @@ export class VotingComponent implements OnInit {
   indexNumber : ['']
  })
 
- flashMessage='d'
+ flashMessage=''
 
  username:any=''
  indexnumber:any=''
@@ -33,6 +33,22 @@ export class VotingComponent implements OnInit {
     res=>{
       console.log(res)
       this.flashMessage="Voting Succcessful"
+
+      localStorage.removeItem('username')
+      localStorage.removeItem('indexnumber')
+
+      var x:any=3;
+
+    setInterval(()=>{
+      x--;
+      var v=document.getElementById("countdown") as HTMLElement; 
+      v.innerText=x;
+      if(x===0){
+        window.location.reload();
+      }
+    },1000)
+
+
     },
     err=>{
       console.log(err)

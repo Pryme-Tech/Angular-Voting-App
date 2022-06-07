@@ -6,14 +6,12 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
 import {HttpClient} from '@angular/common/http';
 
-//declare var $: any;
-
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-candidates',
+  templateUrl: './candidates.component.html',
+  styleUrls: ['./candidates.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
@@ -82,7 +80,8 @@ export class AdminComponent implements OnInit {
       console.log(res)
       var response=JSON.stringify(res)
       this.flashMessage="Candidate Deleted Successfully"//response.replace(/"/g,'')
-      setTimeout(()=>{ //window.location.reload()
+      setTimeout(()=>{
+      this.flashMessage='' //window.location.reload()
        },900)
     },
     err=>{
@@ -180,7 +179,8 @@ export class AdminComponent implements OnInit {
             //console.log(data.category)
             this.categories.push({
               "count" : index,
-              "category" : data.category
+              "category" : data.category,
+              "category_id" : data.category_id
             })
           })
 

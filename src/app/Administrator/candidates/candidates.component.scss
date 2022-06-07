@@ -1,0 +1,71 @@
+aside{
+	background-color: green;
+}
+
+.add_category{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90vh;
+	z-index: 1;
+	backdrop-filter: blur(2px);
+
+	h6{
+		position: relative;
+		top: 5%;
+		width: 70%;
+		border-radius: 1rem;
+		letter-spacing: .1rem;
+		word-spacing: .1rem;
+	}
+
+	#submitCategoryMessage{
+		display: none;
+	}
+
+	.catform{
+		width: 70%;
+	}
+
+	form{
+		
+		box-sizing: border-box;
+	}
+}
+
+.add_candidate{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90vh;
+	z-index: 1;
+	backdrop-filter: blur(2px);
+
+	h6{
+		position: relative;
+		top: 5%;
+		width: 70%;
+		border-radius: 1rem;
+		letter-spacing: .1rem;
+		word-spacing: .1rem;
+	}
+
+	#submitCandidateMessage{
+		display: none;
+	}
+
+	.canform{
+		width: 70%;
+	}
+
+	form{
+		
+		box-sizing: border-box;
+	}
+}
+
+.add_category_rm, .add_candidate_rm{
+	display: none !important;
+}

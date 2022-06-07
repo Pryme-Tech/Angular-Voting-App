@@ -1,0 +1,24 @@
+
+# Needs - 
+1. Admin add categories
+2. Admin add candidates
+3. Link between tables
+
+Description: When a Category is created , category columns are Auto_increment_numbers,Category Name and category_id
+Each categoty is been created as a table with the categoryname or category_id as table name
+Now when candidate is added to a category a new column is created in that category table with candidate name to enable voting records
+
+
+
+# Register user 
+Links - user table to enable user be authenticated
+
+To show all votes:
+
+N.B// To show all votes in a category a simple query such as select count(*) from categoryname can do it.
+
+# since all categories tables are created with category_id as table need. A need for little thinking needed here.
+
+1. get all data from categories table
+2. get category_id of every row
+3. get all data from candidates also

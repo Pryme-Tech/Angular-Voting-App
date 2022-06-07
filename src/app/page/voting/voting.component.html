@@ -5,12 +5,15 @@
 <div class="text-center bg-dark" *ngIf="flashMessage"
 style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
 padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
-
+<span class="badge badge-light m-2" style="width: 5%; background-color: white; color: black;" id="countdown">3</span>
 {{flashMessage}} <img src="assets/correct.png" style="width: 5%;">
-
 </div>
 
-<div class="container-fluid full" style="background-image: url(assets/bg.png);">
+<div class="container-fluid full" >
+
+<div class="text-center" style="position: fixed; width: 100vw; top: -40%; left: 0; z-index: 0;">
+  <img src="assets/bg.png" style="width: inherit; opacity: 5%;" >
+</div>
 
 	<div class="row user p-5 text-center">
 
@@ -25,7 +28,7 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
 
 	</div>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="z-index: 1 !important; position: relative;">
 
 		 <!-- Progress bar -->
 
@@ -73,7 +76,7 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
 
   </div>
 
-  <div class="text-center mt-5 font-weight-bold">
+  <div class="text-center mt-5 font-weight-bold" >
         <button type="submit" class="m-auto btn-submit p-3 bg"> Submit Vote </button>
       </div>
 
