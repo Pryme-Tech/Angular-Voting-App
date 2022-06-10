@@ -22,18 +22,26 @@ router.post('/add/candidate',(req,res)=>{
   //res.json(req.body);
 
   var name=req.body.name
-  var photo=req.body.photo//.base64image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),response={};
+  var photo=req.body.photo
   var category=req.body.category
 
-  var data=photo.replace(/^data:image\/\w+;base64,/, '') , response={};
+  var data=photo.replace(/^data:image\/\w+;base64,/, '');
 
   var extension=photo.split(';')[0].split('/')[1];
 
   var fileName=`public/images/candidates/${name}.${extension}`;
 
+  if(photo.includes('data:image')){
+
   fs.writeFileSync(fileName,data,{encoding: 'base64'});
 
   fileName=fileName.replace('public','');
+
+}
+
+else{
+  fileName='';
+}
 
   //res.json(extension)
 
@@ -41,25 +49,16 @@ router.post('/add/candidate',(req,res)=>{
 
     let category_id = y.rows[0].category_id
 
-      pool.query(`INSERT INTO candidates(name,photo,category,candidate_id) VALUES('${name}','${fileName}','${category_id}','${uniqid('Can_')}')`, (se,d) => {
+    pool.query(`INSERT INTO candidates(name,photo,category,candidate_id) VALUES('${name}','${fileName}','${category_id}','${uniqid('Can_')}')`, (se,d) => {
     if (se) {
       res.json("DatabaseError")
       return;
     }
-      //response.json("error")
       else{
 
-        pool.query(`SELECT category_id FROM categories WHERE category='${category}' `,(v,w)=>{
-
-        //var categorytrim=w.rows//category.replace(/ /g,'')
-
         var nametrim=name.replace(/ /g,'');
-        //nametrim=nametrim.replace(/\//g,'');
 
-        let categoryTable=w.rows[0].category_id;
-
-
-         pool.query(`ALTER TABLE ${categoryTable} ADD ${nametrim} int`, (x,y) => {
+         pool.query(`ALTER TABLE ${category_id} ADD ${nametrim} int`, (x,y) => {
 
           if(x){
            // res.json(category);
@@ -69,9 +68,7 @@ router.post('/add/candidate',(req,res)=>{
       "status": true,
       "data": req.body
    });
-       }) 
-
-      })
+       })
 
      }
     
@@ -83,7 +80,6 @@ router.post('/add/candidate',(req,res)=>{
 })
 
 router.post('/update/candidate',(req,res)=>{
-  //res.json(req.body);
 
   var name=req.body.name
   var photo=req.body.photo
@@ -135,6 +131,17 @@ router.post('/vote',(req,res)=>{
 
   let success = []
 
+  let msg = "Voting Successful"
+
+  //Check if user voting is already voted
+
+  pool.query(` SELECT * FROM users WHERE index_number = '${data['indexNumber']}' `,(u,i)=>{
+    if(i.rows.length > 0){
+      res.json("Sorry!!! you've already voted, double voting isn't allowed.")
+      return
+    }
+
+else{
   for(var key in data){
 
     if(key==="indexNumber"){
@@ -196,8 +203,12 @@ router.post('/vote',(req,res)=>{
     })
     
   }
+  res.json(msg)
+}
 
-  res.json("Vote Successfull")
+    })
+
+  //res.json(msg)
 
 })
 

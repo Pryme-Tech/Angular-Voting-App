@@ -14,5 +14,14 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pryme-Tech/Angular-Voting-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pryme-Tech/Angular-Voting-App/issues"
+  },
+  "homepage": "https://github.com/Pryme-Tech/Angular-Voting-App#readme",
   "description": ""
 }
