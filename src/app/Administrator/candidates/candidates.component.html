@@ -218,7 +218,10 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
-									<button class="btn btn-success" (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo)> Edit Candidate </button>
+									<button class="btn btn-success" onclick="alert('SORRY!!! This feature is not available at the moment.')">
+									 Edit Candidate 
+									 <!-- (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo) -->
+									</button>
 
 									<button class="btn btn-danger mt-2" (click)=deleteCandidate(x.name,x.category) [value]="x.name"> Delete Candidate </button>
 

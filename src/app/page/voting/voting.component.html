@@ -2,11 +2,18 @@
 
   <!-- Flash Messages -->
 
-<div class="text-center bg-dark" *ngIf="flashMessage"
+<div class="text-center bg-dark" *ngIf="flashSuccessMessage"
 style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
 padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
 <span class="badge badge-light m-2" style="width: 5%; background-color: white; color: black;" id="countdown">3</span>
-{{flashMessage}} <img src="assets/correct.png" style="width: 5%;">
+{{flashSuccessMessage}} <img src="assets/correct.png" style="width: 5%;">
+</div>
+
+<div class="text-center bg-light text-danger" *ngIf="flashErrorMessage"
+style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
+padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
+<span class="badge badge-danger m-2" style="width: 5%; " id="countdown">3</span>
+{{flashErrorMessage}} <img src="assets/error.png" style="width: 8%;">
 </div>
 
 <div class="container-fluid full" >
@@ -57,10 +64,10 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
        
        	<tr class="text-center" *ngFor="let y of candidates" >
 
-      		<td *ngIf="y.category === x.category"> {{y.count}} </td>
-      		<td *ngIf="y.category === x.category"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
-      		<td *ngIf="y.category === x.category"> {{y.name}} </td>
-      		<td *ngIf="y.category === x.category"> <input type="radio" [value]=y.name formControlName={{x.category}} > </td>
+      		<td *ngIf="y.category === x.category_id"> {{y.count}} </td>
+      		<td *ngIf="y.category === x.category_id"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
+      		<td *ngIf="y.category === x.category_id"> {{y.name}} </td>
+      		<td *ngIf="y.category === x.category_id"> <input type="radio" [value]=y.name formControlName={{x.category}} > </td>
 
       	</tr>
 

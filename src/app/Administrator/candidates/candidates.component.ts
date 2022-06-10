@@ -15,13 +15,8 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
-  //@ViewChild("flashMessage", { static: true }) flashmsg!: ElementRef;
+  port = 'http://localhost:4000/'
 
-  //message=this.msg.nativeElement;
-
-  //this.xe.nativeElement.innerHTML='hello'
-
- // declare var $: any;
  flashMessage=''
 
  toggleAddCandidate(form:any,data?:any,name?:any,photo?:any){
@@ -75,7 +70,7 @@ export class CandidatesComponent implements OnInit {
  deleteCandidate(data:any,category:any){
   //alert(data);
   //alert(category);
-  this.http.get('http://localhost:4000/candidates/del/'+data+"/"+category).subscribe(
+  this.http.get(`${this.port}candidates/del/${data}/${category}`).subscribe(
     res=>{
       console.log(res)
       var response=JSON.stringify(res)
@@ -111,7 +106,7 @@ export class CandidatesComponent implements OnInit {
   }
   );
 
-  src:any;
+  src:any=""
 
   imagePreview(files:any){
     if(files.length===0) 
@@ -128,7 +123,7 @@ export class CandidatesComponent implements OnInit {
  submitCandidate(){
   console.log(this.addCandidate.getRawValue())
 
-  this.http.post('http://localhost:4000/candidates/add/candidate',this.addCandidate.getRawValue()).subscribe(
+  this.http.post(`${this.port}candidates/add/candidate`,this.addCandidate.getRawValue()).subscribe(
     res=>{
       console.log(res)
       this.flashMessage="New Candidate Added Successfully"
@@ -149,7 +144,7 @@ export class CandidatesComponent implements OnInit {
   submitUpdateCandidate(){
   console.log(this.addCandidate.getRawValue())
 
-  this.http.post('http://localhost:4000/candidates/update/candidate',this.updateCandidate.getRawValue()).subscribe(
+  this.http.post(`${this.port}candidates/update/candidate`,this.updateCandidate.getRawValue()).subscribe(
     res=>{
       console.log(res)
       this.flashMessage="Candidate Successfully Updated"
@@ -170,7 +165,7 @@ export class CandidatesComponent implements OnInit {
 
   constructor( private http: HttpClient, private ElementRef:ElementRef ) { 
 
-    this.http.get('http://localhost:4000/categories').subscribe(
+    this.http.get(`${this.port}categories`).subscribe(
         res=>{
           //console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -190,7 +185,7 @@ export class CandidatesComponent implements OnInit {
         }
         )
 
-    this.http.get('http://localhost:4000/candidates').subscribe(
+    this.http.get(`${this.port}candidates`).subscribe(
         res=>{
           console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -200,8 +195,12 @@ export class CandidatesComponent implements OnInit {
 
             var avatar=data.photo
 
-            if(avatar !== "assets/pre.png"){
-              avatar="http://localhost:4000"+data.photo;
+            if(avatar === ""){
+              avatar=`${this.port}images/candidates/default.png`;
+            }
+
+            else{
+              avatar=`${this.port}${data.photo}`;
             }
 
             this.candidates.push({

@@ -13,11 +13,14 @@ import {Router} from '@angular/router';
 })
 export class VotingComponent implements OnInit {
 
+  port = 'http://localhost:4000/'
+
  votes = this.fb.group({
   indexNumber : ['']
  })
 
- flashMessage=''
+ flashSuccessMessage=''
+ flashErrorMessage=''
 
  username:any=''
  indexnumber:any=''
@@ -32,8 +35,13 @@ export class VotingComponent implements OnInit {
   this.http.post('http://localhost:4000/candidates/vote',this.votes.getRawValue()).subscribe(
     res=>{
       console.log(res)
-      this.flashMessage="Voting Succcessful"
-
+      let message=JSON.parse(JSON.stringify(res))
+      if(message.includes('successful')){
+        this.flashSuccessMessage=message
+      }
+      else{
+        this.flashErrorMessage=message
+      }
       localStorage.removeItem('username')
       localStorage.removeItem('indexnumber')
 
@@ -101,7 +109,8 @@ status=0
             //console.log(data.category)
            this.categories.push({
             "count" : index,
-            "category" : data.category
+            "category" : data.category,
+            "category_id" : data.category_id
           })
 
            //this.categories.forEach((category)=>{
@@ -133,12 +142,12 @@ status=0
           response.forEach((data:any,index:any)=>{
             //console.log(data)
 
-            if(data.photo==="assets/pre.png"){
-            var photo=data.photo;
+            if(data.photo===""){
+            var avatar=`${this.port}images/candidates/default.png`
           }
 
           else{
-            photo="http://localhost:4000"+data.photo;
+            avatar="http://localhost:4000"+data.photo;
           }
 
             this.candidates.push({
@@ -146,7 +155,7 @@ status=0
               "category" : data.category,
               "id" : "5335",
               "name" : data.name,
-              "photo" : photo
+              "photo" : avatar
             })
           })
 

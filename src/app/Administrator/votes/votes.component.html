@@ -1,0 +1,112 @@
+	<!-- Category view with candidates in each category -->
+
+	<div class="card mt-5">
+
+		<div class="card-header text-center font-weight-bold" style="font-size: 2em;"> VOTES </div>
+
+		<div class="card-body" >
+<!--
+			<div class="text-right mb-3">
+
+			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" > <i class="fas fa-plus"> </i> Add New </button>
+
+		</div>
+	-->
+
+			<div class="card" *ngFor="let y of categories">
+
+				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.category_id" style="color: green;"> {{y.category}} </div>
+
+				<div class="card-body collapse" [id]="'x'+y.category_id" >
+<!--
+					<div class="text-right mb-3">
+
+			<button class="btn btn-light showAddCandidate" #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(this.add_candidate_rm,y.category) > <i class="fas fa-plus" > </i> Add Candidate </button>
+
+		</div>
+	-->
+
+					<ol>
+
+						<div *ngFor="let x of votes">
+
+						<li class="mt-5" *ngIf="x.category === y.category_id">
+
+							<div class="row">
+
+								<div class="col">
+
+									<div class="m-auto" style="border: 1px solid; width: max-content; border-radius: 1rem; overflow: hidden;"> <img class="rounded" style="width: 100px;" [src]="port + x.photo"> </div>
+
+								</div>
+
+								<div class="col">
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<h6 class="text-center"> {{x.name}} </h6>
+
+								</div>
+
+								</div>
+
+								<div class="col">
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<p class="text-center text-bold text-decoration-underline"> No. of votes </p>
+
+									<h6 class="text-center"> {{x.votes}} </h6>
+
+								</div>
+
+								</div>
+
+								<div class="col">
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<p class="text-center text-bold text-decoration-underline"> Percentage (%) </p>
+
+									<h6 class="text-center"> {{x.percentage}} </h6>
+
+								</div>
+
+								</div>
+
+								<!--
+								<div class="col-2 bg-light" >
+
+									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
+
+									<button class="btn btn-success" (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo)> Edit Candidate </button>
+
+									<button class="btn btn-danger mt-2" (click)=deleteCandidate(x.name,x.category) [value]="x.name"> Delete Candidate </button>
+
+								</div>
+
+								</div>
+							-->
+
+							</div>
+
+						</li>
+
+					</div>
+
+					</ol>
+
+				</div>
+
+
+				<div class="card-footer text-center font-weight-bold">
+<span style="color: green; font-size: 1.2em;"> 5 </span>
+				</div>
+
+			</div>
+
+		</div>
+
+</div>
+
+<!-- End Of Category View -->

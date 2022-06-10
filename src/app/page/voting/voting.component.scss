@@ -28,6 +28,22 @@ img{
 	border-radius: 50% !important;
 }
 
+input{
+      min-height: 20px;
+      min-width: 20px;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      border: 3px solid green;
+      border-radius: 20%;
+    }
+
+    input:checked{
+      content: url("^assets/correct.png");
+      border: none;
+      width: 35px;
+    }
+
  /* Progressbar */
   .progressbar {
     position: relative;
