@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 })
 export class VoteComponent implements OnInit {
 
+  port = 'https://castvote.herokuapp.com/' //'http://localhost:4000/'
+
   form=new FormGroup({
     indexNumber: new FormControl('')
     //lastName: new FormControl(''),
@@ -27,7 +29,7 @@ export class VoteComponent implements OnInit {
 
     form=form.toUpperCase()
 
-    this.http.get('http://localhost:4000/checkvoter/validate/'+form).subscribe(
+    this.http.get(`${this.port}checkvoter/validate/${form}`).subscribe(
   res=>{
     var response=JSON.stringify(res);
     var values=JSON.parse(response);
@@ -66,7 +68,7 @@ export class VoteComponent implements OnInit {
       return;
     }
 
-    this.http.get('http://localhost:4000/checkvoter/'+data).subscribe(
+    this.http.get(`${this.port}checkvoter/${data}`).subscribe(
   res=>{
     var response=JSON.stringify(res);
     var values=JSON.parse(response);

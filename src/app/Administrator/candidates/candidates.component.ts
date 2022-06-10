@@ -15,7 +15,7 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
-  port = 'http://localhost:4000/'
+  port = 'https://castvote.herokuapp.com/' //'http://localhost:4000/'
 
  flashMessage=''
 
@@ -299,7 +299,7 @@ ngAfterViewInit(){
 
       console.log(this.addCategory.value);
 
-       this.http.get('http://localhost:4000/categories/add/'+this.addCategory.value).subscribe(
+       this.http.get(`${this.port}categories/add/${this.addCategory.value}`).subscribe(
         res=>{
           
           var response=JSON.stringify(res)

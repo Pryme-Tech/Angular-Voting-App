@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  port = 'https://castvote.herokuapp.com/' //'http://localhost:4000/'
+
   register=new FormGroup({
     name: new FormControl(''),
     indexNumber: new FormControl('')
@@ -49,7 +51,7 @@ export class RegisterComponent implements OnInit {
 
    
 
-    this.http.post('http://localhost:4000/checkvoter/register',form).subscribe(
+    this.http.post(`${this.port}checkvoter/register`,form).subscribe(
   res=>{
     var response=JSON.stringify(res);
     var values=JSON.parse(response);
