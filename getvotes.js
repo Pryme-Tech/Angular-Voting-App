@@ -2,25 +2,18 @@ var express= require('express');
 var router=express.Router()
 
 
-const Pool = require('pg').Pool
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'voting',
-//   password: 'password@321',
-//   port: 5432
-// })
+var pool = require('./db_connect.js')
 
-const pool = new Pool({
-  user: 'suiiyhbvtvamdk',
-  host: 'ec2-52-204-195-41.compute-1.amazonaws.com',
-  database: 'ddu7f9ipiuu4mu',
-  password: 'd4e30215109ddad350c229cc7676dbef2c242c2038d769ed94d9dc6e88ff57b1',
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false,
- }
-})
+// const pool = new Pool({
+//   user: 'suiiyhbvtvamdk',
+//   host: 'ec2-52-204-195-41.compute-1.amazonaws.com',
+//   database: 'ddu7f9ipiuu4mu',
+//   password: 'd4e30215109ddad350c229cc7676dbef2c242c2038d769ed94d9dc6e88ff57b1',
+//   port: 5432,
+//   ssl: {
+//     rejectUnauthorized: false,
+//  }
+// })
 
 router.get('/',(request,response)=>{
   //res.json('hello')
