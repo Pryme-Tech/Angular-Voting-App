@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class VotesComponent implements OnInit {
 
-  port = 'http://localhost:4000'
+  port = 'https://castvote.herokuapp.com'//http://localhost:4000'
 
   categories:any = []
 

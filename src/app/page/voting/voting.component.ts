@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class VotingComponent implements OnInit {
 
-  port = 'http://localhost:4000/'
+  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
 
  votes = this.fb.group({
   indexNumber : ['']
@@ -32,7 +32,7 @@ export class VotingComponent implements OnInit {
 
   console.log(a)
 
-  this.http.post('http://localhost:4000/candidates/vote',this.votes.getRawValue()).subscribe(
+  this.http.post(`${this.port}candidates/vote`,this.votes.getRawValue()).subscribe(
     res=>{
       console.log(res)
       let message=JSON.parse(JSON.stringify(res))
@@ -100,7 +100,7 @@ status=0
 
             */
 
-    this.http.get('http://localhost:4000/categories').subscribe(
+    this.http.get(`${this.port}categories`).subscribe(
         res=>{
           //console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -134,7 +134,7 @@ status=0
         }
         )
 
-    this.http.get('http://localhost:4000/candidates').subscribe(
+    this.http.get(`${this.port}candidates`).subscribe(
         res=>{
           console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -147,7 +147,7 @@ status=0
           }
 
           else{
-            avatar="http://localhost:4000"+data.photo;
+            avatar=`${this.port}${data.photo}`;
           }
 
             this.candidates.push({
