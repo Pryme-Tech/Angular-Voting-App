@@ -1,5 +1,6 @@
 aside{
 	background-color: green;
+	z-index: 1;
 }
 
 .add_category{
@@ -8,7 +9,7 @@ aside{
 	left: 0;
 	width: 100%;
 	height: 90vh;
-	z-index: 1;
+	z-index: 3;
 	backdrop-filter: blur(2px);
 
 	h6{
@@ -40,7 +41,7 @@ aside{
 	left: 0;
 	width: 100%;
 	height: 90vh;
-	z-index: 1;
+	z-index: 2;
 	backdrop-filter: blur(2px);
 
 	h6{

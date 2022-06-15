@@ -305,7 +305,7 @@ ngAfterViewInit(){
           var response=JSON.stringify(res)
           var data=JSON.parse(response)
           console.log(data.data);
-          this.submitCategoryMessage=data.data+" Category Successfully Created";
+          this.submitCategoryMessage="Category Successfully Created";
           submitCategoryMessage.style.display='block';
           categoryform.style.display='none';
 
