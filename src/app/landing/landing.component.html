@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!--h1 class="animate__animated animate__fadeIn">An animated element</h1-->
+
+<!-- <div class="full">
+	 <span style="color: transparent;"> f </span>
+<div class="content animate__animated animate__fadeIn">
+  <a routerLink="/register"> Register </a>
+
+<div class="line"></div>
+
+  <a routerLink="/vote">Vote</a>
+
+</div>
+
+</div> -->
+
+<div class="flex animate__animated" id="register" style="height: 100vh; justify-content: center; align-items: center;">
+
+  <form class="bg-dark" style="height: inherit; width: 50%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="form-group" style="width: 50%;">
+      <label> UserName: </label>
+    <input class="form-control" type="text" placeholder="username">
+  </div>
+
+  <div class="form-group mt-4" style="width: 50%;">
+    <label> Password: </label>
+    <input class="form-control" type="text" name="" placeholder="password">
+  </div>
+
+  <div class="form-group" style="width: 50%;">
+    <button type="submit" class="btn btn-default">Register</button>
+    <p class="mt-4 text-center" id="changeToSignIn" style="border: 2px solid white;"> Already have an Account? <span class="text-success btn">Log in Here.</span> </p>
+  </div>
+
+  </form>
+
+  <div class="bg-success sec" style="height: inherit; width: 50%;"></div>
+  </div>
+
+
+
+  <div class="hidden flex animate__animated animate__fadeInRight" id="signin" style="height: 100vh; justify-content: center; align-items: center;">
+
+  <form class="bg-dark" style="height: inherit; width: 50%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="form-group" style="width: 50%;">
+      <label> UserName: </label>
+    <input class="form-control" type="text" placeholder="username">
+  </div>
+
+  <div class="form-group mt-4" style="width: 50%;">
+    <label> Password: </label>
+    <input class="form-control" type="text" name="" placeholder="password">
+  </div>
+
+  <div class="form-group" style="width: 50%;">
+    <button type="submit" class="btn btn-default">Sign in</button>
+
+    <p class="mt-4 text-center" id="changeToRegister" style="border: 2px solid white;"> New Here? <span class="text-primary btn">Register Here.</span> </p>
+
+  </div>
+
+  </form>
+
+  <div class="bg-success sec" style="height: inherit; width: 50%;"></div>
+  </div>

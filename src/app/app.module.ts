@@ -7,8 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './page/register/register.component';
 import { FirstComponent } from './first/first.component';
-import { SecondComponent } from './second/second.component';
-import { ThirdComponent } from './third/third.component';
+import { LandingComponent } from './landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -22,7 +21,7 @@ import { VotesComponent } from './Administrator/votes/votes.component';
 
 const routes: Routes = [
   { path: 'form', component: FirstComponent },
-  { path: 'home', component: SecondComponent},
+  { path: 'home', component: LandingComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'vote', component: VoteComponent},
   { path: 'votepage', component: VotingComponent},
@@ -43,8 +42,7 @@ const routes: Routes = [
     AppComponent,
     RegisterComponent,
     FirstComponent,
-    SecondComponent,
-    ThirdComponent,
+    LandingComponent,
     VoteComponent,
     VotingComponent,
     AdminComponent,

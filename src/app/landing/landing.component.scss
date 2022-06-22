@@ -35,3 +35,25 @@ div.line{
 	border: 2px solid;
 	height: 110%;
 }
+
+.hidden{
+	display: none !important;
+}
+
+.flex{
+	display: flex;
+}
+
+@media(max-width:  500px){
+	.sec{
+		display: none;
+	}
+
+	form{
+		width: 100% !important;
+
+		div{
+			width: 80% !important;
+		}
+	}
+}
