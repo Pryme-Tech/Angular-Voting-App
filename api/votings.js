@@ -2,6 +2,8 @@ const express = require('express')
 
 const { voting,users } = require('../models')
 
+var cors=require('cors');
+
 const router = express.Router()
 
 router.get('/:user',async (req,res)=>{
