@@ -55,7 +55,8 @@ const routes: Routes = [
     CandidatesComponent,
     VotesComponent,
     VotingsComponent,
-    OngoingvotingComponent
+    OngoingvotingComponent,
+    RouterModule
   ],
   imports: [
     BrowserModule,
