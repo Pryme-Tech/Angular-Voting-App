@@ -55,15 +55,13 @@ const routes: Routes = [
     CandidatesComponent,
     VotesComponent,
     VotingsComponent,
-    OngoingvotingComponent,
-    RouterModule
+    OngoingvotingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule,
     RouterModule.forRoot(routes)
       ],
   providers: [],
