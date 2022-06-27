@@ -15,9 +15,12 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
-  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
+  port = 'http://localhost:4000/'//'http://localhost:4000/'
 
  flashMessage=''
+
+ user_id = localStorage.getItem("user_id")
+ votingname = localStorage.getItem("votingname")
 
  toggleAddCandidate(form:any,data?:any,name?:any,photo?:any){
 
@@ -88,13 +91,31 @@ export class CandidatesComponent implements OnInit {
  submitCategoryMessage=""
  submitCandidateMessage=""
 
- addCategory=new FormControl('')
+ addCategory=new FormGroup({
+  categoryname : new FormControl(''),
+  votingname : new FormControl(this.votingname),
+  user_id : new FormControl(this.user_id)
+ })
+
+ addCategorySubmit(){
+  console.log(this.addCategory.getRawValue())
+
+  this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
+    res=>{
+      console.log(res)
+    },
+    err=>{
+      console.log(err)
+    })
+ }
 
  addCandidate=new FormGroup(
   {
     category: new FormControl(''),
-    name: new FormControl(''),
-    photo: new FormControl('')
+    candidatename: new FormControl(''),
+    // photo: new FormControl(''),
+    votingname : new FormControl(this.votingname),
+    user_id : new FormControl(this.user_id)
   }
   );
 
@@ -123,7 +144,7 @@ export class CandidatesComponent implements OnInit {
  submitCandidate(){
   console.log(this.addCandidate.getRawValue())
 
-  this.http.post(`${this.port}candidates/add/candidate`,this.addCandidate.getRawValue()).subscribe(
+  this.http.post(`${this.port}candidates/add`,this.addCandidate.getRawValue()).subscribe(
     res=>{
       console.log(res)
       this.flashMessage="New Candidate Added Successfully"
@@ -163,21 +184,32 @@ export class CandidatesComponent implements OnInit {
   
  }
 
-  constructor( private http: HttpClient, private ElementRef:ElementRef ) { 
+  constructor( private http: HttpClient, private ElementRef:ElementRef ) {
 
-    this.http.get(`${this.port}categories`).subscribe(
+    if(!(this.user_id && this.votingname)){
+      window.location.replace('/admin/auth')
+    }
+
+    // this.http.get('http://localhost:4000/votings/myname').subscribe(
+    //   res=>{
+    //     console.log(res)
+    //   })
+
+    this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
-          //console.log(res);
+
           var response= JSON.parse(JSON.stringify(res))
 
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
             this.categories.push({
               "count" : index,
-              "category" : data.category,
-              "category_id" : data.category_id
+              "category" : data.categoryname,
+              // "category_id" : data.category_id
             })
           })
+
+          console.log(this.categories)
 
         },
         err=>{
@@ -185,32 +217,20 @@ export class CandidatesComponent implements OnInit {
         }
         )
 
-    this.http.get(`${this.port}candidates`).subscribe(
+    this.http.get(`${this.port}candidates/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
-          console.log(res);
           var response= JSON.parse(JSON.stringify(res))
 
           response.forEach((data:any,index:any)=>{
-            //console.log(data.category)
-
-            var avatar=data.photo
-
-            if(avatar === ""){
-              avatar=`${this.port}images/candidates/default.png`;
-            }
-
-            else{
-              avatar=`${this.port}${data.photo}`;
-            }
 
             this.candidates.push({
-              "count" : index,
               "category" : data.category,
-              "id" : "5335",
-              "name" : data.name,
-              "photo" : avatar
+              "candidatename" : data.candidatename
+              // "photo" : avatar
             })
           })
+
+          console.log(this.candidates)
 
         },
         err=>{
@@ -291,52 +311,52 @@ ngAfterViewInit(){
 
     })
 
-    submitCategory.addEventListener('click',()=>{
+    // submitCategory.addEventListener('click',()=>{
 
-      let submitCategoryMessage=document.getElementById('submitCategoryMessage') as HTMLElement;
+    //   let submitCategoryMessage=document.getElementById('submitCategoryMessage') as HTMLElement;
       
-      let categoryform=document.getElementById('categoryform') as HTMLElement;
+    //   let categoryform=document.getElementById('categoryform') as HTMLElement;
 
-      console.log(this.addCategory.value);
+    //   console.log(this.addCategory.value);
 
-       this.http.get(`${this.port}categories/add/${this.addCategory.value}`).subscribe(
-        res=>{
+    //    this.http.get(`${this.port}categories/add/${this.addCategory.value}`).subscribe(
+    //     res=>{
           
-          var response=JSON.stringify(res)
-          var data=JSON.parse(response)
-          console.log(data.data);
-          this.submitCategoryMessage="Category Successfully Created";
-          submitCategoryMessage.style.display='block';
-          categoryform.style.display='none';
+    //       var response=JSON.stringify(res)
+    //       var data=JSON.parse(response)
+    //       console.log(data.data);
+    //       this.submitCategoryMessage="Category Successfully Created";
+    //       submitCategoryMessage.style.display='block';
+    //       categoryform.style.display='none';
 
-          setInterval(()=>{
-           /* add_category_rm.forEach((btn:any)=>{
-        btn.classList.remove('add_category');
-        btn.classList.add('add_category_rm')
-    });*/
-    window.location.reload()
-          },1000)
-        },
-        err=>{
-          console.log(err)
-          this.submitCategoryMessage="Error Inserting Data Please Try Again";
-          submitCategoryMessage.style.display='block';
-          submitCategoryMessage.classList.remove('bg-success');
-          submitCategoryMessage.classList.add('bg-danger');
+    //       setInterval(()=>{
+    //         add_category_rm.forEach((btn:any)=>{
+    //     btn.classList.remove('add_category');
+    //     btn.classList.add('add_category_rm')
+    // });
+    // window.location.reload()
+    //       },1000)
+    //     },
+    //     err=>{
+    //       console.log(err)
+    //       this.submitCategoryMessage="Error Inserting Data Please Try Again";
+    //       submitCategoryMessage.style.display='block';
+    //       submitCategoryMessage.classList.remove('bg-success');
+    //       submitCategoryMessage.classList.add('bg-danger');
           
-          categoryform.style.display='none';
+    //       categoryform.style.display='none';
 
-          setInterval(()=>{
-            /*add_category_rm.forEach((btn:any)=>{
-        btn.classList.remove('add_category');
-        btn.classList.add('add_category_rm')
-    });*/
-    window.location.reload()
-          },1000)
-        }
-        )
+    //       setInterval(()=>{
+    //         /*add_category_rm.forEach((btn:any)=>{
+    //     btn.classList.remove('add_category');
+    //     btn.classList.add('add_category_rm')
+    // });*/
+    // window.location.reload()
+    //       },1000)
+    //     }
+    //     )
 
-    })
+    // })
 
     
 

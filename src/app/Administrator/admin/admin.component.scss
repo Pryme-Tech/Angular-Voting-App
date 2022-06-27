@@ -3,6 +3,10 @@ aside{
 	z-index: 1;
 }
 
+aside.hidden{
+	display : none !important;
+}
+
 .add_category{
 	position: absolute;
 	top: 0;

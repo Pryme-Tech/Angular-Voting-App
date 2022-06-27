@@ -1,0 +1,70 @@
+<!-- <div class="main bg-success vh-100 d-flex flex-column justify-content-center align-items-center">
+
+	<div *ngIf="noVotingAdded">
+
+{{noVotingAdded}}
+
+	</div>
+
+	<form [formGroup]="newVoting" (ngSubmit)="newVotingOnSubmit()" class="px-5 text-center" style="width:100%">
+
+<div class="form-group">
+		<p type="button" class="btn btn-dark" onclick="document.getElementById('newinput').style.display='block';
+		document.getElementById('newinputbutton').style.display='block';"> Add New Voting </p>
+	</div>
+
+<div class="form-group" id="newinput" style="display: none;">
+		<input class="form-control text-center" type="text" placeholder="Choose a name for ongoing voting" formControlName="newVotingInput">
+	</div>
+
+	<div class="form-group" id="newinputbutton" style="display:none;">
+<button class="btn btn-primary" type="submit">Submit</button>
+	</div>
+
+	</form>
+
+	
+
+</div> -->
+
+<div class="main bg-success" style="min-height: 100vh;">
+
+	<div *ngIf="welcome" class="py-4 bg-dark text-center">
+		<h4> {{welcome}} </h4>
+	</div>
+
+<div class="p-0 m-0 main row justify-content-center py-3 px-3"  >
+
+	<div class="border border-5 col-6 py-1 text-center bg-light" *ngIf="noVotingAdded" style="">
+
+{{noVotingAdded}}
+
+	</div>
+
+	<form [formGroup]="newVoting" (ngSubmit)="newVotingOnSubmit()" class="rounded col-6 px-5 pb-0 text-center border border-5 py-3" style="width:100%">
+
+<div class="form-group">
+		<p class="btn btn-dark m-0" onclick="document.getElementById('newinput').style.display='block';
+		document.getElementById('newinputbutton').style.display='block';"> Add New Voting </p>
+	</div>
+
+	<div class="form-group" id="newinput" style="display: none;">
+		<input class="form-control text-center" type="text" placeholder="Choose a name for ongoing voting" formControlName="newVotingInput">
+	</div>
+
+	<div class="form-group" id="newinputbutton" style="display:none;">
+<button class="btn btn-primary" type="submit">Submit</button>
+	</div>
+
+	</form>
+
+<div class="row pt-5">
+
+	<div class="border border-5 col-6 text-center p-2 mt-3" *ngFor="let x of votings" (click)="redirectToCandidates(x.votingname)" id={{x.votingname}} style="box-sizing: border-box; cursor: pointer;" >
+			{{x.votingname}}
+	</div>
+</div>
+
+	</div>
+
+</div>

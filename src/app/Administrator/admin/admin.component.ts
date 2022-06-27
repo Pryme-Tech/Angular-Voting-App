@@ -15,7 +15,53 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AdminComponent{
 
-  
+  user_id = localStorage.getItem('user_id')
+
+  constructor(){
+
+    // if(this.user_id && (location.href)){
+    //   console.log(location.href)
+    //   //location.replace('/admin/votings')
+    //   //break
+    // }
+    // alert(typeof(location.href))
+  }
+
+  d = ''
+
+  ngAfterViewInit(){
+
+    let aside = document.getElementById('aside') as HTMLElement
+
+    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings'){
+      //alert('hello')
+      //aside.classList.remove('main-sidebar','elevation-5','justify-content-center','d-flex','flex-column','position-fixed')
+      //aside.style.display='none !important'
+      this.d = 'h'
+      aside.classList.add('hidden')
+      //alert(aside.classList)
+    }
+
+    else{
+      aside.classList.remove('hidden')
+      this.d=''
+    }
+
+    // if(location.href ==='http://localhost:4200/admin/auth'){
+    //   //alert('hello')
+    //   //aside.classList.remove('main-sidebar','elevation-5','justify-content-center','d-flex','flex-column','position-fixed')
+    //   //aside.style.display='none !important'
+    //   this.d = 'h'
+    //   aside.classList.add('hidden')
+    //   // alert(aside.classList)
+    // }
+
+    // else{
+    //   aside.classList.remove('hidden')
+    //   this.d=''
+    // }
+
+  }
 
 }
 

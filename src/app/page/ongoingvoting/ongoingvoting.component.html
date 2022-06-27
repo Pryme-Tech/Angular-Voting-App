@@ -1,0 +1,21 @@
+<div class="bg-success" style="min-height: 100vh;">
+
+	<h1 class="text-center py-3"> Ongoing Votings </h1>
+
+	<div *ngIf="errMsg" class="text-center bg-dark py-5">
+
+		{{errMsg}}
+
+	</div>
+
+	<div class="row m-0 mt-5">
+
+		<div class="col-6 mt-5" *ngFor="let x of ongoingVoting" style="cursor: pointer;">
+			<div class="text-center border border-5 py-3" (click)="accessVotings(this.x.voting,this.x.user_id)">
+				{{x.voting}}
+			</div>
+		</div>
+		
+	</div>
+
+</div>

@@ -8,60 +8,61 @@ import {HttpClient} from '@angular/common/http';
 })
 export class VotesComponent implements OnInit {
 
-  port = 'https://castvote.herokuapp.com'//http://localhost:4000'
+  port = 'http://localhost:4000/'//http://localhost:4000'
 
   categories:any = []
 
   votes:any = []
 
+  user_id = localStorage.getItem("user_id")
+
+  votingname = localStorage.getItem("votingname")
+
   constructor(private http: HttpClient) {
 
-  this.http.get(`${this.port}/categories`).subscribe(
-    res=>{
-      console.log(res)
+    if(!(this.user_id && this.votingname)){
+      window.location.replace('/admin/auth')
+    }
 
-      let category = JSON.parse(JSON.stringify(res))
+ this.http.get(`${this.port}vote/${this.user_id}/${this.votingname}`).subscribe(
+        res=>{
 
-      for(let i in category ){
-        this.categories.push({
-          "category" : category[i].category,
-          "category_id" : category[i].category_id
-        })
-      }
+          let result = JSON.parse(JSON.stringify(res))
 
-    },
-    err=>{
-      console.log(err)
-    })
+          result.forEach((data:any,index:any)=>{
+            console.log(data)
+            this.votes.push(data)
+          })
 
-  this.http.get(`${this.port}/getvotes`).subscribe(
-    res=>{
-      console.log(res)
+          console.log(this.votes)
 
-      let getvotes = JSON.parse(JSON.stringify(res))
-
-      let avatar=''
-
-      for(let i in getvotes ){
-        
-        if(getvotes[i].photo === ""){
-          avatar = `/images/candidates/default.png`
+        },
+        err=>{
+          console.log(err)
         }
-        else{
-          avatar = getvotes[i].photo
+        )
+
+ this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
+        res=>{
+
+          console.log(res)
+
+          let result = JSON.parse(JSON.stringify(res))
+
+          result.forEach((data:any,index:any)=>{
+            this.categories.push({
+              "count" : index,
+              "category" : data.categoryname
+            })
+          })
+
+          // console.log(this.votes)
+
+        },
+        err=>{
+          console.log(err)
         }
-
-        this.votes.push({
-          "name" : getvotes[i].name,
-          "category" : getvotes[i].category,
-          "category_id" : getvotes[i].category_id,
-          "photo" : avatar,
-          "votes" : getvotes[i].count,
-          "percentage" : (getvotes[i].count/6 * 100).toFixed(2)
-        })
-      }
-
-    })
+        )
 
   //console.log(this.categories)
   //console.log(this.votes)

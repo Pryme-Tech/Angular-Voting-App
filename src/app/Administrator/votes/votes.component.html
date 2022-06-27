@@ -15,9 +15,9 @@
 
 			<div class="card" *ngFor="let y of categories">
 
-				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.category_id" style="color: green;"> {{y.category}} </div>
+				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.count" style="color: green;"> {{y.category}} </div>
 
-				<div class="card-body collapse" [id]="'x'+y.category_id" >
+				<div class="card-body collapse" [id]="'x'+y.count" >
 <!--
 					<div class="text-right mb-3">
 
@@ -30,7 +30,7 @@
 
 						<div *ngFor="let x of votes">
 
-						<li class="mt-5" *ngIf="x.category === y.category_id">
+						<li class="mt-5" *ngIf="x.Category === y.category">
 
 							<div class="row">
 
@@ -44,7 +44,7 @@
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
-									<h6 class="text-center"> {{x.name}} </h6>
+									<h6 class="text-center"> {{x.Candidate_Name}} </h6>
 
 								</div>
 
@@ -56,7 +56,7 @@
 
 									<p class="text-center text-bold text-decoration-underline"> No. of votes </p>
 
-									<h6 class="text-center"> {{x.votes}} </h6>
+									<h6 class="text-center"> {{x.Number_of_votes}} </h6>
 
 								</div>
 
@@ -68,7 +68,7 @@
 
 									<p class="text-center text-bold text-decoration-underline"> Percentage (%) </p>
 
-									<h6 class="text-center"> {{x.percentage}} </h6>
+									<h6 class="text-center"> {{x.Percentage}} </h6>
 
 								</div>
 

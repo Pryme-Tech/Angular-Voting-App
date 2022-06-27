@@ -16,13 +16,15 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 {{flashErrorMessage}} <img src="assets/error.png" style="width: 8%;">
 </div>
 
+<h3 class="text-center p-3 m-0 bg-dark font-weight-bold"> {{votingname}} </h3>
+
 <div class="container-fluid full" >
 
 <div class="text-center" style="position: fixed; width: 100vw; top: -40%; left: 0; z-index: 0;">
-  <img src="assets/bg.png" style="width: inherit; opacity: 5%;" >
+  <img src="assets/bg.png" style="width: inherit; opacity: 8%;" >
 </div>
 
-	<div class="row user p-5 text-center">
+	<div class="row user p-4 text-center">
 
 		<div class="col-sm-6">
 			<span> -- {{username}} </span>
@@ -49,7 +51,7 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 
     <form [formGroup]="votes" (ngSubmit)="show()">
 
-	 <div class="table-responsive form-step-active mt-5 card" *ngFor="let x of categories" >
+	 <div class="table-responsive form-step-active mt-3 card" *ngFor="let x of categories" >
 	 	<h6 class="card-header" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;"> {{x.category}} </h6>
     <table class="table table-light table-striped table-hover collapse" [id]="'x'+x.count" >
       <thead>
@@ -64,10 +66,11 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
        
        	<tr class="text-center" *ngFor="let y of candidates" >
 
-      		<td *ngIf="y.category === x.category_id"> {{y.count}} </td>
-      		<td *ngIf="y.category === x.category_id"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
-      		<td *ngIf="y.category === x.category_id"> {{y.name}} </td>
-      		<td *ngIf="y.category === x.category_id"> <input type="radio" [value]=y.name formControlName={{x.category}} > </td>
+      		<td *ngIf="y.category === x.category"> {{y.count}} </td>
+      		<td *ngIf="y.category === x.category"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
+      		<td *ngIf="y.category === x.category"> {{y.candidatename}} </td>
+      		<td *ngIf="y.category === x.category"> <input type="radio" [value]=y.candidatename formControlName={{y.category}} >
+          <!-- <input type="text"  formControlName="category" value={{y.category}} hidden > --> </td>
 
       	</tr>
 

@@ -5,7 +5,7 @@
 
 <!-- Side NavBar -->
 
-<aside class="main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" >
+<aside class="main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" id="aside" >
 
 	<div class="text-center mb-5" style="border: 2px solid; background-color: black;"> <a class="p-3 px-4 text-white" routerLink="candidates" style="background-color: black; font-weight: bold; letter-spacing: .2rem;"> CANDIDATES <i class="fa-solid fa-circle-check"></i> </a>  </div>
 
@@ -15,9 +15,11 @@
 
 <!-- End Side NavBar -->
 
+<router-outlet *ngIf="d"></router-outlet>
 
 
-<div class="content-wrapper" >
+
+<div class="content-wrapper" *ngIf="!d">
 
 <div class="container-fluid px-5" style="position: relative; min-height: 95vh;">
 

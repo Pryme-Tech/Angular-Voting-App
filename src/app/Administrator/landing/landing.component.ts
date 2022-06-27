@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {FormBuilder,FormControl,FormGroup} from '@angular/forms';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-landing',
@@ -7,8 +9,76 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { 
+registerForms = new FormGroup({
+username: new FormControl(''),
+password: new FormControl('')
+})
 
+loginForms = new FormGroup({
+username: new FormControl(''),
+password: new FormControl('')
+})
+
+errMsg = ''
+sucMsg :any = ''
+
+private httpoptions={
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+  }
+
+registerFormsOnSubmit(){
+let user_id = this.registerForms.getRawValue().username
+
+this.http.post('http://localhost:4000/users/register',this.registerForms.getRawValue()).subscribe(
+  res=>{
+    console.log(res)
+    //register.classList.add('hidden');
+    this.sucMsg = res
+    localStorage.setItem("user_id",user_id)
+    setTimeout(()=>{
+      this.sucMsg=''
+      location.reload()
+    },2000)
+  },
+  err=>{
+    console.log(err)
+    this.errMsg = err.error
+    setTimeout(()=>{
+      this.errMsg=''
+    },2000)
+  })
+}
+
+loginFormsOnSubmit(){
+console.log(this.loginForms.getRawValue());
+
+this.http.post('http://localhost:4000/users/login',this.loginForms.getRawValue()).subscribe(
+  res=>{
+    console.log(res)
+    let auth = JSON.parse(JSON.stringify(res))
+    // console.log(auth.auth)
+
+     if(auth.status === 1 ){
+      localStorage.setItem('user_id',auth.user)
+       window.location.replace('/admin')
+     }
+     
+  },
+  err=>{
+    console.log(err.error)
+    this.errMsg = err.error
+    setTimeout(()=>{
+      this.errMsg=''
+    },2000)
+  })
+}
+
+  constructor(private http:HttpClient) { 
+    if(localStorage.getItem("user_id")){
+      location.replace('/admin/votings')
+    }
   }
 
   ngOnInit(): void {

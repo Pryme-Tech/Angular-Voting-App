@@ -13,10 +13,14 @@ import {Router} from '@angular/router';
 })
 export class VotingComponent implements OnInit {
 
-  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
+  port = 'http://localhost:4000/'//'http://localhost:4000/'
+
+  user_id = localStorage.getItem("accessuser")
+  votingname = localStorage.getItem("accessvoting")
 
  votes = this.fb.group({
-  indexNumber : ['']
+  user_id : [this.user_id],
+  votingname : [this.votingname]
  })
 
  flashSuccessMessage=''
@@ -30,31 +34,36 @@ export class VotingComponent implements OnInit {
  show(){
   var a=JSON.parse(JSON.stringify(this.votes.getRawValue()));
 
-  console.log(a)
+  // localStorage.removeItem("accessuser")
+  // localStorage.removeItem("accessvoting")
+  // location.reload()
 
-  this.http.post(`${this.port}candidates/vote`,this.votes.getRawValue()).subscribe(
+  console.log(this.votes.getRawValue())
+
+  this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
     res=>{
       console.log(res)
-      let message=JSON.parse(JSON.stringify(res))
-      if(message.includes('successful')){
-        this.flashSuccessMessage=message
-      }
-      else{
-        this.flashErrorMessage=message
-      }
-      localStorage.removeItem('username')
-      localStorage.removeItem('indexnumber')
+      //console.log(this.votes.getRawValue())
+    //   let message=JSON.parse(JSON.stringify(res))
+    //   if(message.includes('successful')){
+    //     this.flashSuccessMessage=message
+    //   }
+    //   else{
+    //     this.flashErrorMessage=message
+    //   }
+    //   localStorage.removeItem('username')
+    //   localStorage.removeItem('indexnumber')
 
-      var x:any=3;
+    //   var x:any=3;
 
-    setInterval(()=>{
-      x--;
-      var v=document.getElementById("countdown") as HTMLElement; 
-      v.innerText=x;
-      if(x===0){
-        window.location.reload();
-      }
-    },1000)
+    // setInterval(()=>{
+    //   x--;
+    //   var v=document.getElementById("countdown") as HTMLElement; 
+    //   v.innerText=x;
+    //   if(x===0){
+    //     window.location.reload();
+    //   }
+    // },1000)
 
 
     },
@@ -79,14 +88,14 @@ status=0
 
   constructor( private fb: FormBuilder, private http: HttpClient, private router: Router ) { 
 
-    if(localStorage.getItem('username') && localStorage.getItem('indexnumber')){
-      this.username=localStorage.getItem('username');
-      this.indexnumber=localStorage.getItem('indexnumber');
-      this.votes.controls['indexNumber'].setValue(localStorage.getItem('indexnumber'));
+    if(localStorage.getItem('accessuser') && localStorage.getItem('accessvoting')){
+      // this.username=localStorage.getItem('username');
+      // this.indexnumber=localStorage.getItem('indexnumber');
+      //this.votes.controls['indexNumber'].setValue(localStorage.getItem('indexnumber'));
     }
 
     else{
-      this.router.navigate(['/vote'])
+      this.router.navigate(['/'])
     }
 
 /*
@@ -100,22 +109,27 @@ status=0
 
             */
 
-    this.http.get(`${this.port}categories`).subscribe(
+    this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
           //console.log(res);
           var response= JSON.parse(JSON.stringify(res))
+
+          console.log(response)
 
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
            this.categories.push({
             "count" : index,
-            "category" : data.category,
-            "category_id" : data.category_id
+            "category" : data.categoryname,
+              // "category_id" : data.category_id
           })
+           this.votes.addControl(data.categoryname,this.fb.control(''));
+           console.log(this.votes.getRawValue())
+         })
 
            //this.categories.forEach((category)=>{
 
-              this.votes.addControl(data.category,this.fb.control(''));
+              //this.votes.addControl(data.category,this.fb.control(''));
 
            // })
 
@@ -124,9 +138,8 @@ status=0
               //this.votes.addControl(data.category,this.fb.control(''));
 
             //})
-         })
 
-          this.status=1
+          //this.status=1
 
         },
         err=>{
@@ -134,7 +147,7 @@ status=0
         }
         )
 
-    this.http.get(`${this.port}candidates`).subscribe(
+    this.http.get(`${this.port}candidates/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
           console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -142,20 +155,18 @@ status=0
           response.forEach((data:any,index:any)=>{
             //console.log(data)
 
-            if(data.photo===""){
-            var avatar=`${this.port}images/candidates/default.png`
-          }
+          //   if(data.photo===""){
+          //   var avatar=`${this.port}images/candidates/default.png`
+          // }
 
-          else{
-            avatar=`${this.port}${data.photo}`;
-          }
+          // else{
+          //   avatar=`${this.port}${data.photo}`;
+          // }
 
             this.candidates.push({
               "count" : index,
               "category" : data.category,
-              "id" : "5335",
-              "name" : data.name,
-              "photo" : avatar
+              "candidatename" : data.candidatename
             })
           })
 
@@ -166,9 +177,7 @@ status=0
         )
 
 
-
-
-  }
+}
 
   ngAfterViewInit(){
 
