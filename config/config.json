@@ -1,10 +1,15 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "password@321",
-    "database": "voting",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "suiiyhbvtvamdk",
+    "password": "d4e30215109ddad350c229cc7676dbef2c242c2038d769ed94d9dc6e88ff57b1",
+    "database": "ddu7f9ipiuu4mu",
+    "host": "ec2-52-204-195-41.compute-1.amazonaws.com",
+    "dialect": "postgres",
+     "dialectOptions": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  }
   },
   "test": {
     "username": "root",
@@ -14,10 +19,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": "postgres",
+    "password": "password@321",
+    "database": "voting",
     "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+    "dialect": "postgres"
 }
+}
+
