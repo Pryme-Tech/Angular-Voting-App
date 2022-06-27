@@ -36,8 +36,17 @@ export class OngoingvotingComponent implements OnInit {
 
       },
       err=>{
-        console.log(err.error)
+        console.log(err)
+
+        if(err.statusText === "Unknown Error"){
+          this.errMsg = "No Connection"
+        }
+        else{
         this.errMsg = err.error
+      }
+
+        
+
       })
   }
 

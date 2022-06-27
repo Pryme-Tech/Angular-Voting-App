@@ -34,10 +34,10 @@ export class AdminComponent{
     let aside = document.getElementById('aside') as HTMLElement
 
     if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings'){
-      //alert('hello')
-      //aside.classList.remove('main-sidebar','elevation-5','justify-content-center','d-flex','flex-column','position-fixed')
-      //aside.style.display='none !important'
-      this.d = 'h'
+          
+      setTimeout(()=>{
+        this.d = 'h'
+      },1000)
       aside.classList.add('hidden')
       //alert(aside.classList)
     }
