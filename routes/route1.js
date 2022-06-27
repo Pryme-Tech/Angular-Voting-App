@@ -24,7 +24,7 @@ router.use('/vote',endpoints.vote)
 router.use('/votings',endpoints.votings)
 
 router.get('/',(req,res)=>{
-	res.json('hiii')
+	res.status(200).json('hiii')
 })
 
 // router.get('/',(req,res)=>{
