@@ -82,20 +82,20 @@ router.post('/add',async(req,res)=>{
 })
 
 router.get('/',async(req,res)=>{
-	res.json('working')
 
-	// try{
-	// 	let Ongoing = await voting.findAll()
+	try{
+		let Ongoing = await voting.findAll()
 
-	// 	if(Ongoing.length < 1){
-	// 		return res.status(404).json("No Ongoing Votes at the moment")
-	// 	}
+		if(Ongoing.length < 1){
+			return res.status(404).json("No Ongoing Votes at the moment")
+		}
 
-	// 	res.status(200).json(Ongoing)
-	// }
-	// catch (err){
-	// 	console.log("err")
-	// }
+		res.status(200).json(Ongoing)
+	}
+	catch (err){
+		console.log("err")
+		res.json("An Error Occured")
+	}
 })
 
 module.exports = router
