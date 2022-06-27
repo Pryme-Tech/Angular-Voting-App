@@ -17,7 +17,7 @@ import { AdminComponent } from './Administrator/admin/admin.component';
 import { Page404Component } from './page404/page404.component';
 import { CandidatesComponent } from './Administrator/candidates/candidates.component';
 import { VotesComponent } from './Administrator/votes/votes.component';
-import { VotingsComponent } from './administrator/votings/votings.component';
+import { VotingsComponent } from './Administrator/votings/votings.component';
 import { OngoingvotingComponent } from './page/ongoingvoting/ongoingvoting.component';
 
 
