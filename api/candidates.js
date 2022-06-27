@@ -2,6 +2,10 @@ const express = require('express')
 
 const router = express.Router()
 
+var cors = require('cors')
+
+router.use(cors())
+
 const {candidates,categories} = require('../models')
 
 // router.get('/',(req,res)=>{

@@ -4,6 +4,10 @@ const { users } = require('../models')
 
 const router = express.Router()
 
+var cors = require('cors')
+
+router.use(cors())
+
 router.post('/register',async (req,res)=>{
 	
 

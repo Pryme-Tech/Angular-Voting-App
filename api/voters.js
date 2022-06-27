@@ -2,6 +2,10 @@ const express = require('express')
 
 const { voters,users } = require('../models')
 
+var cors = require('cors')
+
+router.use(cors())
+
 const router = express.Router()
 
 router.post('/register',async (req,res)=>{

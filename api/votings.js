@@ -2,9 +2,11 @@ const express = require('express')
 
 const { voting,users } = require('../models')
 
-var cors=require('cors');
-
 const router = express.Router()
+
+var cors = require('cors')
+
+router.use(cors())
 
 router.get('/:user',async (req,res)=>{
 
@@ -25,7 +27,7 @@ router.get('/:user',async (req,res)=>{
 
 })
 
-router.use(cors())
+
 
 router.post('/add',async(req,res)=>{
 
@@ -84,21 +86,20 @@ router.post('/add',async(req,res)=>{
 })
 
 router.get('/',async(req,res)=>{
-	res.status(200).json('heloooo')
 
-	// try{
-	// 	let Ongoing = await voting.findAll()
+	try{
+		let Ongoing = await voting.findAll()
 
-	// 	if(Ongoing.length < 1){
-	// 		return res.status(404).json("No Ongoing Votes at the moment")
-	// 	}
+		if(Ongoing.length < 1){
+			return res.status(404).json("No Ongoing Votes at the moment")
+		}
 
-	// 	res.status(200).json(Ongoing)
-	// }
-	// catch (err){
-	// 	console.log("err")
-	// 	res.json.status(404).("An Error Occured")
-	// }
+		res.status(200).json(Ongoing)
+	}
+	catch (err){
+		console.log("err")
+		res.json.status(404).("An Error Occured")
+	}
 })
 
 module.exports = router

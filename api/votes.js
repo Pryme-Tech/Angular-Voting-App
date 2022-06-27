@@ -2,6 +2,10 @@ const express = require('express')
 
 const { votes,users,candidates,categories } = require('../models')
 
+var cors = require('cors')
+
+router.use(cors())
+
 const router = express.Router()
 
 router.post('/',async (req,res)=>{
