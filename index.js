@@ -22,9 +22,9 @@ express()
 
 .use('/',routes.route1)
 
-.get('/',(req,res)=>{
-	res.json('hello')
-})
+// .get('/',(req,res)=>{
+// 	res.json('hello')
+// })
 
 .get('/users',async(req,res)=>{
 	const users = await voters.findAll();

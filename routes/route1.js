@@ -23,6 +23,10 @@ router.use('/vote',endpoints.vote)
 
 router.use('/votings',endpoints.votings)
 
+router.get('/',(req,res)=>{
+	res.json('hiii')
+})
+
 // router.get('/',(req,res)=>{
 // 	res.json('hiii')
 // })
