@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   candidates.init({
-    candidatename: DataTypes.STRING,
+    candidatename: DataTypes.CITEXT,
     category: DataTypes.STRING,
     votingname: DataTypes.STRING,
     user_id: DataTypes.STRING

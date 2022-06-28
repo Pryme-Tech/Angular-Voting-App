@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.STRING,
     candidate: DataTypes.STRING,
     category: DataTypes.STRING,
-    votingname: DataTypes.STRING
+    votingname: DataTypes.STRING,
+    voter: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'votes',

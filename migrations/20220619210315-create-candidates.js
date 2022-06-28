@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       candidatename: {
-        type: Sequelize.STRING
+        type: Sequelize.CITEXT
       },
       category: {
         type: Sequelize.STRING

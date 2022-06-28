@@ -20,6 +20,9 @@ module.exports = {
       votingname: {
         type: Sequelize.STRING
       },
+      voter :{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

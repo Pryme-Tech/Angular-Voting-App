@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       index: {
-        type: Sequelize.STRING
+        type: Sequelize.CITEXT
       },
-      name: {
+      votingname: {
         type: Sequelize.STRING
       },
       createdAt: {

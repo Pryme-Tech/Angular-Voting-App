@@ -14,6 +14,8 @@ const routes = {
 
 express()
 
+.use(express.static('assets'))
+
 .use(cors())
 
 .use(bodyParser.urlencoded({ extended: true }))

@@ -90,7 +90,7 @@ router.get('/',async(req,res)=>{
 		let Ongoing = await voting.findAll()
 
 		if(Ongoing.length < 1){
-			return res.status(404).json("No Ongoing Votes at the moment")
+			return res.status(404).json("No Voting Events at the moment")
 		}
 
 		res.status(200).json(Ongoing)

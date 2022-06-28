@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     categoryname: {
-        type: DataTypes.STRING
+        type: DataTypes.CITEXT
       }
   }, {
     sequelize,

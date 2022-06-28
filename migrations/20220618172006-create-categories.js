@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       categoryname: {
-        type: Sequelize.STRING
+        type: Sequelize.CITEXT
       },
       user_id: {
         type: Sequelize.STRING

@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   voters.init({
     user_id: DataTypes.STRING,
     index: {
-      type: DataTypes.STRING,
+      type: DataTypes.CITEXT,
       allowNull: false
     },
-    name: {
+    votingname: {
       type: DataTypes.STRING,
       allowNull: false
     }
