@@ -101,14 +101,16 @@ catch (err){
 router.get('/',async (req,res)=>{
 	//const { username,password } = req.body
 
-	let allUsers = await users.findAll({
-		where:{username:"latif83"}
-	})
+	res.json('hello')
 
-	res.json({
-      "status": true,
-      "data": allUsers
-   });
+	// let allUsers = await users.findAll({
+	// 	where:{username:"latif83"}
+	// })
+
+	// res.json({
+ //      "status": true,
+ //      "data": allUsers
+ //   });
 })
 
 module.exports = router
