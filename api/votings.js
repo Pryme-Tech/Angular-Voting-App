@@ -97,7 +97,7 @@ router.get('/',async(req,res)=>{
 	}
 	catch (err){
 		console.log("err")
-		res.json.status(404).("An Error Occured")
+		res.json.status(404).json("An Error Occured")
 	}
 })
 
