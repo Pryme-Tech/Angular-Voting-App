@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+import routes from '../../../assets/routes/routes.json';
+
 @Component({
   selector: 'app-votes',
   templateUrl: './votes.component.html',
@@ -8,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class VotesComponent implements OnInit {
 
-  port = 'http://localhost:4000/'//http://localhost:4000'
+  port = routes.host
 
   categories:any = []
 

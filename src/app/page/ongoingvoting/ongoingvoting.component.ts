@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+
+import routes from '../../../assets/routes/routes.json';
 
 @Component({
   selector: 'app-ongoingvoting',
@@ -8,7 +10,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class OngoingvotingComponent implements OnInit {
 
-  port = "https://castvote.herokuapp.com/"
+  port = routes.host
 
   // port(){
   //   let p =''
@@ -46,7 +48,8 @@ export class OngoingvotingComponent implements OnInit {
         response.forEach((data:any)=>{
           this.ongoingVoting.push({
             "voting":data.votingname,
-            "user_id":data.username
+            "user_id":data.username,
+            "img" : this.port+"img/simple.jpg"
           })
         })
 
@@ -64,6 +67,19 @@ export class OngoingvotingComponent implements OnInit {
         
 
       })
+  }
+
+  ngAfterViewInit(){
+
+  //   let events = document.querySelectorAll('.events')
+
+  // setTimeout(()=>{
+  //   events.forEach((event:any)=>{
+  //     event.style.display='none'
+  //   })
+  // },3000)
+   
+
   }
 
   ngOnInit(): void {

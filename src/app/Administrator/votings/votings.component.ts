@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
+import routes from '../../../assets/routes/routes.json';
+
 @Component({
   selector: 'app-votings',
   templateUrl: './votings.component.html',
@@ -9,7 +11,7 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 })
 export class VotingsComponent implements OnInit {
 
-  port = "https://castvote.herokuapp.com/"
+  port = routes.host
 
   // port = "http://localhost:4000/"
 

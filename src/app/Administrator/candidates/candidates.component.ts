@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, AfterContentChecked,  ElementRef, Vie
 
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
+import routes from '../../../assets/routes/routes.json';
+
 //import * as $ from 'jquery';
 
 import {HttpClient} from '@angular/common/http';
@@ -15,7 +17,7 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
-  port = 'http://localhost:4000/'//'http://localhost:4000/'
+  port = routes.host
 
  flashMessage=''
 

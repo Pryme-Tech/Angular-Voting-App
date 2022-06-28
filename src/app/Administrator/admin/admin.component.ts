@@ -6,6 +6,8 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
 import {HttpClient} from '@angular/common/http';
 
+import routes from '../../../assets/routes/routes.json';
+
 //declare var $: any;
 
 @Component({

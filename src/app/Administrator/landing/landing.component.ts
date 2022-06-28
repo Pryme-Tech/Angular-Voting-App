@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormBuilder,FormControl,FormGroup} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
+import routes from '../../../assets/routes/routes.json';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -9,7 +11,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class LandingComponent implements OnInit {
 
-  port = "https://castvote.herokuapp.com/"
+  port = routes.host
 
 registerForms = new FormGroup({
 username: new FormControl(''),

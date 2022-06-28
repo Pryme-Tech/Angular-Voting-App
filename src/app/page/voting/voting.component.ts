@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 
 import {Router} from '@angular/router';
 
+import routes from '../../../assets/routes/routes.json';
+
 @Component({
   selector: 'app-voting',
   templateUrl: './voting.component.html',
@@ -13,7 +15,7 @@ import {Router} from '@angular/router';
 })
 export class VotingComponent implements OnInit {
 
-  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
+  port = routes.host
 
   user_id = localStorage.getItem("accessuser")
   votingname = localStorage.getItem("accessvoting")

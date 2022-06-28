@@ -6,6 +6,8 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import {Router} from '@angular/router';
 
+import routes from '../../../assets/routes/routes.json';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,7 +15,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
+  port = routes.host
 
   register=new FormGroup({
     name: new FormControl(''),

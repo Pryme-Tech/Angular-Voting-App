@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'vote', component: VoteComponent},
   { path: 'votepage', component: VotingComponent},
-  { path: 'home', component: OngoingvotingComponent},
+  { path: 'events', component: OngoingvotingComponent},
 
   { path: 'admin', component: AdminComponent,
   children:[
@@ -38,7 +38,7 @@ const routes: Routes = [
    {path: '', redirectTo: "votings", pathMatch: 'full'}
   ]},
 
-  {path: '', redirectTo: "home", pathMatch: 'full'},
+  {path: '', redirectTo: "events", pathMatch: 'full'},
   {path: '**', component: Page404Component}
 ];
 
