@@ -8,7 +8,8 @@ let endpoints = {
 	"categories" : require('../api/categories'),
 	"users" : require('../api/users'),
 	"vote" : require('../api/votes'),
-	"votings" : require('../api/votings')
+	"votings" : require('../api/votings'),
+	"index" : require('../api/index')
 }
 
 router.use('/candidates',endpoints.candidates)
@@ -22,6 +23,8 @@ router.use('/categories',endpoints.categories)
 router.use('/vote',endpoints.vote)
 
 router.use('/votings',endpoints.votings)
+
+router.use('/index',endpoints.index)
 
 router.get('/',(req,res)=>{
 	res.status(200).json('hiii')

@@ -39,16 +39,12 @@ try{
 }
 
 else{
-	res.json('dff')
+	let register = await users.create({username,password})
+	// msg = "Registration Successful"
+	// status = true
+
+	res.status(201).json("User Successfully Created")
 }
-
-// else{
-// 	let register = await users.create({username,password})
-// 	msg = "Registration Successful"
-// 	status = true
-
-// 	res.status(201).json("User Successfully Created")
-// }
 
 }
 
