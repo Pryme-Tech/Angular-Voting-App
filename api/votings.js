@@ -6,8 +6,6 @@ const router = express.Router()
 
 var cors = require('cors')
 
-router.use(cors())
-
 router.get('/:user',async (req,res)=>{
 
 	let check = await voting.findAll({
@@ -27,7 +25,7 @@ router.get('/:user',async (req,res)=>{
 
 })
 
-
+router.use(cors())
 
 router.post('/add',async(req,res)=>{
 
