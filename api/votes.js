@@ -2,9 +2,9 @@ const express = require('express')
 
 const { votes,users,candidates,categories } = require('../models')
 
-var cors = require('cors')
+// var cors = require('cors')
 
-// const router = express.Router()
+const router = express.Router()
 
 // router.use(cors())
 
