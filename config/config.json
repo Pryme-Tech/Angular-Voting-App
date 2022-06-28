@@ -1,5 +1,5 @@
 {
-  "development": {
+  "production": {
     "username": "suiiyhbvtvamdk",
     "password": "d4e30215109ddad350c229cc7676dbef2c242c2038d769ed94d9dc6e88ff57b1",
     "database": "ddu7f9ipiuu4mu",
@@ -18,7 +18,7 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "production": {
+  "development": {
     "username": "postgres",
     "password": "password@321",
     "database": "voting",
