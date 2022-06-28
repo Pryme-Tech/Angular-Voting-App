@@ -9,6 +9,8 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class LandingComponent implements OnInit {
 
+  port = "https://castvote.herokuapp.com/"
+
 registerForms = new FormGroup({
 username: new FormControl(''),
 password: new FormControl('')
@@ -31,30 +33,35 @@ private httpoptions={
 registerFormsOnSubmit(){
 let user_id = this.registerForms.getRawValue().username
 
-this.http.post('http://localhost:4000/users/register',this.registerForms.getRawValue()).subscribe(
+this.http.get(`${this.port}index`).subscribe(
   res=>{
     console.log(res)
-    //register.classList.add('hidden');
-    this.sucMsg = res
-    localStorage.setItem("user_id",user_id)
-    setTimeout(()=>{
-      this.sucMsg=''
-      location.reload()
-    },2000)
-  },
-  err=>{
-    console.log(err)
-    this.errMsg = err.error
-    setTimeout(()=>{
-      this.errMsg=''
-    },2000)
   })
+
+// this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
+//   res=>{
+//     console.log(res)
+//     //register.classList.add('hidden');
+//     this.sucMsg = res
+//     localStorage.setItem("user_id",user_id)
+//     setTimeout(()=>{
+//       this.sucMsg=''
+//       location.reload()
+//     },2000)
+//   },
+//   err=>{
+//     console.log(err)
+//     this.errMsg = err.error
+//     setTimeout(()=>{
+//       this.errMsg=''
+//     },2000)
+//   })
 }
 
 loginFormsOnSubmit(){
 console.log(this.loginForms.getRawValue());
 
-this.http.post('http://localhost:4000/users/login',this.loginForms.getRawValue()).subscribe(
+this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
   res=>{
     console.log(res)
     let auth = JSON.parse(JSON.stringify(res))

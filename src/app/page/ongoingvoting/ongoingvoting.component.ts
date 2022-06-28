@@ -8,7 +8,21 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class OngoingvotingComponent implements OnInit {
 
-  port = "http://localhost:4000/"
+  port = "https://castvote.herokuapp.com/"
+
+  // port(){
+  //   let p =''
+
+  //   this.http.get('/assets/routes/routes.json').subscribe(
+  //     res=>{
+  //       let result = JSON.parse(JSON.stringify(res))
+  //       p='dfzs'
+  //       //return "result.host";
+  //       //this.port = "https://castvote.herokuapp.com/"
+  //       //console.log(result.host)
+  //     })
+
+  // }
 
   ongoingVoting:any = []
 
@@ -23,16 +37,18 @@ export class OngoingvotingComponent implements OnInit {
   }
 
   constructor(private http:HttpClient) { 
+
     this.http.get(`${this.port}votings`).subscribe(
       res=>{
-        let response = JSON.parse(JSON.stringify(res))
+      console.log(res)
+        // let response = JSON.parse(JSON.stringify(res))
 
-        response.forEach((data:any)=>{
-          this.ongoingVoting.push({
-            "voting":data.votingname,
-            "user_id":data.username
-          })
-        })
+        // response.forEach((data:any)=>{
+        //   this.ongoingVoting.push({
+        //     "voting":data.votingname,
+        //     "user_id":data.username
+        //   })
+        // })
 
       },
       err=>{

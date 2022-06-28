@@ -1,0 +1,7 @@
+{
+	"first" : "firstdata",
+	"host" : "https://castvote.herokuapp.com/",
+	"localhost" : "http://localhost:4000/",
+	"n1" : "https://castvote.netlify.app/admin/auth",
+	"n2" : "https://castvote.netlify.app/admin/votings"
+}
