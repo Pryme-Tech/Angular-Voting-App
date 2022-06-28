@@ -3,9 +3,9 @@ const router = express.Router()
 
 const {categories,users,voting} = require('../models')
 
-var cors = require('cors')
+// var cors = require('cors')
 
-router.use(cors())
+// router.use(cors())
 
 router.post('/add',async(req,res)=>{
 

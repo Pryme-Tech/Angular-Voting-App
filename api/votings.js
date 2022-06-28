@@ -4,9 +4,9 @@ const { voting,users } = require('../models')
 
 const router = express.Router()
 
-var cors = require('cors')
+// var cors = require('cors')
 
-router.use(cors())
+// router.use(cors())
 
 router.get('/:user',async (req,res)=>{
 

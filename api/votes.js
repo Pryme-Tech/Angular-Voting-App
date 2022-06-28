@@ -4,9 +4,9 @@ const { votes,users,candidates,categories } = require('../models')
 
 var cors = require('cors')
 
-const router = express.Router()
+// const router = express.Router()
 
-router.use(cors())
+// router.use(cors())
 
 router.post('/',async (req,res)=>{
 	const data = req.body
