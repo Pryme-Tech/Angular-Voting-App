@@ -25,7 +25,7 @@ router.get('/:user',async (req,res)=>{
 
 })
 
-router.use(cors())
+router.use(cors());
 
 router.post('/add',async(req,res)=>{
 
