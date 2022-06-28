@@ -23,27 +23,27 @@ const { username,password } = req.body
       return res.status(400).json("*** All input is required ***");
     }
 
-// 	let checkIfUserNameExists = await users.findOne({
-// 		where:{
-// 			username
-// 		}
-// 	})
+	let checkIfUserNameExists = await users.findOne({
+		where:{
+			username
+		}
+	})
 
-// 	if(checkIfUserNameExists){
+	if(checkIfUserNameExists){
 
-// 		return res.status(409).json("User Already Exist. Please Login");
+		return res.status(409).json("User Already Exist. Please Login");
 
-// 	// msg = "User Exists"
-// 	// status = false
-// }
+	// msg = "User Exists"
+	// status = false
+}
 
-// else{
-// 	let register = await users.create({username,password})
-// 	// msg = "Registration Successful"
-// 	// status = true
+else{
+	//let register = await users.create({username,password})
+	// msg = "Registration Successful"
+	// status = true
 
-// 	res.status(201).json("User Successfully Created")
-// }
+	res.status(201).json("User Successfully Created")
+}
 
 }
 
