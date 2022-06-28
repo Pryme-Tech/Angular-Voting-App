@@ -19,6 +19,16 @@ export class AdminComponent{
 
   constructor(){
 
+    if(this.user_id){
+
+    setTimeout(()=>{
+      alert('Session terminated!!! Please login')
+      localStorage.clear()
+      location.reload()
+    },2000000)
+
+  }
+
     // if(this.user_id && (location.href)){
     //   console.log(location.href)
     //   //location.replace('/admin/votings')

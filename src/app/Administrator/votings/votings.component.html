@@ -29,13 +29,15 @@
 
 <div class="main bg-success" style="min-height: 100vh;">
 
-	<div *ngIf="welcome" class="py-4 bg-dark text-center">
-		<h4> {{welcome}} </h4>
+	<div *ngIf="welcome" class="py-4 bg-dark text-center d-flex justify-content-between">
+		<h4 class="p-2"> {{welcome}} </h4>
+		<button class="m-2 p-2" type="button" onclick="localStorage.clear(); location.reload()">
+			 Log out </button>
 	</div>
 
 <div class="p-0 m-0 main row justify-content-center py-3 px-3"  >
 
-	<div class="border border-5 col-6 py-1 text-center bg-light" *ngIf="noVotingAdded" style="">
+	<div class="border border-5 col-6 py-1 text-center bg-light" *ngIf="noVotingAdded" >
 
 {{noVotingAdded}}
 
@@ -45,7 +47,7 @@
 
 <div class="form-group">
 		<p class="btn btn-dark m-0" onclick="document.getElementById('newinput').style.display='block';
-		document.getElementById('newinputbutton').style.display='block';"> Add New Voting </p>
+		document.getElementById('newinputbutton').style.display='block';"> Add a New Voting </p>
 	</div>
 
 	<div class="form-group" id="newinput" style="display: none;">

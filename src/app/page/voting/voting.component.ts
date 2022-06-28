@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class VotingComponent implements OnInit {
 
-  port = 'http://localhost:4000/'//'http://localhost:4000/'
+  port = 'https://castvote.herokuapp.com/'//'http://localhost:4000/'
 
   user_id = localStorage.getItem("accessuser")
   votingname = localStorage.getItem("accessvoting")
@@ -87,6 +87,11 @@ status=0
 
 
   constructor( private fb: FormBuilder, private http: HttpClient, private router: Router ) { 
+
+    setTimeout(()=>{
+      localStorage.clear()
+      location.reload()
+    },800000)
 
     if(localStorage.getItem('accessuser') && localStorage.getItem('accessvoting')){
       // this.username=localStorage.getItem('username');

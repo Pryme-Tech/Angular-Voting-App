@@ -9,7 +9,9 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 })
 export class VotingsComponent implements OnInit {
 
-  port = "http://localhost:4000/"
+  port = "https://castvote.herokuapp.com/"
+
+  // port = "http://localhost:4000/"
 
   welcome = ''
 

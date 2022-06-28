@@ -25,7 +25,7 @@
 {{errMsg}}
   </div>
 
-  <div *ngIf="sucMsg" class="bg-primary text-center p-2 my-2 rounded" style="width: 60%;">
+  <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded" style="width: 60%;">
 {{sucMsg}}
   </div>
 
@@ -58,6 +58,10 @@
     <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
 {{errMsg}}
   </div>
+
+  <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded" style="width: 60%;">
+    {{sucMsg}}
+      </div>
 
     <div class="form-group" style="width: 60%;">
       <label> UserName: </label>

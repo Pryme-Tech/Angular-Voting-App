@@ -41,14 +41,14 @@ export class OngoingvotingComponent implements OnInit {
     this.http.get(`${this.port}votings`).subscribe(
       res=>{
       console.log(res)
-        // let response = JSON.parse(JSON.stringify(res))
+        let response = JSON.parse(JSON.stringify(res))
 
-        // response.forEach((data:any)=>{
-        //   this.ongoingVoting.push({
-        //     "voting":data.votingname,
-        //     "user_id":data.username
-        //   })
-        // })
+        response.forEach((data:any)=>{
+          this.ongoingVoting.push({
+            "voting":data.votingname,
+            "user_id":data.username
+          })
+        })
 
       },
       err=>{

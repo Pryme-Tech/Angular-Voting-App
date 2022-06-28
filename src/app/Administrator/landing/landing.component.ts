@@ -33,29 +33,29 @@ private httpoptions={
 registerFormsOnSubmit(){
 let user_id = this.registerForms.getRawValue().username
 
-this.http.get(`${this.port}index`).subscribe(
-  res=>{
-    console.log(res)
-  })
-
-// this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
+// this.http.get(`${this.port}index`).subscribe(
 //   res=>{
 //     console.log(res)
-//     //register.classList.add('hidden');
-//     this.sucMsg = res
-//     localStorage.setItem("user_id",user_id)
-//     setTimeout(()=>{
-//       this.sucMsg=''
-//       location.reload()
-//     },2000)
-//   },
-//   err=>{
-//     console.log(err)
-//     this.errMsg = err.error
-//     setTimeout(()=>{
-//       this.errMsg=''
-//     },2000)
 //   })
+
+this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
+  res=>{
+    console.log(res)
+    //register.classList.add('hidden');
+    this.sucMsg = res
+    localStorage.setItem("user_id",user_id)
+    setTimeout(()=>{
+      this.sucMsg=''
+      location.reload()
+    },2000)
+  },
+  err=>{
+    console.log(err)
+    this.errMsg = err.error
+    setTimeout(()=>{
+      this.errMsg=''
+    },2000)
+  })
 }
 
 loginFormsOnSubmit(){
@@ -68,8 +68,14 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
     // console.log(auth.auth)
 
      if(auth.status === 1 ){
+
+      this.sucMsg = "Login Successful"
+
+    setTimeout(()=>{
+      this.sucMsg=''
       localStorage.setItem('user_id',auth.user)
-       window.location.replace('/admin')
+      window.location.replace('/admin')
+    },2000)
      }
      
   },
