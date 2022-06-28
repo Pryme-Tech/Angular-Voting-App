@@ -12,18 +12,17 @@ router.post('/register',async (req,res)=>{
 	
 
 try{
-res.json('hello')
 // 	// Get User Inputs
-// 	const { username,password } = req.body
+	const { username,password } = req.body
 
 
 // 	let  msg = ''
 // 	let status = ''
 
 // 	// Validate user input
-//     if (!(username && password)) {
-//       return res.status(400).json("*** All input is required ***");
-//     }
+    if (!(username && password)) {
+      return res.status(400).json("*** All input is required ***");
+    }
 
 // 	let checkIfUserNameExists = await users.findOne({
 // 		where:{
