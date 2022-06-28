@@ -4,9 +4,9 @@ const { voters,users } = require('../models')
 
 var cors = require('cors')
 
-router.use(cors())
-
 const router = express.Router()
+
+router.use(cors())
 
 router.post('/register',async (req,res)=>{
 	const { name,index,user_id } = req.body
