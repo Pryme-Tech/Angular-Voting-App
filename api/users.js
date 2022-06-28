@@ -9,12 +9,10 @@ var cors = require('cors')
 router.use(cors())
 
 router.post('/register',async (req,res)=>{
-
-	res.json('jiiii')
 	
 
-// try{
-
+try{
+res.json('hello')
 // 	// Get User Inputs
 // 	const { username,password } = req.body
 
@@ -49,14 +47,14 @@ router.post('/register',async (req,res)=>{
 // 	res.status(201).json("User Successfully Created")
 // }
 
-// }
+}
 
-// catch (err){
+catch (err){
 
-// 	console.log(err)
+	console.log(err)
 
 // 	status = false
-// }
+}
 
 // res.json({
 // 	  "msg" : msg,
