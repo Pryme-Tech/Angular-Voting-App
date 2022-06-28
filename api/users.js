@@ -38,11 +38,16 @@ const { username,password } = req.body
 }
 
 else{
-	//let register = await users.create({username,password})
+	let register = await users.create({username,password})
 	// msg = "Registration Successful"
 	// status = true
 
+	if(register){
 	res.status(201).json("User Successfully Created")
+	}
+	else{
+		return res.status(409).json("Error creating user please try again later");
+	}
 }
 
 }
