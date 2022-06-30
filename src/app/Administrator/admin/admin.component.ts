@@ -45,7 +45,7 @@ export class AdminComponent{
 
     let aside = document.getElementById('aside') as HTMLElement
 
-    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings'){
+    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings' || location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings' ){
           
       setTimeout(()=>{
         this.d = 'h'
@@ -59,19 +59,19 @@ export class AdminComponent{
       this.d=''
     }
 
-    if(location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings'){
+    // if(location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings'){
           
-      setTimeout(()=>{
-        this.d = 'h'
-      },1000)
-      aside.classList.add('hidden')
-      //alert(aside.classList)
-    }
+    //   setTimeout(()=>{
+    //     this.d = 'h'
+    //   },1000)
+    //   aside.classList.add('hidden')
+    //   //alert(aside.classList)
+    // }
 
-    else{
-      aside.classList.remove('hidden')
-      this.d=''
-    }
+    // else{
+    //   aside.classList.remove('hidden')
+    //   this.d=''
+    // }
 
     // if(location.href ==='http://localhost:4200/admin/auth'){
     //   //alert('hello')
