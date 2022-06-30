@@ -1,0 +1,12 @@
+GET http://localhost:4000/img/simple.jpg
+
+###
+POST http://localhost:4000/votings/add
+Content-Type: application/json
+Accept: application/json
+
+{
+    "newVotingInput" : "dsf",
+    "user" : "dsf",
+    "imageurl" : "data:image/jpeg;base64,/9j/4RDlRXhpZgAATU0AKgAAAAg…+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3X/2Q=="
+}

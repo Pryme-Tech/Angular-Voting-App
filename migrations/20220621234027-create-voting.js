@@ -15,6 +15,9 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      imageurl: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

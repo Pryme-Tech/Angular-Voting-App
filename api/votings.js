@@ -2,6 +2,8 @@ const express = require('express')
 
 const { voting,users } = require('../models')
 
+const fs = require('fs')
+
 const router = express.Router()
 
 // var cors = require('cors')
@@ -33,13 +35,34 @@ router.post('/add',async(req,res)=>{
 
 	try{
 		// Take user input
-		let {newVotingInput,user} = req.body
+		let {newVotingInput,user,imageurl} = req.body
 
 		// Validate user input
-    if (!(newVotingInput && user)) {
+    if (!(newVotingInput && user && imageurl)) {
       return res.status(400).json("All input is required");
     }
 
+	let imageData=''
+	let imageExtension=''
+	let filename
+
+if(imageurl.includes('data:image')){
+	
+	imageData = imageurl.replace(/^data:image\/\w+;base64,/, '');
+
+	imageExtension = imageurl.split(';')[0].split('/')[1];
+
+	filename = `assets/img/votings/${newVotingInput}.${imageExtension}`
+
+	fs.writeFileSync(filename,imageData,{encoding: 'base64'})
+
+	filename = filename.replace('assets/','')
+	
+}
+
+else{
+	return res.status(409).json("Image Error! Try a differant image")
+}
 		let validateUser=await users.findOne({
 		where:{
 			username:user
@@ -55,12 +78,13 @@ router.post('/add',async(req,res)=>{
 			})
 
 			if(checkIfVotingExists){
-				return res.status(409).json("Voting already exists. Please Create a new Voting")
+				return res.status(409).json("Event already exists. Please Create a new Event")
 			}
 
 			let createVoting = await voting.create({
 			votingname:newVotingInput,
-			username:user
+			username:user,
+			imageurl:filename
 		})
 
 			if(createVoting){

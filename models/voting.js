@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     votingname: {
         type: DataTypes.CITEXT,
         unique : true
-      }
+      },
+      imageurl: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'voting',
