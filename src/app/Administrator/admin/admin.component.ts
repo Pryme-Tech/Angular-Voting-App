@@ -49,7 +49,8 @@ export class AdminComponent{
           
       setTimeout(()=>{
         this.d = 'h'
-      },1000)
+      },1500)
+
       aside.classList.add('hidden')
       //alert(aside.classList)
     }
