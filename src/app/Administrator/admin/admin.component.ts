@@ -45,11 +45,11 @@ export class AdminComponent{
 
     let aside = document.getElementById('aside') as HTMLElement
 
-    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings' || location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings' ){
+    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings' || location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='https://castvote.netlify.app/admin/votings' ){
           
       setTimeout(()=>{
         this.d = 'h'
-      },1500)
+      },100)
 
       aside.classList.add('hidden')
       //alert(aside.classList)
