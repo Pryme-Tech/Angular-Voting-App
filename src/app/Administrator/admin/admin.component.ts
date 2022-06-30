@@ -59,6 +59,20 @@ export class AdminComponent{
       this.d=''
     }
 
+    if(location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings'){
+          
+      setTimeout(()=>{
+        this.d = 'h'
+      },1000)
+      aside.classList.add('hidden')
+      //alert(aside.classList)
+    }
+
+    else{
+      aside.classList.remove('hidden')
+      this.d=''
+    }
+
     // if(location.href ==='http://localhost:4200/admin/auth'){
     //   //alert('hello')
     //   //aside.classList.remove('main-sidebar','elevation-5','justify-content-center','d-flex','flex-column','position-fixed')
