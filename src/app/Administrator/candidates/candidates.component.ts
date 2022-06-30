@@ -137,8 +137,9 @@ export class CandidatesComponent implements OnInit {
     let reader= new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload=(_event)=>{
-      this.src=reader.result;
-      this.addCandidate.controls['photo'].setValue(reader.result);
+      console.log(reader.result)
+      // this.src=reader.result;
+      // this.addCandidate.controls['photo'].setValue(reader.result);
     }
 
   }

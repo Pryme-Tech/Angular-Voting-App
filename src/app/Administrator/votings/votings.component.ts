@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
@@ -24,11 +24,12 @@ export class VotingsComponent implements OnInit {
 
   newVoting = new FormGroup({
     newVotingInput : new FormControl(''),
-    user : new FormControl(this.user_id)
+    user : new FormControl(this.user_id),
+    imageurl : new FormControl('')
   })
 
   newVotingOnSubmit(){
-    console.log(this.newVoting.getRawValue())
+    // console.log(this.newVoting.getRawValue())
 
     this.http.post(`${this.port}votings/add`,this.newVoting.getRawValue()).subscribe(
       res=>{
@@ -57,17 +58,32 @@ export class VotingsComponent implements OnInit {
 
     http.get(`${this.port}votings/${this.user_id}`).subscribe(
       res=>{
+        let imageurl=''
         let result = JSON.parse(JSON.stringify(res))
 
+        console.log(result)
+
         if(result.length < 1 ){
-          this.noVotingAdded="No Voting Created"
+          this.noVotingAdded="No Voting Event Created"
 
         }
 
         else{
-
+          
         result.forEach((i:any)=>{
-          this.votings.push(i)
+          if(i.imageurl === null){
+            imageurl = this.port+"img/votings/dsf.jpeg"
+          }
+          else if(i.imageurl === null){
+            imageurl = this.port+"img/votings/dsf.jpeg"
+          }
+          else{
+            imageurl = this.port+i.imageurl
+          }
+          this.votings.push({
+            "votingname" : i.votingname,
+            "imageurl" : imageurl
+          })
         })
 
       }
@@ -78,6 +94,35 @@ export class VotingsComponent implements OnInit {
       err=>{
         console.log(err)
       })
+   }
+
+   previewSrc:any=''
+
+   imagePreview(files:any){
+    if(files.length===0) 
+      return;
+    let reader= new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload=(_event)=>{
+      // console.log(reader.result)
+      this.previewSrc=reader.result
+      // this.src=reader.result;
+      this.newVoting.controls['imageurl'].setValue(reader.result);
+    }
+
+  }
+
+
+   ngAfterViewInit(){
+
+        const btn = document.querySelector("button.mobile-menu-button") as HTMLElement;
+        const menu = document.querySelector(".mobile-menu-hidden") as HTMLElement;
+
+        btn.addEventListener("click",()=>{
+			// alert('hello')
+            menu.classList.toggle("mobile-menu");
+        })
+
    }
 
   ngOnInit(): void {

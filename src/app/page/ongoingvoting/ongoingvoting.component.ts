@@ -49,7 +49,7 @@ export class OngoingvotingComponent implements OnInit {
           this.ongoingVoting.push({
             "voting":data.votingname,
             "user_id":data.username,
-            "img" : this.port+"img/simple.jpg"
+            "img" : this.port+data.imageurl
           })
         })
 
