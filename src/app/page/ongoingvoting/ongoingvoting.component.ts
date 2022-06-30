@@ -38,6 +38,8 @@ export class OngoingvotingComponent implements OnInit {
     window.location.replace('/votepage')
   }
 
+  // aa = "https://castvote.herokuapp.com/img/votings/Do%20Elections.jpeg"
+
   constructor(private http:HttpClient) { 
 
     this.http.get(`${this.port}votings`).subscribe(
@@ -45,11 +47,19 @@ export class OngoingvotingComponent implements OnInit {
       console.log(res)
         let response = JSON.parse(JSON.stringify(res))
 
+        let img = ''
+
         response.forEach((data:any)=>{
+          if(data.imageurl.includes(' ')){
+            img = this.port+data.imageurl.replaceAll(' ','%20')
+          }
+          else{
+            img = this.port+data.imageurl
+          }
           this.ongoingVoting.push({
             "voting":data.votingname,
             "user_id":data.username,
-            "img" : this.port+data.imageurl
+            "img" : img
           })
         })
 
