@@ -39,7 +39,7 @@ router.post('/add',async(req,res)=>{
 
 		// Validate user input
     if (!(newVotingInput && user && imageurl)) {
-      return res.status(400).json("All input is required");
+      return res.status(400).json("*** All input is required ***");
     }
 
 	let imageData=''
@@ -61,7 +61,7 @@ if(imageurl.includes('data:image')){
 }
 
 else{
-	return res.status(409).json("Image Error! Try a differant image")
+	return res.status(409).json("Error! Try a differant image")
 }
 		let validateUser=await users.findOne({
 		where:{
