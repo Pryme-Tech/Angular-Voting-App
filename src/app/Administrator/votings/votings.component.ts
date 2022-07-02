@@ -17,6 +17,9 @@ export class VotingsComponent implements OnInit {
 
   welcome = ''
 
+  errorMessage = ''
+  successMessage = ''
+
   noVotingAdded:any = ''
   votings:any = []
 
@@ -34,9 +37,26 @@ export class VotingsComponent implements OnInit {
     this.http.post(`${this.port}votings/add`,this.newVoting.getRawValue()).subscribe(
       res=>{
         console.log(res)
+        this.successMessage = JSON.stringify(JSON.parse(JSON.stringify(res)))
+        setTimeout(()=>{
+          this.successMessage = ''
+          window.location.reload()
+        },2000)
       },
       err=>{
-        console.log(err)
+        
+        if(err.statusText === "Unknown Error"){
+          this.errorMessage = "Error Connecting"
+        }
+        else{
+        this.errorMessage = err.error
+      }
+
+      setTimeout(()=>{
+        this.errorMessage = ''
+        // window.location.reload()
+      },2000)
+
       })
   }
 

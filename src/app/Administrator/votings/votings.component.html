@@ -27,6 +27,10 @@
 
 </div> -->
 
+<p *ngIf="errorMessage" class="bg-danger text-center m-0 py-2 font-weight-bold" style=" transition: all 2s; font-family: monospace !important; z-index: 999; position: absolute; top: 0; width: 100%; " > {{errorMessage}} </p>
+
+<p *ngIf="successMessage" class="bg-success text-center m-0 py-2 font-weight-bold" style=" transition: all 2s; font-family: monospace !important; z-index: 999; position: absolute; top: 0; width: 100%; " > {{successMessage}} </p>
+
 <div class="main bg-success" style="min-height: 100vh;">
 
 	<nav class="py-4 bg-dark">
