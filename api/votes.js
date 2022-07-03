@@ -11,6 +11,10 @@ const router = express.Router()
 router.post('/',async (req,res)=>{
 	const data = req.body
 
+	if(!data){
+		return res.status(400).json('All inputs are required')
+	}
+
 	let keys = []
 
 	// let data = req.body
@@ -32,7 +36,7 @@ router.post('/',async (req,res)=>{
 		keys.push(push)
 	}
 
-	res.json("Voting Successfully Created");
+	res.json({"msg":"Voting Successfully Created"});
 })
 
 router.get('/:user_id/:votingname',async (req,res)=>{
@@ -61,16 +65,23 @@ router.get('/:user_id/:votingname',async (req,res)=>{
 			let countVotes = await votes.count({
 				where:{
 					candidate : allCandidates[index].candidatename,
-					user_id,votingname
+					user_id,votingname,category:allCandidates[index].category
+				}
+			})
+
+			let countAll = await votes.count({
+				where:{
+					user_id,votingname,category:allCandidates[index].category
 				}
 			})
 
 			c.push({
 				"Candidate_Name" : allCandidates[index].candidatename,
 				"Category" : allCandidates[index].category,
-				"Percentage" : ((countVotes/countAllVotes) * 100).toFixed(2),
+				"Percentage" : ((countVotes/countAll) * 100).toFixed(2),
 				"Number_of_votes" : countVotes,
-				"Total_Votes" : countAllVotes
+				"Total_Votes" : countAllVotes,
+				"photo" : allCandidates[index].avatar
 			})
 		}
 

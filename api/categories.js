@@ -44,7 +44,7 @@ router.post('/add',async(req,res)=>{
 
 			let addCategory = await categories.create({categoryname,user_id,votingname})
 
-			res.status(200).json(addCategory)
+			res.status(200).json("Voting Created Successfully")
 
 		}
 
@@ -75,6 +75,10 @@ router.get('/:user_id/:votingname',async(req,res)=>{
 				votingname
 			}
 		})
+
+		if(data.length < 1){
+			return res.status(404).json("Your category list is empty! Click add New to add categories")
+		}
 
 		res.status(200).json(data)
 	}
