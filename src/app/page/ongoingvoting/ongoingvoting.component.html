@@ -1,6 +1,6 @@
 <div class="bg-success" style="min-height: 100vh; /* background-image: url(assets/dots.png); background-size: cover; */">
 
-	<h1 class="text-center py-3 bg-light m-0 font-weight-bold"> Voting Events</h1>
+	<h1 class="text-center py-3 bg-light m-0 font-weight-bold " > Voting Events</h1>
 
 	<div class="form-group bg-dark text-center py-3">
 		<label for="search" style="">Search for a voting event:</label>
@@ -13,17 +13,17 @@
 
 	</div>
 
-	<div class="row m-0" style="padding: 0 10% 0 10%;">
+	<div class="row m-0 pb-5" style="padding: 0 10% 0 10%;">
 
-		<div class="col-sm-6 mt-3" *ngFor="let x of ongoingVoting" style="cursor: pointer;" #s value="http://localhost:4000/img/simple.jpg">
+		<div class="col-sm-6 mt-3 " *ngFor="let x of ongoingVoting" style="cursor: pointer;" #s value="http://localhost:4000/img/simple.jpg">
 			<div 
-			class="text-center border border-5 py-3 rounded events d-flex align-items-center justify-content-center"
+			class=" eachvoting text-center border border-5 py-3 rounded events d-flex align-items-center justify-content-center"
 			 [ngStyle]="{ 'background-image' : 'url(' + x.img + ')' }"
 			 style=" height: 300px; background-size: contain;"
 			 (click)="accessVotings(x.voting,x.user_id)"
 			 >			 
 			  <!-- <img src="http://localhost:4000/img/simple.jpg" style="position:absolute; top:0;height: inherit;"> -->
-				<h4 class="bg-dark vw-100 py-3" style="opacity: 90%;">{{x.voting}}</h4>
+				<h4 class="bg-dark vw-100 py-3" >{{x.voting}}</h4>
 			</div>
 		</div>
 		

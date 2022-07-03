@@ -1,11 +1,18 @@
-<!-- <nav class="main-header" style="height: 5vh;">
-	Flash Messages
+<nav class="main-header px-4" id="nav" style="border-bottom: 2px solid green;">
+	
+	<div class="d-flex justify-content-between align-items-center py-3 px-3"> 
 
-</nav> -->
+<i class="fa-solid fa-plus" id="toggleSidebarButton"></i>
+
+<button class="btn btn-danger" type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
+
+	 </div>
+
+</nav>
 
 <!-- Side NavBar -->
 
-<aside class="main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" id="aside" >
+<aside class="hidden main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" id="aside" >
 
 	<div class="text-center mb-5" style="border: 2px solid; background-color: black;"> <a class="p-3 px-4 text-white" routerLink="candidates" style="background-color: black; font-weight: bold; letter-spacing: .2rem;"> CANDIDATES <i class="fa-solid fa-circle-check"></i> </a>  </div>
 
@@ -15,9 +22,19 @@
 
 <!-- End Side NavBar -->
 
-<router-outlet *ngIf="d"></router-outlet>
+<!-- <router-outlet *ngIf="d"></router-outlet> -->
 
 
+	<router-outlet *ngIf="d" ></router-outlet>
+
+<div class="container-fluid px-5" *ngIf="c" style="position: relative; min-height: 95vh;">
+
+
+	<span style="color: transparent;"> f </span>
+
+	<router-outlet></router-outlet>
+
+</div>
 
 <div class="content-wrapper" *ngIf="!d">
 

@@ -40,10 +40,39 @@ export class AdminComponent{
   }
 
   d = ''
+  c = ''
 
   ngAfterViewInit(){
 
     let aside = document.getElementById('aside') as HTMLElement
+
+    let nav = document.getElementById('nav') as HTMLElement
+
+    let toggleSidebarButton = document.getElementById('toggleSidebarButton') as HTMLElement
+
+    toggleSidebarButton.addEventListener('click',()=>{
+
+      if(this.c){
+        setTimeout(()=>{
+        this.c = ''
+      },100)
+
+      aside.classList.toggle('hidden')
+      nav.style.marginLeft = '15%'
+      }
+
+      else{
+
+      setTimeout(()=>{
+        this.c = 'h'
+      },100)
+
+      aside.classList.toggle('hidden')
+      nav.style.margin = '0'
+
+    }
+
+    })
 
     if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings' || location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='https://castvote.netlify.app/admin/votings' ){
           
@@ -52,11 +81,13 @@ export class AdminComponent{
       },100)
 
       aside.classList.add('hidden')
+      nav.classList.add('hidden')
       //alert(aside.classList)
     }
 
     else{
       aside.classList.remove('hidden')
+      nav.classList.remove('hidden')
       this.d=''
     }
 

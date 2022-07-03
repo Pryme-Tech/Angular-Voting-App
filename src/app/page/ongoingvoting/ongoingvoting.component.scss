@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "inter";
+  src: url(../../../assets/fonts/inter/Inter-Thin.ttf);
+}
+
+h1{
+  font-family: inter !important;
+}
+
+div.eachvoting:hover{
+  border: 5px solid yellow !important;
+  /*background-color: brown;*/
+}

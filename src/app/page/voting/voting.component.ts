@@ -44,28 +44,22 @@ export class VotingComponent implements OnInit {
 
   this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
     res=>{
-      console.log(res)
-      //console.log(this.votes.getRawValue())
-    //   let message=JSON.parse(JSON.stringify(res))
-    //   if(message.includes('successful')){
-    //     this.flashSuccessMessage=message
-    //   }
-    //   else{
-    //     this.flashErrorMessage=message
-    //   }
-    //   localStorage.removeItem('username')
-    //   localStorage.removeItem('indexnumber')
+   let result = JSON.parse(JSON.stringify(res))
 
-    //   var x:any=3;
+      console.log(result)
 
-    // setInterval(()=>{
-    //   x--;
-    //   var v=document.getElementById("countdown") as HTMLElement; 
-    //   v.innerText=x;
-    //   if(x===0){
-    //     window.location.reload();
-    //   }
-    // },1000)
+      this.flashSuccessMessage = result.msg
+
+      var x:any=3;
+
+    setInterval(()=>{
+      x--;
+      var v=document.getElementById("countdown") as HTMLElement; 
+      v.innerText=x;
+      if(x===0){
+        window.location.replace('/');
+      }
+    },1000)
 
 
     },
@@ -173,7 +167,8 @@ status=0
             this.candidates.push({
               "count" : index,
               "category" : data.category,
-              "candidatename" : data.candidatename
+              "candidatename" : data.candidatename,
+              "image" : this.port+data.avatar
             })
           })
 
@@ -187,6 +182,18 @@ status=0
 }
 
   ngAfterViewInit(){
+
+    setTimeout(()=>{
+      let candidates = document.querySelectorAll('.candidatess')
+
+      candidates.forEach((each:any)=>{
+        // alert(each.innerText.length)
+        if(each.innerText.length === 0){
+          // alert('hello')
+          each.style.display = 'none'
+        }
+      })
+    },300)
 
      const prevBtns = document.querySelectorAll(".btn-prev");
     const nextBtns = document.querySelectorAll(".btn-next");

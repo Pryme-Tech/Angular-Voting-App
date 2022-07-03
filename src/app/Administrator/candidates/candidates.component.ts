@@ -19,6 +19,9 @@ export class CandidatesComponent implements OnInit {
 
   port = routes.host
 
+  successMessage = ''
+  errorMessage = ''
+
  flashMessage=''
 
  user_id = localStorage.getItem("user_id")
@@ -105,6 +108,10 @@ export class CandidatesComponent implements OnInit {
   this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
     res=>{
       console.log(res)
+
+      let result = JSON.stringify(res)
+
+      this.successMessage = result
     },
     err=>{
       console.log(err)
@@ -115,7 +122,7 @@ export class CandidatesComponent implements OnInit {
   {
     category: new FormControl(''),
     candidatename: new FormControl(''),
-    // photo: new FormControl(''),
+    avatar: new FormControl(''),
     votingname : new FormControl(this.votingname),
     user_id : new FormControl(this.user_id)
   }
@@ -138,8 +145,8 @@ export class CandidatesComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload=(_event)=>{
       console.log(reader.result)
-      // this.src=reader.result;
-      // this.addCandidate.controls['photo'].setValue(reader.result);
+      this.src=reader.result;
+      this.addCandidate.controls['avatar'].setValue(reader.result);
     }
 
   }
@@ -156,10 +163,23 @@ export class CandidatesComponent implements OnInit {
 
         this.flashMessage=''
         //toggleAddCandidate()
+        window.location.reload()
        },900)
     },
     err=>{
       console.log(err)
+      if(err.statusText === "Unknown Error"){
+          this.errorMessage = "Error Connecting"
+        }
+        else{
+        this.errorMessage = err.error
+      }
+
+      setTimeout(()=>{
+        this.errorMessage = ''
+        // window.location.reload()
+      },2000)
+
     })
 
   
@@ -217,6 +237,18 @@ export class CandidatesComponent implements OnInit {
         },
         err=>{
           console.log(err)
+          if(err.statusText === "Unknown Error"){
+          this.errorMessage = "Error Connecting"
+        }
+        else{
+        this.errorMessage = err.error
+      }
+
+      setTimeout(()=>{
+        this.errorMessage = ''
+        // window.location.reload()
+      },10000)
+
         }
         )
 
@@ -228,8 +260,8 @@ export class CandidatesComponent implements OnInit {
 
             this.candidates.push({
               "category" : data.category,
-              "candidatename" : data.candidatename
-              // "photo" : avatar
+              "candidatename" : data.candidatename,
+              "photo" : this.port+data.avatar
             })
           })
 

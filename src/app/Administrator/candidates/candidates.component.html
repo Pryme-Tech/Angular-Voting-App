@@ -170,6 +170,10 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 
 		<!-- Category view with candidates in each category -->
 
+		<div *ngIf="successMessage" class="text-center border border-5 mt-2 text-success py-2"> {{successMessage}} </div>
+
+		<div *ngIf="errorMessage" class="text-center border border-5 mt-2 text-danger py-2"> {{errorMessage}} </div>
+
 	<div class="card mt-3">
 
 		<div class="card-header text-center font-weight-bold" style="font-size: 2em;"> CATEGORIES </div>
