@@ -1,6 +1,6 @@
 {
-	"lhost" : "https://castvote.herokuapp.com/",
-	"host" : "http://localhost:4000/",
+	"host" : "https://castvote.herokuapp.com/",
+	"lhost" : "http://localhost:4000/",
 	"n1" : "https://castvote.netlify.app/admin/auth",
 	"n2" : "https://castvote.netlify.app/admin/votings"
 }
