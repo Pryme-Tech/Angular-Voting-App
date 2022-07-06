@@ -1,5 +1,7 @@
 const express = require('express')
 
+const bcrypt = require('bcrypt')
+
 const { users } = require('../models')
 
 const router = express.Router()
@@ -20,7 +22,7 @@ const { username,password } = req.body
 
 // // 	// Validate user input
     if (!(username && password)) {
-      return res.status(400).json("*** All input is required ***");
+      return res.status(406).json("*** All input is required ***");
     }
 
 	let checkIfUserNameExists = await users.findOne({
@@ -31,16 +33,26 @@ const { username,password } = req.body
 
 	if(checkIfUserNameExists){
 
-		return res.status(409).json("User Already Exist. Please Login");
+		return res.status(409).json("UserName is taken. Try a different one");
 
-	// msg = "User Exists"
-	// status = false
 }
 
 else{
+	let saltRounds = 10
+
+
+	// let a
+
+	// let hashPassword = bcrypt.genSalt(saltRounds,(err,salt)=>{
+	// 		bcrypt.hash(password,salt,async(err,hash)=>{
+	// 			let a = await hash
+	// 			return a
+	// 		})
+	// 	})
+
 	let register = await users.create({username,password})
-	// msg = "Registration Successful"
-	// status = true
+	// // msg = "Registration Successful"
+	// // status = true
 
 	if(register){
 	res.status(201).json("User Successfully Created")

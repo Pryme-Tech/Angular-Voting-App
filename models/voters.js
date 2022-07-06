@@ -14,9 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   voters.init({
-    user_id: DataTypes.STRING,
-    index: {
+    index_no: {
       type: DataTypes.CITEXT,
+      allowNull: false
+    },
+    votersname: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     votingname: {

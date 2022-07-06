@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
-        type: Sequelize.STRING
-      },
-      index: {
+      index_no: {
         type: Sequelize.CITEXT
+      },
+      votersname: {
+        type: Sequelize.STRING
       },
       votingname: {
         type: Sequelize.STRING
