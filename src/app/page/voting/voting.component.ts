@@ -19,6 +19,7 @@ export class VotingComponent implements OnInit {
 
   user_id = localStorage.getItem("accessuser")
   votingname = localStorage.getItem("accessvoting")
+  voter = localStorage.getItem("voter")
 
  votes = this.fb.group({
   user_id : [this.user_id],

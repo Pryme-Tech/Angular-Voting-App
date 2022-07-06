@@ -39,11 +39,11 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 
 	</div> -->
 
-  <h4 class="text-center bg-light py-2 text-weight-bolder " > Welcome </h4>
+  <h4 class="text-center bg-light py-2 font-weight-bolder " style=" font-family: monospace; " > Welcome {{voter}} </h4>
 
 	<div class="container-fluid pt-3" style="z-index: 1 !important; position: relative;">
 
-		<h4 class="text-center bg-dark py-2 font-weight-bold"> Please select a category to vote </h4>
+		<div class="text-center bg-dark py-2 font-weight-bold"> Please select a category to vote </div>
 
     <form [formGroup]="votes" (ngSubmit)="show()">
 

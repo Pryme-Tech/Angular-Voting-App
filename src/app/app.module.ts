@@ -19,6 +19,8 @@ import { CandidatesComponent } from './Administrator/candidates/candidates.compo
 import { VotesComponent } from './Administrator/votes/votes.component';
 import { VotingsComponent } from './Administrator/votings/votings.component';
 import { OngoingvotingComponent } from './page/ongoingvoting/ongoingvoting.component';
+import { AuthenticatevoterComponent } from './page/authenticatevoter/authenticatevoter.component';
+import { VotersComponent } from './Administrator/voters/voters.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'vote', component: VoteComponent},
   { path: 'votepage', component: VotingComponent},
   { path: 'events', component: OngoingvotingComponent},
+  { path: 'auth', component: AuthenticatevoterComponent },
 
   { path: 'admin', component: AdminComponent,
   children:[
@@ -35,6 +38,7 @@ const routes: Routes = [
   { path: 'auth', component: LandingComponent},
   {path: "candidates", component: CandidatesComponent },
   {path: "votes", component: VotesComponent},
+  { path: "voters", component: VotersComponent },
    {path: '', redirectTo: "votings", pathMatch: 'full'}
   ]},
 
@@ -55,7 +59,9 @@ const routes: Routes = [
     CandidatesComponent,
     VotesComponent,
     VotingsComponent,
-    OngoingvotingComponent
+    OngoingvotingComponent,
+    AuthenticatevoterComponent,
+    VotersComponent
   ],
   imports: [
     BrowserModule,

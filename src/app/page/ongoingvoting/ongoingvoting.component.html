@@ -20,7 +20,7 @@
 			class=" eachvoting text-center border border-5 py-3 rounded events d-flex align-items-center justify-content-center"
 			 [ngStyle]="{ 'background-image' : 'url(' + x.img + ')' }"
 			 style=" height: 300px; background-size: contain;"
-			 (click)="accessVotings(x.voting,x.user_id)"
+			 (click)="accessVotings(x.voting)"
 			 >			 
 			  <!-- <img src="http://localhost:4000/img/simple.jpg" style="position:absolute; top:0;height: inherit;"> -->
 				<h4 class="bg-dark vw-100 py-3" >{{x.voting}}</h4>

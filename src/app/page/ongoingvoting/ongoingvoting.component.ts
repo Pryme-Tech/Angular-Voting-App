@@ -30,12 +30,12 @@ export class OngoingvotingComponent implements OnInit {
 
   errMsg = ''
 
-  accessVotings(voting:any,user_id:any){
+  accessVotings(voting:any){
     localStorage.setItem("accessvoting",voting)
-    localStorage.setItem("accessuser",user_id)
+    // localStorage.setItem("accessuser",user_id)
     // alert(user_id)
     // alert(voting)
-    window.location.replace('/votepage')
+    window.location.replace('/auth')
   }
 
   // aa = "https://castvote.herokuapp.com/img/votings/Do%20Elections.jpeg"

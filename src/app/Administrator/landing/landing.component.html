@@ -15,11 +15,16 @@
 
 </div> -->
 
+<!-- <h3 class="text-center" style="position: absolute;"> 
+Create an administrator account today and reach out to your voters online  
+</h3> -->
 
 
 <div class="flex animate__animated" id="register" style="height: 100vh; justify-content: center; align-items: center;">
 
+
   <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="bg-dark" style="height: inherit; width: 60%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <h1 class="my-3" style=" text-decoration: underline; " > Register </h1>
 
     <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
 {{errMsg}}
@@ -54,6 +59,8 @@
   <div class="hidden flex animate__animated animate__fadeInRight" id="signin" style="height: 100vh; justify-content: center; align-items: center;">
 
   <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" class="bg-dark" style="height: inherit; width: 60%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+    <h1 class="my-3" style=" text-decoration: underline; " > Sign In </h1>
 
     <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
 {{errMsg}}
