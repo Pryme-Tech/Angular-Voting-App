@@ -1,11 +1,11 @@
 <button class="btn btn-primary my-3" onclick="document.querySelector('form').style.display='block'" > Add a new voter </button>
 
-<form class="text-center bg-dark p-4 my-4 mt-0" style=" display: none; " >
-    <input type="text" class="form-control" placeholder="Enter Name of Voter">
+<form class="text-center bg-dark p-4 my-4 mt-0" style=" display: none; " [formGroup]="voters" (ngSubmit)="votersOnsubmit()" >
+    <input type="text" class="form-control" placeholder="Enter Name of Voter" formControlName="votersname" >
     <button class="btn btn-primary mt-3"> Submit </button>
 </form>
 
-<p class="text-center border border-5 font-weight-bold py-2 " style="color: green;"> User Successfully Registered Voting id is <b class="bg-dark p-2 rounded"> 21334 </b> </p>
+<p *ngIf="successMessage" class="text-center border border-5 font-weight-bold py-2 " style="color: green; font-family: monospace !important;"> {{successMessage}} <i class="bg-dark p-2 rounded"> Voting ID: {{votingId}} </i> </p>
 
 <table class="table table-striped">
     <tr>
