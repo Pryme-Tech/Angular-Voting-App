@@ -46,7 +46,7 @@ router.post('/register',async (req,res)=>{
 
          if(createVoter){
             res.status(200).json({
-               "msg" : "Voter Successfully Created",
+               "msg" : "Voters id Successfully Created",
                "index_no" : index_no
             })
          }
