@@ -44,80 +44,25 @@ export class AdminComponent{
 
   ngAfterViewInit(){
 
-    let aside = document.getElementById('aside') as HTMLElement
+    let menu = document.getElementById('menu') as HTMLElement
 
     let nav = document.getElementById('nav') as HTMLElement
 
     let toggleSidebarButton = document.getElementById('toggleSidebarButton') as HTMLElement
 
-    toggleSidebarButton.addEventListener('click',()=>{
+    let menuItem = document.querySelectorAll('.menu-item')
 
-      if(this.c){
-        setTimeout(()=>{
-        this.c = ''
-      },100)
-
-      aside.classList.toggle('hidden')
-      nav.style.marginLeft = '15%'
-      }
-
-      else{
-
-      setTimeout(()=>{
-        this.c = 'h'
-      },100)
-
-      aside.classList.toggle('hidden')
-      nav.style.margin = '0'
-
-    }
-
+    menuItem.forEach((btn)=>{
+      btn.addEventListener('click',()=>{
+         menu.classList.toggle('hidden')
+      })
     })
 
-    if(location.href ==='http://localhost:4200/admin/auth' || location.href ==='http://localhost:4200/admin/votings' || location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='https://castvote.netlify.app/admin/votings' ){
-          
-      setTimeout(()=>{
-        this.d = 'h'
-      },100)
+    toggleSidebarButton.addEventListener('click',()=>{
 
-      aside.classList.add('hidden')
-      nav.classList.add('hidden')
-      //alert(aside.classList)
-    }
+      menu.classList.toggle('hidden')
 
-    else{
-      aside.classList.remove('hidden')
-      nav.classList.remove('hidden')
-      this.d=''
-    }
-
-    // if(location.href ==='https://castvote.netlify.app/admin/auth' || location.href ==='http://castvote.netlify.app/admin/votings'){
-          
-    //   setTimeout(()=>{
-    //     this.d = 'h'
-    //   },1000)
-    //   aside.classList.add('hidden')
-    //   //alert(aside.classList)
-    // }
-
-    // else{
-    //   aside.classList.remove('hidden')
-    //   this.d=''
-    // }
-
-    // if(location.href ==='http://localhost:4200/admin/auth'){
-    //   //alert('hello')
-    //   //aside.classList.remove('main-sidebar','elevation-5','justify-content-center','d-flex','flex-column','position-fixed')
-    //   //aside.style.display='none !important'
-    //   this.d = 'h'
-    //   aside.classList.add('hidden')
-    //   // alert(aside.classList)
-    // }
-
-    // else{
-    //   aside.classList.remove('hidden')
-    //   this.d=''
-    // }
+    })
 
   }
 

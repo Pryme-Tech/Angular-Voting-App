@@ -1,6 +1,6 @@
-<nav class="main-header px-4" id="nav" style="border-bottom: 2px solid green;">
+<nav class="main-header p-4 m-0" id="nav" style="border-bottom: 2px solid green;">
 	
-	<div class="d-flex justify-content-between align-items-center py-3 px-3"> 
+	<div class="d-flex justify-content-between align-items-center px-3 "> 
 
 <i class="fa-solid fa-plus" id="toggleSidebarButton"></i>
 
@@ -10,9 +10,29 @@
 
 </nav>
 
+
+<! -- Drop Menu -->
+
+<div class="hidden row justify-content-center m-0 p-4 my-3" style="border: 2px solid black; background-color: lightgrey;" id="menu">
+
+	<div class="menu-item col-sm-4 text-center">
+		<a class="m-2 p-1 text-white text-center rounded" routerLink="candidates" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%; display: block; "> CANDIDATES </a>
+	</div>
+
+	<div class="menu-item col-sm-4 text-center">
+		<a class="m-2 p-1 text-white text-center rounded" routerLink="votes" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%; display: block; "> VOTES </a>
+	</div>
+
+	<div class="menu-item col-sm-4 text-center">
+		<a class="m-2 p-1 text-white text-center rounded" routerLink="voters" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%;  display: block;"> VOTERS </a>
+	</div>
+
+</div>
+
+
 <!-- Side NavBar -->
 
-<aside class="hidden main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" id="aside" >
+<!-- <aside class="hidden main-sidebar elevation-5 justify-content-center d-flex flex-column position-fixed" id="aside" >
 
 	<div class="text-center mb-5" style="border: 2px solid; background-color: black;"> <a class="p-3 px-4 text-white" routerLink="candidates" style="background-color: black; font-weight: bold; letter-spacing: .2rem;"> CANDIDATES <i class="fa-solid fa-circle-check"></i> </a>  </div>
 
@@ -20,25 +40,14 @@
 
 	<div class="text-center mt-5" style="border: 2px solid; background-color: black;"> <a class="p-3 px-4 text-white" routerLink="voters" style="background-color: black; font-weight: bold; letter-spacing: .2rem;"> VOTERS <i class="fa-solid fa-circle-check"></i> </a>  </div>
 
-</aside>
+</aside> -->
 
 <!-- End Side NavBar -->
 
 <!-- <router-outlet *ngIf="d"></router-outlet> -->
 
 
-	<router-outlet *ngIf="d" ></router-outlet>
-
-<div class="container-fluid px-5" *ngIf="c" style="position: relative; min-height: 95vh;">
-
-
-	<span style="color: transparent;"> f </span>
-
-	<router-outlet></router-outlet>
-
-</div>
-
-<div class="content-wrapper" *ngIf="!d">
+	<!-- <router-outlet *ngIf="d" ></router-outlet> -->
 
 <div class="container-fluid px-5" style="position: relative; min-height: 95vh;">
 
@@ -49,4 +58,15 @@
 
 </div>
 
+<!-- <div class="content-wrapper" *ngIf="!d">
+
+<div class="container-fluid px-5" style="position: relative; min-height: 95vh;">
+
+
+	<span style="color: transparent;"> f </span>
+
+	<router-outlet></router-outlet>
+
 </div>
+
+</div> -->

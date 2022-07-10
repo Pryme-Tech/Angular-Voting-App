@@ -9,18 +9,24 @@
 
 <table class="table table-striped">
     <tr>
+        <td colspan="3" > 
+            <input type="search" class="form-control" placeholder="Search for a voter">
+            <button class="btn btn-primary bg-primary my-3 "> Search </button>
+        </td>
+    </tr>
+
+    <tr>
         <th> # </th>
-        <th> Voting Id </th>
         <th> Name </th>
+        <th> Voting Id </th>
     </tr>
-    <tr>
-        <td> t6 </td>
-        <td> hjky </td>
-        <td> jhgfty </td>
+
+    <tr *ngFor="let x of votersInfo">
+
+        <td> {{x.index}} </td>
+        <td> {{x.votersName}} </td>
+        <td> {{x.votersId}} </td>
+
     </tr>
-    <tr>
-        <td> t6 </td>
-        <td> hjky </td>
-        <td> jhgfty </td>
-    </tr>
+
 </table>

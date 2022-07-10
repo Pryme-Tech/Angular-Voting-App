@@ -16,6 +16,8 @@ export class VotersComponent implements OnInit {
 
   votingName = localStorage.getItem('votingname')
 
+  votersInfo:any = []
+
   successMessage = ''
   votingId = ''
 
@@ -29,12 +31,18 @@ export class VotersComponent implements OnInit {
     // console.log(this.voters.getRawValue())
     this.http.post(`${this.port}voters/register`,this.voters.getRawValue()).subscribe(
       res=>{
-        console.log(res)
+        // console.log(res)
         let result = JSON.parse(JSON.stringify(res))
 
         this.successMessage = result.msg
 
         this.votingId = result.index_no
+
+        this.votersInfo.push({
+          index : this.votersInfo.length,
+          votersId : result.index_no,
+          votersName : result.votersname
+        })
 
       },
       err=>{
@@ -42,16 +50,35 @@ export class VotersComponent implements OnInit {
       })
   }
 
-  constructor(private http: HttpClient) {
-
-    this.http.get(` ${this.port}voters/Dominion SRC Elections `).subscribe(
+  searchVoters(sort:any){
+    this.http.get(` ${this.port}voters/${this.votingName}/${sort}`).subscribe(
       res=>{
-        console.log(res)
+
+        let result = JSON.parse(JSON.stringify(res))
+
+        result.forEach((voters:any,index:any)=>{
+
+          this.votersInfo.push({
+            index : index,
+            votersId : voters.index_no,
+            votersName : voters.votersname
+          })
+
+          // console.log(this.votersInfo)
+
+        })
+
       },
       err=>{
         console.log(err)
       }
     )
+
+  }
+
+  constructor(private http: HttpClient) {
+
+    this.searchVoters('all')
 
    }
 

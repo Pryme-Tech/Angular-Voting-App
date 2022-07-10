@@ -5,6 +5,7 @@ aside{
 
 .hidden{
 	display : none !important;
+	transition: all 5s ease;
 }
 
 .add_category{
@@ -73,4 +74,8 @@ aside{
 
 .add_category_rm, .add_candidate_rm{
 	display: none !important;
+}
+
+#menu{
+	transition: all 5s ease;
 }
