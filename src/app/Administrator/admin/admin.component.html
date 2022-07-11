@@ -2,7 +2,7 @@
 	
 	<div class="d-flex justify-content-between align-items-center px-3 "> 
 
-<i class="fa-solid fa-plus" id="toggleSidebarButton"></i>
+<i class="fa-solid fa-bars fa-2x" id="toggleSidebarButton" style="font-weight: bolder; cursor: pointer; "></i>
 
 <button class="btn btn-danger" type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
 
@@ -13,7 +13,7 @@
 
 <! -- Drop Menu -->
 
-<div class="hidden row justify-content-center m-0 p-4 my-3" style="border: 2px solid black; background-color: lightgrey;" id="menu">
+<div class="hidden row justify-content-center m-0 p-5" style="border: 2px solid black; background-color: lightgrey;" id="menu">
 
 	<div class="menu-item col-sm-4 text-center">
 		<a class="m-2 p-1 text-white text-center rounded" routerLink="candidates" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%; display: block; "> CANDIDATES </a>
@@ -49,10 +49,10 @@
 
 	<!-- <router-outlet *ngIf="d" ></router-outlet> -->
 
-<div class="container-fluid px-5" style="position: relative; min-height: 95vh;">
+<div class="" style="position: relative; min-height: 95vh;">
 
 
-	<span style="color: transparent;"> f </span>
+	<!-- <span style="color: transparent;"> f </span> -->
 
 	<router-outlet></router-outlet>
 

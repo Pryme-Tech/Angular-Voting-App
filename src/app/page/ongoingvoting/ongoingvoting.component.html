@@ -15,7 +15,7 @@
 
 	<div class="row m-0 pb-5" style="padding: 0 10% 0 10%;">
 
-		<div class="col-sm-6 mt-3 " *ngFor="let x of ongoingVoting" style="cursor: pointer;" #s value="http://localhost:4000/img/simple.jpg">
+		<div class="col-sm-6 mt-3" *ngFor="let x of ongoingVoting" style="cursor: pointer;" #s value="http://localhost:4000/img/simple.jpg">
 			<div 
 			class=" eachvoting text-center border border-5 py-3 rounded events d-flex align-items-center justify-content-center"
 			 [ngStyle]="{ 'background-image' : 'url(' + x.img + ')' }"

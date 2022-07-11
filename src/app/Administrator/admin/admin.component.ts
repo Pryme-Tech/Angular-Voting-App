@@ -60,9 +60,26 @@ export class AdminComponent{
 
     toggleSidebarButton.addEventListener('click',()=>{
 
+      if(toggleSidebarButton.classList.contains('fa-bars')){
+        toggleSidebarButton.classList.remove('fa-bars')
+        toggleSidebarButton.classList.add('fa-xmark')
+        toggleSidebarButton.style.color='red'
+      }
+      else{
+        toggleSidebarButton.classList.remove('fa-xmark')
+        toggleSidebarButton.classList.add('fa-bars')
+        toggleSidebarButton.style.color='black'
+      }
+
       menu.classList.toggle('hidden')
 
+      // toggleSidebarButton.classList.toggle('fa-solid fa-xmark')
+
     })
+
+    if(location.href===`http://localhost:4200/admin/votings` || location.href===`http://localhost:4200/admin/auth` || location.href===`https://castvote.netlify.app/admin/votings` || location.href===`https://castvote.netlify.app/admin/auth` ){
+      nav.style.display='none'
+    }
 
   }
 

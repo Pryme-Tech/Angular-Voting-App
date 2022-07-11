@@ -10,8 +10,8 @@
 <table class="table table-striped">
     <tr>
         <td colspan="3" > 
-            <input type="search" class="form-control" placeholder="Search for a voter">
-            <button class="btn btn-primary bg-primary my-3 "> Search </button>
+            <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" >
+            <button class="btn btn-primary bg-primary my-3 " (click)="searchVoters('all')"> Sort </button>
         </td>
     </tr>
 

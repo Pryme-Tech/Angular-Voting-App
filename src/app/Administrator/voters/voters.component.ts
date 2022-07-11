@@ -51,7 +51,16 @@ export class VotersComponent implements OnInit {
   }
 
   searchVoters(sort:any){
-    this.http.get(` ${this.port}voters/${this.votingName}/${sort}`).subscribe(
+
+    if(sort!=='all'){
+      this.votersInfo=[]
+    }
+
+    if(sort===''){
+      sort = 'all'
+    }
+
+    this.http.get(`${this.port}voters/${this.votingName}/${sort}`).subscribe(
       res=>{
 
         let result = JSON.parse(JSON.stringify(res))
