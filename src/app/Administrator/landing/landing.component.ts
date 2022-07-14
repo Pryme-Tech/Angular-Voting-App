@@ -35,58 +35,56 @@ private httpoptions={
 registerFormsOnSubmit(){
 let user_id = this.registerForms.getRawValue().username
 
-// this.http.get(`${this.port}index`).subscribe(
-//   res=>{
-//     console.log(res)
-//   })
-
 this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
   res=>{
-    console.log(res)
-    //register.classList.add('hidden');
+    // console.log(res)
+
     this.sucMsg = res
     localStorage.setItem("user_id",user_id)
+
     setTimeout(()=>{
       this.sucMsg=''
       location.reload()
     },2000)
+
   },
   err=>{
-    console.log(err)
+    // console.log(err)
     this.errMsg = err.error
+
     setTimeout(()=>{
       this.errMsg=''
     },2000)
+
   })
 }
 
 loginFormsOnSubmit(){
-console.log(this.loginForms.getRawValue());
+// console.log(this.loginForms.getRawValue());
 
 this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
   res=>{
-    console.log(res)
+    
     let auth = JSON.parse(JSON.stringify(res))
-    // console.log(auth.auth)
 
-     if(auth.status === 1 ){
-
-      this.sucMsg = "Login Successful"
+    this.sucMsg = auth.status === true && "Login Successful"
 
     setTimeout(()=>{
       this.sucMsg=''
       localStorage.setItem('user_id',auth.user)
       window.location.replace('/admin')
     },2000)
-     }
+     
      
   },
   err=>{
-    console.log(err.error)
-    this.errMsg = err.error
+    // console.log(err)
+    this.errMsg = err.error.statusMsg || err.error
+
     setTimeout(()=>{
       this.errMsg=''
     },2000)
+    
   })
 }
 
