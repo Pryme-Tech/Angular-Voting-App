@@ -109,9 +109,9 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
     
      changeToSignIn.addEventListener('click',async()=>{
       if(register.classList.contains('hidden')){
-        register.classList.add('animate__fadeInRight')
-        register.classList.remove('hidden')
-        sigin.classList.add('hidden')
+        // register.classList.add('animate__animated animate__fadeInRight')
+        // register.classList.remove('hidden')
+        // sigin.classList.add('hidden')
         //sigin.classList.remove('flex,animate__animated,animate__swing')
       }
       else{
@@ -126,7 +126,7 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
 
      changeToRegister.addEventListener('click',async()=>{
       if(register.classList.contains('hidden')){
-        register.classList.add('animate__fadeInRight')
+        register.classList.add('flex')
         register.classList.remove('hidden')
         sigin.classList.add('hidden')
         //sigin.classList.remove('flex,animate__animated,animate__swing')

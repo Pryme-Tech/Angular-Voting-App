@@ -42,12 +42,22 @@ div.line{
 
 .flex{
 	display: flex;
+	flex-direction: column;
+}
+
+.sec{
+	background-color: #2BA500;
+}
+
+input{
+	border: 0;
+	border-bottom: 2px solid;
 }
 
 @media(max-width:  500px){
-	.sec{
+	/*.sec{
 		display: none;
-	}
+	}*/
 
 	form{
 		width: 100% !important;
