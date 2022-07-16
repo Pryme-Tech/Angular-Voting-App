@@ -14,6 +14,7 @@ export class LandingComponent implements OnInit {
   port = routes.host
 
 registerForms = new FormGroup({
+email : new FormControl(''),
 username: new FormControl(''),
 password: new FormControl('')
 })
@@ -33,6 +34,8 @@ private httpoptions={
   }
 
 registerFormsOnSubmit(){
+
+  console.log(this.registerForms.getRawValue())
 let user_id = this.registerForms.getRawValue().username
 
 this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
@@ -40,12 +43,12 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
     // console.log(res)
 
     this.sucMsg = res
-    localStorage.setItem("user_id",user_id)
+    // localStorage.setItem("user_id",user_id)
 
-    setTimeout(()=>{
-      this.sucMsg=''
-      location.reload()
-    },2000)
+    // setTimeout(()=>{
+    //   this.sucMsg=''
+    //   location.reload()
+    // },2000)
 
   },
   err=>{

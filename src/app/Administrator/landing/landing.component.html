@@ -27,7 +27,7 @@ Create an administrator account today and reach out to your voters online
 
   <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
 
-    <div style="background-color: #ffffff75; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div style="background-color: #ffffff75; margin: auto; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
     <h1 class="py-3" style=" text-decoration: underline; " > Register </h1>
 
@@ -35,13 +35,19 @@ Create an administrator account today and reach out to your voters online
 {{errMsg}}
   </div>
 
-  <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded" style="width: 60%;">
-{{sucMsg}}
+  <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 50vh; ">
+
+    <i class="fa-solid fa-envelope-circle-check fa-7x"></i>
+    
+    <h3> Email Verification Sent </h3>
+    
+    <p> {{sucMsg}} </p>
+
   </div>
 
   <div class="form-group" style="width: 60%;">
       <label> Email: </label>
-    <input class="form-control" type="text" placeholder="email" >
+    <input class="form-control" type="text" placeholder="email" formControlName="email" >
   </div>
 
     <div class="form-group" style="width: 60%;">
