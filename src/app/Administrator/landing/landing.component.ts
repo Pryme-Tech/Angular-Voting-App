@@ -27,6 +27,8 @@ password: new FormControl('')
 errMsg = ''
 sucMsg :any = ''
 
+verify:any = []
+
 private httpoptions={
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -35,14 +37,22 @@ private httpoptions={
 
 registerFormsOnSubmit(){
 
-  console.log(this.registerForms.getRawValue())
+  // console.log(this.registerForms.getRawValue())
 let user_id = this.registerForms.getRawValue().username
 
 this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
   res=>{
     // console.log(res)
 
-    this.sucMsg = res
+    let result = JSON.parse(JSON.stringify(res))
+
+    this.verify.push({
+      email : result.email,
+      msg : result.msg
+    })
+
+    console.log(this.verify)
+
     // localStorage.setItem("user_id",user_id)
 
     // setTimeout(()=>{

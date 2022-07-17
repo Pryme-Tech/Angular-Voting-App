@@ -35,26 +35,6 @@ Create an administrator account today and reach out to your voters online
 {{errMsg}}
   </div>
 
-  <div class="bg-success text-center p-2 my-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 50vh; ">
-
-    <i class="fa-solid fa-envelope-circle-check fa-7x"></i>
-    
-    <h3> Email Verification Sent </h3>
-    
-    <h5> Thank you for signing up for an Event account </h5>
-    
-    <p class="mt-2">
-
-Please verify your email address in order to access your Event account. <br>
-
-We sent an email to anonylatif@gmail.com <br>
-
-To continue, please check your inbox and verify your email address. <br>
-
-Didn’t receive the email? <a href="#"> Resend email </a> </p>
-
-  </div>
-
   <div class="form-group" style="width: 60%;">
       <label> Email: </label>
     <input class="form-control" type="text" placeholder="email" formControlName="email" >
@@ -129,4 +109,24 @@ Didn’t receive the email? <a href="#"> Resend email </a> </p>
   </form>
 
   <div class="sec" style="height: 10vh; width: 100%;"></div>
+  </div>
+
+    <div *ngIf="verify.length>0" class="bg-success text-center p-2 my-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 50vh; ">
+
+    <i class="fa-solid fa-envelope-circle-check fa-7x"></i>
+    
+    <h3> Email Verification Sent </h3>
+    
+    <h5> Thank you for signing up for an Event account </h5>
+    
+    <p class="mt-2">
+
+Please verify your email address in order to access your Event account. <br>
+
+We sent an email to {{verify[0].email}} <br>
+
+{{verify[0].msg}} <br>
+
+Didn’t receive the email? <a href="#"> Resend email </a> </p>
+
   </div>
