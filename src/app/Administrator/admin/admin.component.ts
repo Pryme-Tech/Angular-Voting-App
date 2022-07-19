@@ -77,7 +77,7 @@ export class AdminComponent{
 
     })
 
-    if(location.href===`http://localhost:4200/admin/votings` || location.href===`http://localhost:4200/admin/auth` || location.href===`https://castvote.netlify.app/admin/votings` || location.href===`https://castvote.netlify.app/admin/auth` ){
+    if(location.href===`http://localhost:4200/admin/votings` || location.href.startsWith(`http://localhost:4200/admin/auth`) || location.href===`https://castvote.netlify.app/admin/votings` || location.href===`https://castvote.netlify.app/admin/auth` ){
       nav.style.display='none'
     }
 

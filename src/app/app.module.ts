@@ -36,6 +36,9 @@ const routes: Routes = [
   children:[
   {path: "votings", component: VotingsComponent},
   { path: 'auth', component: LandingComponent},
+  { path: 'auth/verifyuser/:token', component: LandingComponent },
+  {path: 'auth/login', component: LandingComponent},
+  {path: 'auth/register', component: LandingComponent},
   {path: "candidates", component: CandidatesComponent },
   {path: "votes", component: VotesComponent},
   { path: "voters", component: VotersComponent },

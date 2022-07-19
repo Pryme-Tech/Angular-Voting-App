@@ -20,7 +20,7 @@ Create an administrator account today and reach out to your voters online
 </h3> -->
 
 
-<div class="flex" id="register" style="height: 100vh; justify-content: center; align-items: center;">
+<div class="hidden" id="register" style="height: 100vh; justify-content: center; align-items: center;">
 
 
 <div class="sec" style="height: 10vh; width: 100%;"></div>
@@ -36,23 +36,40 @@ Create an administrator account today and reach out to your voters online
   </div>
 
   <div class="form-group" style="width: 60%;">
+
       <label> Email: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['email'].errors?.['required']" > *** Email field is required *** </small>
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['email'].errors?.['email']" > *** Please enter a valid email *** </small>
+
     <input class="form-control" type="text" placeholder="email" formControlName="email" >
   </div>
 
     <div class="form-group" style="width: 60%;">
       <label> UserName: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['username'].errors?.['required']" > *** Username field is required *** </small>
+
     <input class="form-control" type="text" placeholder="username" formControlName="username">
   </div>
 
   <div class="form-group mt-4" style="width: 60%;">
     <label> Password: </label>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['password'].errors?.['required']" > *** Password field is required *** </small>
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['mustmatch']" > *** Passwords do not match *** </small>
+
     <input class="form-control" type="password" name="" placeholder="password" formControlName="password">
   </div>
 
   <div class="form-group mt-4" style="width: 60%;">
     <label> Confirm Password: </label>
-    <input class="form-control" type="password" name="" placeholder="password" >
+    
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['required']" > *** Confirm Password field is required *** </small>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['mustmatch']" > *** Passwords do not match *** </small>
+
+    <input class="form-control" type="password" name="" placeholder="confirm password" formControlName="confirmpassword" >
   </div>
 
   <div class="form-group" style="width: 60%;">
@@ -89,11 +106,17 @@ Create an administrator account today and reach out to your voters online
 
     <div class="form-group" style="width: 60%;">
       <label> Enter your email or password: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.loginFormsControls['username'].errors?.['required']" > *** Username field is required *** </small>
+
     <input class="form-control" type="text" placeholder="username" formControlName="username">
   </div>
 
   <div class="form-group mt-4" style="width: 60%;">
     <label> Password: </label>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.loginFormsControls['password'].errors?.['required']" > *** Password field is required *** </small>
+
     <input class="form-control" type="password" placeholder="password" formControlName="password">
   </div>
 
@@ -127,6 +150,24 @@ We sent an email to {{verify[0].email}} <br>
 
 {{verify[0].msg}} <br>
 
-Didn’t receive the email? <a href="#"> Resend email </a> </p>
+Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (click)="resend(verify[0].email)"> {{verify[0].resend}} </a> </p>
+
+  </div>
+
+  <div *ngIf="verifiedAccount" class="vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold " style="background-color: #2BA500 ;">
+
+    <h3> Hello {{verifiedAccount[0].user}} , </h3>
+
+    <p> Your account has been successfully verified. </p> 
+
+    <button class="btn btn-light font-weight-bold " > Get started creating some events </button>
+
+  </div>
+
+  <div *ngIf="verifiedAccountError" class="bg-danger vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold ">
+
+    <p> We encounted an error verifying your account!!! <br> Please try again later OR <a href="#"> Resend Verification email. </a> </p> 
+
+    <!-- <button class="btn btn-light font-weight-bold " > Get started creating some events </button> -->
 
   </div>
