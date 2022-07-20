@@ -1,10 +1,69 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<nav class="d-flex py-2 px-5 justify-content-between align-items-center ">
+
+	<div class="logo animate__animated animate__rubberBand">
+		<h3> VOTY.COM </h3>
+	</div>
+
+	<div class="d-flex desktop-nav-links animate__animated animate__backInRight" >
+		<p class="p-2 nav-links" routerLink="/events"> EVENTS </p>
+		<p class="p-2 nav-links" routerLink="/admin"> MANAGE EVENT </p>
+		<P class="p-2 nav-links" onclick="alert('This feature is not available yet')" > SERVICES </P>
+		<p class="p-2 nav-links" onclick="alert('This feature is not available yet')" > ABOUT US </p>
+		<P class="p-2 nav-links" onclick="alert('This feature is not available yet')" > CONTACT US </P>
+
+		</div>
+
+		<i class="mobile-nav-icon fa-solid fa-bars" onclick="getElementById('mobile-nav-links').style.display='block';" ></i>
+
+		<div class="mobile-nav-links text-center animate__animated animate__backInRight " id="mobile-nav-links">
+
+			<div class="bg-light d-flex flex-column align-items-center justify-content-center ">
+
+				<i class="m-5 fa-solid fa-close fa-2x text-danger" style="position: absolute; left: 0; top: 0;" onclick="getElementById('mobile-nav-links').style.display='none';" ></i>
+
+			<p class="p-2 nav-links" routerLink="/events"> EVENTS </p>
+		<p class="p-2 nav-links" routerLink="/admin"> MANAGE EVENT </p>
+		<P class="p-2 nav-links" onclick="alert('This feature is not available yet')" > SERVICES </P>
+		<p class="p-2 nav-links" onclick="alert('This feature is not available yet')" > ABOUT US </p>
+		<P class="p-2 nav-links" onclick="alert('This feature is not available yet')" > CONTACT US </P>
+		</div>
+			</div>
+
+		<style>
+			.mobile-nav-links div{
+				width: 80%;
+				float: right;
+				height: inherit;
+				position: relative;
+				
+			}
+
+			.mobile-nav-links{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				z-index: 99;
+				backdrop-filter: blur(2px);
+			}
+
+			.nav-links{
+				cursor: pointer;
+			}
+		</style>
+
+</nav>
+
 <div class="bg-success" style="min-height: 100vh; /* background-image: url(assets/dots.png); background-size: cover; */">
 
-	<h1 class="text-center py-3 bg-light m-0 font-weight-bold " > Voting Events</h1>
+	<h1 class="text-center py-3 bg-dark m-0 font-weight-bold " > Voting Events</h1>
 
-	<div class="form-group bg-dark text-center py-3">
+	<div class="form-group bg-dark text-center pb-3">
 		<label for="search" style="">Search for a voting event:</label>
-		<input id="search" type="search" class="form-control mx-auto" style="width: 70%;" placeholder="Search by name">
+		<input id="search" type="search" class="form-control mx-auto" style="width: 70%;" placeholder="Search by event name">
 		</div>
 
 	<div *ngIf="errMsg" class="text-center bg-dark py-5">
@@ -13,20 +72,38 @@
 
 	</div>
 
-	<div class="row m-0 pb-5" style="padding: 0 10% 0 10%;">
+	<div class="row m-0 pb-5" style="padding: 0 5% 0 5%; border: 0;">
 
-		<div class="col-sm-6 mt-3" *ngFor="let x of ongoingVoting" style="cursor: pointer;" #s value="http://localhost:4000/img/simple.jpg">
-			<div 
+		<div class="col-sm-6 col-md-4 col-lg-3 card " *ngFor="let x of ongoingVoting" style="cursor: pointer; background-color: transparent; border: 0; border-style: none; box-shadow: 0 0 0px rgb(0 0 0 / 13%) " (click)="accessVotings(x.voting)" #s>
+
+			<div class="border border-5 rounded ">
+
+			<div class="card-header text-center p-0 " style="height: 169px; overflow: hidden; " >
+				<img class="img-responsive text-center" [src]="x.img" style="
+				vertical-align: middle;
+				border-style: none;
+				max-width: 100%;" >
+			</div>
+
+			<div class="card-body bg-light mt-1 px-3 py-2 text-center ">
+				<h6 class="m-0 font-weight-bold text-center "> {{x.voting}} </h6>
+				<p class="m-0 mt-2 font-weight-bold text-success " > By <br> {{x.user_id}} </p>
+			</div>
+
+			</div>
+
+			<!-- <div 
 			class=" eachvoting text-center border border-5 py-3 rounded events d-flex align-items-center justify-content-center"
 			 [ngStyle]="{ 'background-image' : 'url(' + x.img + ')' }"
 			 style=" height: 300px; background-size: contain;"
 			 (click)="accessVotings(x.voting)"
 			 >			 
-			  <!-- <img src="http://localhost:4000/img/simple.jpg" style="position:absolute; top:0;height: inherit;"> -->
+			  <img src="http://localhost:4000/img/simple.jpg" style="position:absolute; top:0;height: inherit;">
 				<h4 class="bg-dark vw-100 py-3" >{{x.voting}}</h4>
-			</div>
+			</div> -->
 		</div>
 		
 	</div>
+	
 
 </div>

@@ -16,3 +16,24 @@ div.eachvoting:hover{
 /*.ongoingVoting:hover{
   opacity: 50%;
 }*/
+
+
+// nav stylings
+
+.mobile-nav-icon{
+  display: none;
+}
+
+.mobile-nav-links{
+  display: none;
+}
+
+@media(max-width: 750px){
+  .mobile-nav-icon{
+    display: block;
+  }
+
+  .desktop-nav-links{
+    display: none !important;
+  }
+}
