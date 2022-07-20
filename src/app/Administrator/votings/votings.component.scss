@@ -8,14 +8,12 @@
     margin: auto;
 }
 
-.allevents{
-    transition: all 2s ease-in;
+.events{
+    transition: all 1.5s ease-in;
 }
 
-.allevents:hover{
-    background-color: lightgreen;
-    border-radius: 1rem;
-    overflow: hidden;
+.events:hover{
+    border: 3px solid black !important;
 }
 
 @media(max-width: 600px){

@@ -135,7 +135,9 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
         resend : "resend email"
       })
 
-      this.sucMsg = auth.Verified && auth.status === true && "Login Successful" && setTimeout(()=>{
+      this.sucMsg = auth.Verified && auth.status === true && "Login Successful" 
+      
+      setTimeout(()=>{
         this.sucMsg=''
         localStorage.setItem('user_id',auth.username)
         window.location.replace('/admin')

@@ -71,7 +71,7 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 				document.getElementById('newinputbutton').style.display='block';"> Add a New Voting Event </p>
 			</div> -->
 			<div class="text-right px-5">
-			<i class="fa fa-plus text-danger" onclick="document.getElementById('addEvents').style.display='none !important'"></i>
+			<i class="fa-solid fa-close fa-2x text-danger" onclick="document.getElementById('addEvents').style.display='none !important'"></i>
 			</div>
 
 		<div class="addEventForm">
@@ -93,7 +93,7 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 			
 			<div class="form-group text-center" id="newinputbutton">
 		<button class="btn btn-primary" type="submit">Submit</button>
-		<button class="btn btn-danger mx-2" type="button" onclick="document.getElementById('addEvents').style.display='block'">Cancel</button>
+		<button class="btn btn-danger mx-2" type="button" onclick="document.getElementById('addEvents').style.display='none !important';">Cancel</button>
 			</div>
 
 			</div>
@@ -118,16 +118,31 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 		<input id="search" type="search" class="form-control mx-auto" style="width: 90%;" placeholder="Search by name">
 		</div>
 
-	<div class="col-sm-4 mt-3 allevents" *ngFor="let x of votings" 
-	(click)="redirectToCandidates(x.votingname)" id={{x.votingname}} style="cursor: pointer;">
+	<div class="col-sm-4 col-lg-3 col-sm-6 card mt-3" *ngFor="let x of votings" 
+	(click)="redirectToCandidates(x.votingname)" id={{x.votingname}} style="cursor: pointer; background-color: transparent; box-shadow: 0 0 0px rgb(0 0 0 / 13%) ">
 
-	<div class="thumbnail text-center pt-3" style="height:300px; ">
+	<div class="border border-5 events">
+		
+	<div class="card-header p-0" style="max-height: 169px; overflow: hidden; ">
+		<img [src]="x.imageurl" class="img-responsive " style="
+		vertical-align: middle;
+		border-style: none;
+		max-width: 100%;">
+	</div>
+
+	<div class="card-body bg-light p-2 text-center mt-1" >
+		<h6 class="m-0"> {{x.votingname}} </h6>
+	</div>
+
+	</div>
+
+	<!-- <div class="thumbnail text-center pt-3" style="height:300px; ">
 		<img [src]="x.imageurl" class="img-circle img-responsive "  
 		style="height: 80%; border: 3px solid black; overflow: hidden;">
 
 		<h3 class="rounded caption bg-light d-flex align-items-center justify-content-center" 
 		style="height: 20%; border: 3px solid;">{{x.votingname}}</h3>
-	</div>
+	</div> -->
 			
 	</div>
 </div>

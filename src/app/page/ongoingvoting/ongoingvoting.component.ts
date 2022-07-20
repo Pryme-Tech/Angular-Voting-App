@@ -32,9 +32,7 @@ export class OngoingvotingComponent implements OnInit {
 
   accessVotings(voting:any){
     localStorage.setItem("accessvoting",voting)
-    // localStorage.setItem("accessuser",user_id)
-    // alert(user_id)
-    // alert(voting)
+    
     window.location.replace('/auth')
   }
 

@@ -23,13 +23,13 @@ Create an administrator account today and reach out to your voters online
 <div class="hidden" id="register" style="height: 100vh; justify-content: center; align-items: center;">
 
 
-<div class="sec" style="height: 10vh; width: 100%;"></div>
+<!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
 
   <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
 
-    <div style="background-color: #ffffff75; margin: auto; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div style="background-color: #7ae69579; margin: 0; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
-    <h1 class="py-3" style=" text-decoration: underline; " > Register </h1>
+    <h1 class="py-3 font-weight-bold " style=" text-decoration: underline; " > Register </h1>
 
     <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
 {{errMsg}}
@@ -74,27 +74,27 @@ Create an administrator account today and reach out to your voters online
 
   <div class="form-group" style="width: 60%;">
     <button type="submit" class="btn btn-dark">Register</button>
-    <p class="mt-4 text-center bg-dark" id="changeToSignIn" style="border: 2px solid white;"> Already have an Account? <span class="text-success btn font-weight-bold">Log in Here.</span> </p>
+    <p class="mt-4 text-center bg-dark" id="changeToSignIn"> Already have an Account? <span class="text-success btn font-weight-bold">Log in Here.</span> </p>
   </div>
 
 </div>
 
   </form>
 
-  <div class="sec" style="height: 10vh; width: 100%;"></div>
+  <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
   </div>
 
 
 
   <div class="hidden flex" id="signin" style="height: 100vh; justify-content: center; align-items: center;">
 
-    <div class="sec" style="height: 10vh; width: 100%;"></div>
+    <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
 
   <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" class="bg-light" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
 
-     <div style="background-color: #ffffffa6; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+     <div style="background-color: #7ae69579; margin: auto; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
-    <h1 class="my-3" style=" text-decoration: underline; " > Sign In </h1>
+    <h1 class="my-3 font-weight-bold" style=" text-decoration: underline; " > Sign In </h1>
 
     <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
 {{errMsg}}
@@ -123,7 +123,7 @@ Create an administrator account today and reach out to your voters online
   <div class="form-group" style="width: 60%;">
     <button type="submit" class="btn btn-dark">Sign in</button>
 
-    <p class="mt-4 text-center bg-dark" id="changeToRegister" style="border: 2px solid white;"> New Here? <span class="text-primary btn font-weight-bold">Register Here.</span> </p>
+    <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-primary btn font-weight-bold">Register Here.</span> </p>
 
   </div>
 
@@ -131,7 +131,7 @@ Create an administrator account today and reach out to your voters online
 
   </form>
 
-  <div class="sec" style="height: 10vh; width: 100%;"></div>
+  <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
   </div>
 
     <div *ngIf="verify.length>0" class=" bg-dark bg-success text-center p-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 100vh; ">
