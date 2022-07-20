@@ -176,13 +176,15 @@ verifiedAccount:any
 
 verifiedAccountError = false
 
+hosted = routes.front
+
   constructor(private http:HttpClient, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { 
 
     // alert(this.route.snapshot.paramMap.get('login'))
 
     let verify = document.getElementById('verify') as HTMLElement;
 
-    if(location.href.startsWith('http://localhost:4200/admin/auth/verifyuser')){
+    if(location.href.startsWith(`${this.hosted}admin/auth/verifyuser`)){
 
     let token = this.route.snapshot.paramMap.get('token')
 
@@ -233,21 +235,21 @@ verifiedAccountError = false
 
     let changeToRegister = document.getElementById('changeToRegister') as HTMLElement;
 
-    if(location.href==="http://localhost:4200/admin/auth/login"){
+    if(location.href===`${this.hosted}admin/auth/login`){
       register.classList.add('hidden')
       register.classList.remove('flex')
       signin.classList.remove('hidden')
       signin.classList.add('flex')
     }
 
-    if(location.href==="http://localhost:4200/admin/auth/register"){
+    if(location.href===`${this.hosted}admin/auth/register`){
       register.classList.remove('hidden')
       register.classList.add('flex')
       signin.classList.add('hidden')
       signin.classList.remove('flex')
     }
 
-    if(location.href==="http://localhost:4200/admin/auth"){
+    if(location.href===`${this.hosted}admin/auth`){
       this.router.navigate(['/admin/auth/login'])
     }
     

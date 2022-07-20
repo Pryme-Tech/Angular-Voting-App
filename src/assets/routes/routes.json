@@ -3,6 +3,6 @@
 	"lhost" : "http://localhost:4000/",
 	"n1" : "https://castvote.netlify.app/admin/auth",
 	"n2" : "https://castvote.netlify.app/admin/votings",
-	"front" : "http://localhost:4000/",
-	"local" : "https://castvote.netlify.app/"
+	"fronty" : "http://localhost:4000/",
+	"front" : "https://castvote.netlify.app/"
 }
