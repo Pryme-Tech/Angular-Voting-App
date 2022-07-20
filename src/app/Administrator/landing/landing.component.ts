@@ -88,12 +88,13 @@ let user_id = this.registerForms.getRawValue().username
 // HTTP transport of registration form inputs
 this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
   res=>{
-    console.log(res)
+    // console.log(res)
 
     let result = JSON.parse(JSON.stringify(res))
 
     this.verify.push({
       email : result.email,
+      username : result.username,
       msg : result.msg,
       resend : "resend email"
     })
@@ -123,19 +124,20 @@ loginFormsOnSubmit(){
 this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
   res=>{
 
-    console.log(res)
+    // console.log(res)
 
     const auth = JSON.parse(JSON.stringify(res))
 
     !auth.Verified && this.verify.push({
         email : auth.email,
+        username : auth.username,
         msg : auth.msg,
         resend : "resend email"
       })
 
       this.sucMsg = auth.Verified && auth.status === true && "Login Successful" && setTimeout(()=>{
         this.sucMsg=''
-        localStorage.setItem('user_id',auth.userName)
+        localStorage.setItem('user_id',auth.username)
         window.location.replace('/admin')
       },2000)
      
@@ -151,14 +153,16 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
   })
 }
 
-resend(email:any){
+resend(email:any,username:any){
 
   this.verify[0].resend="........."
 
+  // console.log(username,' ',email)
+
   setTimeout(()=>{
-  this.http.get(`${this.port}users/verify/resend/${email}`).subscribe(
+  this.http.get(`${this.port}users/verify/resend/${email}/${username}`).subscribe(
     res=>{
-      console.log(res)
+      // console.log(res)
       let result = JSON.parse(JSON.stringify(res))
       this.verify[0].resend = result.msg
     }
@@ -184,7 +188,7 @@ verifiedAccountError = false
 
     this.http.get(`${this.port}users/verifyuser/${token}`).subscribe(
       res=>{
-        console.log(res)
+        // console.log(res)
         let result = JSON.parse(JSON.stringify(res))
         // this.verifiedAccount = result.msg
         this.verifiedAccount = [{

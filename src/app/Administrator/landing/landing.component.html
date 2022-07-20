@@ -134,7 +134,7 @@ Create an administrator account today and reach out to your voters online
   <div class="sec" style="height: 10vh; width: 100%;"></div>
   </div>
 
-    <div *ngIf="verify.length>0" class="bg-success text-center p-2 my-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 50vh; ">
+    <div *ngIf="verify.length>0" class=" bg-dark bg-success text-center p-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 100vh; ">
 
     <i class="fa-solid fa-envelope-circle-check fa-7x"></i>
     
@@ -150,7 +150,9 @@ We sent an email to {{verify[0].email}} <br>
 
 {{verify[0].msg}} <br>
 
-Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (click)="resend(verify[0].email)"> {{verify[0].resend}} </a> </p>
+Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (click)="resend(verify[0].email,verify[0].username)"> {{verify[0].resend}} </a> </p>
+
+<button class="btn btn-light" routerLink="/admin/auth/login" > Continue </button>
 
   </div>
 

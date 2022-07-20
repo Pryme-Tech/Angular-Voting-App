@@ -50,16 +50,16 @@ export class OngoingvotingComponent implements OnInit {
         let img = ''
 
         response.forEach((data:any)=>{
-          if(data.imageurl.includes(' ')){
-            img = this.port+data.imageurl.replaceAll(' ','%20')
-          }
-          else{
-            img = this.port+data.imageurl
-          }
+          // if(data.imageurl.includes(' ')){
+          //   img = this.port+data.imageurl.replaceAll(' ','%20')
+          // }
+          // else{
+          //   img = this.port+data.imageurl
+          // }
           this.ongoingVoting.push({
             "voting":data.votingname,
             "user_id":data.username,
-            "img" : img
+            "img" : data.imageurl
           })
         })
 

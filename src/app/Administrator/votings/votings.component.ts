@@ -91,18 +91,18 @@ export class VotingsComponent implements OnInit {
         else{
           
         result.forEach((i:any)=>{
-          if(i.imageurl === null){
-            imageurl = this.port+"img/votings/dsf.jpeg"
-          }
-          else if(i.imageurl === null){
-            imageurl = this.port+"img/votings/dsf.jpeg"
-          }
-          else{
-            imageurl = this.port+i.imageurl
-          }
+          // if(i.imageurl === null){
+          //   imageurl = this.port+"img/votings/dsf.jpeg"
+          // }
+          // else if(i.imageurl === null){
+          //   imageurl = this.port+"img/votings/dsf.jpeg"
+          // }
+          // else{
+          //   imageurl = this.port+i.imageurl
+          // }
           this.votings.push({
             "votingname" : i.votingname,
-            "imageurl" : imageurl
+            "imageurl" : i.imageurl
           })
         })
 
