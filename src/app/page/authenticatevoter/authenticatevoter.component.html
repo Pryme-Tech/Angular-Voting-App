@@ -3,11 +3,11 @@
 {{successMessage}}
 </h4>
 
-<div class="d-flex justify-content-center align-items-center bg-success " style="height: 100vh;" >
+<div class="d-flex justify-content-center align-items-center bg-dark " style="height: 100vh;" >
 
-    <form class="p-5 text-center bg-dark rounded " style="width: 90%;" [formGroup]="voters" (ngSubmit)="nextVote()">
+    <form class="p-5 text-center bg-light rounded " style="width: 90%;" [formGroup]="voters" (ngSubmit)="nextVote()">
         <h1 class="mb-5"  > {{accessvoting}}    </h1>
-        <label for="voterid"> Enter your voter's id: </label>
+        <label for="voterid"> Enter your voting id to access this event: </label>
         <input type="text" class="form-control" placeholder="Voter's id" formControlName="index_no" >
 
         <button type="submit" class="btn btn-primary mt-3" >Submit</button>
