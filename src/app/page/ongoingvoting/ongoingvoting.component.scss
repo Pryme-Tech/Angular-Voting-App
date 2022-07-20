@@ -29,6 +29,9 @@ div.eachvoting:hover{
 }
 
 @media(max-width: 750px){
+  nav{
+    padding: 5% !important;
+  }
   .mobile-nav-icon{
     display: block;
   }
