@@ -26,7 +26,7 @@ successMessage:any = ''
 
 nextVote(){
 
-console.log(this.voters.getRawValue())
+// console.log(this.voters.getRawValue())
 
 this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
   res=>{
@@ -39,7 +39,7 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
 
     setTimeout(()=>{
       this.successMessage = ''
-      location.replace('/votepage')
+      location.assign('/votepage')
     },1500)
 
   },

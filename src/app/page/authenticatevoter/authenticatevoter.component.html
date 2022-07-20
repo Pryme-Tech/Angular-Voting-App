@@ -3,7 +3,11 @@
 {{successMessage}}
 </h4>
 
-<div class="d-flex justify-content-center align-items-center bg-dark " style="height: 100vh;" >
+<div class="d-flex justify-content-center align-items-center bg-dark " onclick="location.assign('/');" style="height: 100vh; position: relative; " >
+
+<div class="bg-light p-2 rounded font-weight-bold " style="position:absolute; top: 10%; left: 1%; cursor: pointer; " >
+    <i class="fa-solid fa-rotate-left m-1"  ></i> BACK
+</div>
 
     <form class="p-5 text-center bg-light rounded " style="width: 90%;" [formGroup]="voters" (ngSubmit)="nextVote()">
         <h1 class="mb-5"  > {{accessvoting}}    </h1>

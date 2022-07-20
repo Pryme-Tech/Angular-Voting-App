@@ -33,7 +33,7 @@ export class OngoingvotingComponent implements OnInit {
   accessVotings(voting:any){
     localStorage.setItem("accessvoting",voting)
     
-    window.location.replace('/auth')
+    window.location.assign('/auth')
   }
 
   // aa = "https://castvote.herokuapp.com/img/votings/Do%20Elections.jpeg"
