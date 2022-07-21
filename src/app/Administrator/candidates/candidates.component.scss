@@ -70,3 +70,10 @@ aside{
 .add_category_rm, .add_candidate_rm{
 	display: none !important;
 }
+
+@media(max-width: 500px){
+	.categories{
+		margin: 5%;
+		width: 100vw;
+	}
+}

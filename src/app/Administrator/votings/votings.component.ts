@@ -135,13 +135,21 @@ export class VotingsComponent implements OnInit {
 
    ngAfterViewInit(){
 
-        const btn = document.querySelector("button.mobile-menu-button") as HTMLElement;
+        const btn = document.querySelector(".mobile-menu-button") as HTMLElement;
+        const btnClose = document.querySelector(".mobile-menu-close-button") as HTMLElement;
         const menu = document.querySelector(".mobile-menu-hidden") as HTMLElement;
 
         btn.addEventListener("click",()=>{
 			// alert('hello')
-            menu.classList.toggle("mobile-menu");
+            menu.classList.toggle("mobile-menu-hidden");
         })
+
+        btnClose.addEventListener("click",()=>{
+      alert('hello')
+            menu.classList.toggle("mobile-menu-hidden");
+        })
+
+        // d-flex flex-column
 
    }
 
