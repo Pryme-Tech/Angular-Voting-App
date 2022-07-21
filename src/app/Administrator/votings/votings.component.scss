@@ -47,3 +47,12 @@
 .mobile-menu{
     display: flex;
 }
+
+@media(max-width : 500px){
+    form{
+        width: 90% !important;
+    }
+    .form-group{
+        padding: 0% !important;
+    }
+}
