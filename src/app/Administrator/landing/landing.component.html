@@ -101,6 +101,7 @@
   </div>
 
   <div class="form-group" style="width: 60%;">
+    <a href="" class="p-0 m-0" style="display: block;" > Forget Password? </a><br>
     <button type="submit" class="btn btn-dark">Sign in</button>
 
     <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-primary btn font-weight-bold">Register Here.</span> </p>
@@ -148,8 +149,18 @@ Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (cl
 
   <div *ngIf="verifiedAccountError" class="bg-danger vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold ">
 
-    <p> We encounted an error verifying your account!!! <br> Please try again later OR <a href="#"> Resend Verification email. </a> </p> 
+    <p class="bg-light vw-100 text-center "> LINK EXPIRED <img class="img-responsive" src="assets/error.png" style="height: 200px;" > </p> 
 
     <!-- <button class="btn btn-light font-weight-bold " > Get started creating some events </button> -->
+
+  </div>
+
+
+  <!-- Forget Password Form -->
+  <div class="hidden vh-100 bg-dark align-items-center justify-content-center p-5 " id="forgetPassword">
+    <h3 class="mt-5 pt-5" style="text-decoration: underline; position: absolute; top: 0; "> RESET PASSWORD </h3>
+<label> Enter your email address: </label>
+<input type="text" class="form-control" placeholder="Enter your account email">
+<button class="btn btn-light mt-3" > Submit </button>
 
   </div>

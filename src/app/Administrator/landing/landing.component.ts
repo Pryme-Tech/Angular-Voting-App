@@ -135,9 +135,10 @@ this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscrib
         resend : "resend email"
       })
 
-      this.sucMsg = auth.Verified && auth.status === true && "Login Successful" 
-      
-      setTimeout(()=>{
+
+      this.sucMsg = auth.status === true && "Login Successful" 
+
+      auth.Verified && setTimeout(()=>{
         this.sucMsg=''
         localStorage.setItem('user_id',auth.username)
         window.location.replace('/admin')
@@ -209,6 +210,29 @@ hosted = routes.front
 
     }
 
+    if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/reset`)){
+
+    let token = this.route.snapshot.paramMap.get('token')
+
+    // this.http.get(`${this.port}users/verifyuser/${token}`).subscribe(
+    //   res=>{
+    //     // console.log(res)
+    //     let result = JSON.parse(JSON.stringify(res))
+    //     // this.verifiedAccount = result.msg
+    //     this.verifiedAccount = [{
+    //       user : result.user
+    //     }]
+    //   },
+    //   err=>{
+    //     console.log(err)
+  
+    //     this.verifiedAccountError = true
+
+    //   }
+    // )
+
+    }
+
     this.registerForms = this.fb.group({
       email : ['',[Validators.required,Validators.email]],
       username : ['',Validators.required],
@@ -237,6 +261,8 @@ hosted = routes.front
 
     let changeToRegister = document.getElementById('changeToRegister') as HTMLElement;
 
+    let forgetPassword = document.getElementById('forgetPassword') as HTMLElement
+
     if(location.href===`${this.hosted}admin/auth/login`){
       register.classList.add('hidden')
       register.classList.remove('flex')
@@ -249,6 +275,13 @@ hosted = routes.front
       register.classList.add('flex')
       signin.classList.add('hidden')
       signin.classList.remove('flex')
+    }
+
+    if(location.href===`${this.hosted}admin/auth/forgetPassword`){
+      forgetPassword.classList.remove('hidden')
+      forgetPassword.classList.add('flex')
+      // signin.classList.add('hidden')
+      // signin.classList.remove('flex')
     }
 
     if(location.href===`${this.hosted}admin/auth`){

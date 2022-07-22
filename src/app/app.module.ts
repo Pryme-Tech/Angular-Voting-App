@@ -39,6 +39,8 @@ const routes: Routes = [
   { path: 'auth/verifyuser/:token', component: LandingComponent },
   {path: 'auth/login', component: LandingComponent},
   {path: 'auth/register', component: LandingComponent},
+  {path: 'auth/forgetPassword', component: LandingComponent},
+  {path: 'auth/forgetPassword/reset/:token', component: LandingComponent},
   {path: "candidates", component: CandidatesComponent },
   {path: "votes", component: VotesComponent},
   { path: "voters", component: VotersComponent },
