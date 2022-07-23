@@ -181,6 +181,21 @@ verifiedAccountError = false
 
 hosted = routes.front
 
+forgetPasswordInput  = new FormControl('')
+
+  forgetPassword(){
+    // console.log(this.forgetPasswordInput.value)
+
+    this.http.get(`${this.port}users/forgetPassword/generateToken/${this.forgetPasswordInput.value}`).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log(err)
+      })
+
+  }
+
   constructor(private http:HttpClient, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { 
 
     // alert(this.route.snapshot.paramMap.get('login'))
@@ -210,26 +225,20 @@ hosted = routes.front
 
     }
 
-    if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/reset`)){
+    if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/r`)){
 
     let token = this.route.snapshot.paramMap.get('token')
 
-    // this.http.get(`${this.port}users/verifyuser/${token}`).subscribe(
-    //   res=>{
-    //     // console.log(res)
-    //     let result = JSON.parse(JSON.stringify(res))
-    //     // this.verifiedAccount = result.msg
-    //     this.verifiedAccount = [{
-    //       user : result.user
-    //     }]
-    //   },
-    //   err=>{
-    //     console.log(err)
-  
-    //     this.verifiedAccountError = true
+    console.log(token)
 
-    //   }
-    // )
+    this.http.get(`${this.port}users/forgetPassword/${token}`).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log(err)
+      }
+      )
 
     }
 
@@ -263,6 +272,8 @@ hosted = routes.front
 
     let forgetPassword = document.getElementById('forgetPassword') as HTMLElement
 
+    let forgetPasswordForm = document.getElementById('forgetPasswordForm') as HTMLElement
+
     if(location.href===`${this.hosted}admin/auth/login`){
       register.classList.add('hidden')
       register.classList.remove('flex')
@@ -279,9 +290,13 @@ hosted = routes.front
 
     if(location.href===`${this.hosted}admin/auth/forgetPassword`){
       forgetPassword.classList.remove('hidden')
-      forgetPassword.classList.add('flex')
+      // forgetPassword.classList.add('')
       // signin.classList.add('hidden')
       // signin.classList.remove('flex')
+    }
+
+    if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/r`)){
+      forgetPasswordForm.classList.remove('hidden')
     }
 
     if(location.href===`${this.hosted}admin/auth`){

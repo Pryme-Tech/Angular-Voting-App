@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+
 <div class="hidden" id="register" style="height: 100vh; justify-content: center; align-items: center;">
 
 
@@ -101,7 +102,7 @@
   </div>
 
   <div class="form-group" style="width: 60%;">
-    <a href="" class="p-0 m-0" style="display: block;" > Forget Password? </a><br>
+    <a href="" class="p-0 m-0" style="display: block;" routerLink="../forgetPassword" > Forget Password? </a><br>
     <button type="submit" class="btn btn-dark">Sign in</button>
 
     <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-primary btn font-weight-bold">Register Here.</span> </p>
@@ -114,6 +115,8 @@
 
   <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
   </div>
+
+
 
     <div *ngIf="verify.length>0" class=" bg-dark bg-success text-center p-2 rounded d-flex flex-column align-items-center justify-content-center " style="left: 0; width: 100vw !important; position: absolute; top: 0; height: 100vh; ">
 
@@ -137,6 +140,9 @@ Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (cl
 
   </div>
 
+
+
+
   <div *ngIf="verifiedAccount" class="vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold " style="background-color: #2BA500 ;">
 
     <h3> Hello {{verifiedAccount[0].user}} , </h3>
@@ -146,6 +152,8 @@ Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (cl
     <button class="btn btn-light font-weight-bold " > Get started creating some events </button>
 
   </div>
+
+
 
   <div *ngIf="verifiedAccountError" class="bg-danger vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold ">
 
@@ -157,10 +165,19 @@ Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (cl
 
 
   <!-- Forget Password Form -->
-  <div class="hidden vh-100 bg-dark align-items-center justify-content-center p-5 " id="forgetPassword">
-    <h3 class="mt-5 pt-5" style="text-decoration: underline; position: absolute; top: 0; "> RESET PASSWORD </h3>
+  <div class="hidden vh-100 bg-dark p-5" id="forgetPassword">
+    <h3 class="text-center mb-5" style="text-decoration: underline; "> RESET PASSWORD </h3>
 <label> Enter your email address: </label>
-<input type="text" class="form-control" placeholder="Enter your account email">
-<button class="btn btn-light mt-3" > Submit </button>
+<input type="text" class="form-control" placeholder="Enter your account email" [formControl]="forgetPasswordInput" >
+
+<p class="text-center">
+<button class="btn btn-primary mt-3" (click)="forgetPassword()" > Submit </button>
+</p>
+
+  </div>
+
+  <div class="hidden vh-100 bg-dark"  id="forgetPasswordForm" >
+
+
 
   </div>
