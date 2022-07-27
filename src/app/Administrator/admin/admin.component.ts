@@ -19,6 +19,8 @@ export class AdminComponent{
 
   user_id = localStorage.getItem('user_id')
 
+  votingname = localStorage.getItem('votingname')
+
   constructor(){
 
     if(this.user_id){
@@ -48,9 +50,13 @@ export class AdminComponent{
 
     let menu = document.getElementById('menu') as HTMLElement
 
+    let navLinks = document.querySelectorAll('#menu h3')
+
     let nav = document.getElementById('nav') as HTMLElement
 
     let toggleSidebarButton = document.getElementById('toggleSidebarButton') as HTMLElement
+
+    let toggleSidebarCloseButton = document.getElementById('toggleSidebarCloseButton') as HTMLElement
 
     let menuItem = document.querySelectorAll('.menu-item')
 
@@ -60,22 +66,38 @@ export class AdminComponent{
       })
     })
 
+    navLinks.forEach((b)=>{
+
+      b.addEventListener('click',()=>{
+
+        menu.classList.toggle('hidden')
+
+      })
+
+    })
+
     toggleSidebarButton.addEventListener('click',()=>{
 
-      if(toggleSidebarButton.classList.contains('fa-bars')){
-        toggleSidebarButton.classList.remove('fa-bars')
-        toggleSidebarButton.classList.add('fa-xmark')
-        toggleSidebarButton.style.color='red'
-      }
-      else{
-        toggleSidebarButton.classList.remove('fa-xmark')
-        toggleSidebarButton.classList.add('fa-bars')
-        toggleSidebarButton.style.color='black'
-      }
+      // if(toggleSidebarButton.classList.contains('fa-bars')){
+      //   toggleSidebarButton.classList.remove('fa-bars')
+      //   toggleSidebarButton.classList.add('fa-xmark')
+      //   toggleSidebarButton.style.color='red'
+      // }
+      // else{
+      //   toggleSidebarButton.classList.remove('fa-xmark')
+      //   toggleSidebarButton.classList.add('fa-bars')
+      //   toggleSidebarButton.style.color='black'
+      // }
 
       menu.classList.toggle('hidden')
 
       // toggleSidebarButton.classList.toggle('fa-solid fa-xmark')
+
+    })
+
+    toggleSidebarCloseButton.addEventListener('click',()=>{
+
+      menu.classList.toggle('hidden')
 
     })
 

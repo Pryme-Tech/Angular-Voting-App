@@ -155,29 +155,74 @@ Didn’t receive the email? <a class="text-primary" style="cursor: pointer;" (cl
 
 
 
-  <div *ngIf="verifiedAccountError" class="bg-danger vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold ">
+  <div *ngIf="verifiedAccountError || forgetPasswordToken===false" class="bg-danger vh-100 d-flex flex-column align-items-center justify-content-center font-weight-bold ">
 
-    <p class="bg-light vw-100 text-center "> LINK EXPIRED <img class="img-responsive" src="assets/error.png" style="height: 200px;" > </p> 
+    <p class="bg-light vw-100 text-center "> There is an error in this link <img class="img-responsive" src="assets/error.png" style="height: 200px;" > </p> 
 
     <!-- <button class="btn btn-light font-weight-bold " > Get started creating some events </button> -->
 
   </div>
 
 
-  <!-- Forget Password Form -->
+  <!-- Forget Password Request Form -->
   <div class="hidden vh-100 bg-dark p-5" id="forgetPassword">
-    <h3 class="text-center mb-5" style="text-decoration: underline; "> RESET PASSWORD </h3>
-<label> Enter your email address: </label>
-<input type="text" class="form-control" placeholder="Enter your account email" [formControl]="forgetPasswordInput" >
 
-<p class="text-center">
+    <h6 routerLink="/admin/auth" style="cursor: pointer;" > <i class="fa-solid fa-back"> BACK </i> </h6>
+
+    <h3 class="text-center mb-5" style="text-decoration: underline; "> RESET PASSWORD </h3>
+<label class="v-h" > Enter your username or email address registered on VOTY: </label>
+<input type="text" class="v-h form-control" placeholder="Enter your account email" [formControl]="forgetPasswordInput" >
+
+<p class="text-center v-h ">
 <button class="btn btn-primary mt-3" (click)="forgetPassword()" > Submit </button>
 </p>
 
+<h3 class="text-center bg-success py-5 hidden " id="forgetPasswordRequestMessage" > We have sent you a mail. <br> Kindly check your inbox to continue resetting your password. <br> Thank you! <br> <button class="btn btn-danger mt-4" routerLink="/admin/auth/login"> Sign In </button> </h3>
+
+<h3 class="text-center bg-danger py-5 hidden " id="forgetPasswordRequestMessageError" > Invalid Request. </h3>
+
   </div>
 
-  <div class="hidden vh-100 bg-dark"  id="forgetPasswordForm" >
+  <!-- Forget Password Form -->
+  <div *ngIf="forgetPasswordToken" class="vh-100 bg-dark"  id="forgetPasswordForm" >
 
+    <form class="container py-5" [formGroup]="forgetPasswordForm" (ngSubmit)="forgetPasswordFormSubmit()" >
 
+      <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" >
+        {{errMsg}}
+          </div>
+        
+          <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded" >
+            {{sucMsg}}
+              </div>
+
+      <div class="form-group mx-auto">
+        <label> Enter New Password: </label>
+        <p class="text-danger" *ngIf=" this.submitted && forgetPasswordControls['password'].errors?.['required']"> *** This field is required *** </p>
+        <input type="password" class="form-control" placeholder="Password" formControlName="password" >
+      </div>
+
+      <div class="form-group mx-auto">
+        <label> Re-enter New Password: </label> 
+        <p class="text-danger" *ngIf=" this.submitted && forgetPasswordControls['confirmPassword'].errors?.['required']"> *** This field is required *** </p>
+        <p class="text-danger" *ngIf=" this.submitted && forgetPasswordControls['confirmPassword'].errors?.['mustmatch']"> *** Passwords does not much *** </p>
+        <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" >
+      </div>
+
+      <div class="form-group mx-auto text-center">
+        <button type="submit" class="btn btn-success" > Submit </button>
+      </div>
+
+    </form>
+
+<!-- <form class="d-flex align-items-center justify-content-center " style=" height: inherit; ">
+
+  <div class="vw-50">
+  <input class="form-control" >
+  <input class="form-control" >
+
+  </div>
+
+</form>> -->
 
   </div>

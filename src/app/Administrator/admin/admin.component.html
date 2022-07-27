@@ -1,10 +1,11 @@
-<nav class="main-header p-4 m-0" id="nav" style="border-bottom: 2px solid green;">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<nav class="main-header py-4 px-1 m-0" id="nav" style="border-bottom: 2px solid green;">
 	
-	<div class="d-flex justify-content-between align-items-center px-3 "> 
-
+	<div class="d-flex justify-content-between align-items-center  "> 
+<h3> {{ votingname }} </h3>
 <i class="fa-solid fa-bars fa-2x" id="toggleSidebarButton" style="font-weight: bolder; cursor: pointer; "></i>
-
-<button class="btn btn-danger" type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
 
 	 </div>
 
@@ -13,10 +14,25 @@
 
 <! -- Drop Menu -->
 
-<div class="hidden row justify-content-center m-0 p-5" style="border: 2px solid black; background-color: lightgrey;" id="menu">
+<div class="hidden animate__animated animate__backInRight " style=" backdrop-filter: blur(2px);
+ position: absolute; top:0; width: 100%; z-index: 9; height: 100%; " id="menu">
 
-	<div class="menu-item col-sm-4 text-center">
-		<a class="m-2 p-1 text-white text-center rounded" routerLink="candidates" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%; display: block; "> CANDIDATES </a>
+ <div class="bg-light d-flex justify-content-center flex-column p-5" style=" height: 100%; width: 80%; float: right; position: relative; " >
+
+	<i class="fa-solid fa-close fa-2x text-danger " style="position: absolute; top: 10%; left: 10%; " id="toggleSidebarCloseButton" >   </i>
+
+	<h3 class="text-center py-2" routerLink="candidates" style="cursor: pointer; " > CANDIDATES </h3>
+
+	<h3 class="text-center py-2 " routerLink="votes" style="cursor: pointer;" > VOTES </h3>
+
+	<h3 class="text-center py-2" routerLink="voters" style="cursor: pointer;" > VOTERS </h3>
+
+	<button class="btn btn-danger" type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
+
+ </div>
+
+	<!-- <div class="menu-item col-sm-4 text-center">
+		<a class="m-2 p-1 text-white text-center rounded" routerLink="candidates" style=" font-weight: bold; letter-spacing: .2rem; "> CANDIDATES </a>
 	</div>
 
 	<div class="menu-item col-sm-4 text-center">
@@ -25,7 +41,7 @@
 
 	<div class="menu-item col-sm-4 text-center">
 		<a class="m-2 p-1 text-white text-center rounded" routerLink="voters" style="box-sizing: border-box; background-color: black; font-weight: bold; letter-spacing: .2rem; width: 100%;  display: block;"> VOTERS </a>
-	</div>
+	</div> -->
 
 </div>
 

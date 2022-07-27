@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, AfterContentChecked,  ElementRef, ViewChild } from '@angular/core' ;
+import { Component, OnInit, AfterViewInit, AfterContentChecked, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core' ;
 
-import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
+import { FormControl , FormGroup , FormBuilder, Validators } from '@angular/forms';
 
 import routes from '../../../assets/routes/routes.json';
 
@@ -19,35 +19,41 @@ export class CandidatesComponent implements OnInit {
 
   port = routes.host
 
-  successMessage = ''
-  errorMessage = ''
+  successMessage:any
+  errorMessage:any
 
  flashMessage=''
 
  user_id = localStorage.getItem("user_id")
  votingname = localStorage.getItem("votingname")
 
- toggleAddCandidate(form:any,data?:any,name?:any,photo?:any){
-
-  if(data==="close"){
-    form.classList.remove('add_candidate');
-
-  form.classList.add('add_candidate_rm');
-
-  return;
-  }
-  //alert(data);
-
-  form.classList.remove('add_candidate_rm');
-
-  form.classList.add('add_candidate');
+ toggleAddCandidate(data:any){
 
   this.addCandidate.controls['category'].setValue(data);
 
-  if(name && photo){
-    this.addCandidate.controls['name'].setValue(name);
-    this.addCandidate.controls['photo'].setValue(photo);
-  }
+  let addcandidate = document.getElementById("addcandidate") as HTMLElement
+
+  addcandidate.classList.remove("hidden")
+
+  // if(data==="close"){
+  //   form.classList.remove('add_candidate');
+
+  // form.classList.add('add_candidate_rm');
+
+  // return;
+  // }
+  // //alert(data);
+
+  // form.classList.remove('add_candidate_rm');
+
+  // form.classList.add('add_candidate');
+
+  // this.addCandidate.controls['category'].setValue(data);
+
+  // if(name && photo){
+  //   this.addCandidate.controls['name'].setValue(name);
+  //   this.addCandidate.controls['photo'].setValue(photo);
+  // }
 
  }
 
@@ -97,34 +103,65 @@ export class CandidatesComponent implements OnInit {
  submitCandidateMessage=""
 
  addCategory=new FormGroup({
-  categoryname : new FormControl(''),
+  categoryname : new FormControl('',Validators.required),
   votingname : new FormControl(this.votingname),
   user_id : new FormControl(this.user_id)
  })
 
+ submitted = false
+
+ get addCategoryControls(){
+  return this.addCategory.controls
+ }
+
  addCategorySubmit(){
-  console.log(this.addCategory.getRawValue())
+
+  this.submitted = true
+
+  if(this.addCategory.invalid) return
+
+  if(!(localStorage.getItem('user_id') && localStorage.getItem('votingname'))){
+    // window.location.replace('/admin/auth')
+    this.errorMessage = "Unauthrized access...Please login"
+
+    return
+
+  }  
+
+  else{
 
   this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
     res=>{
-      console.log(res)
 
-      let result = JSON.stringify(res)
+      this.successMessage = res 
 
-      this.successMessage = result
+      setTimeout(()=>{
+        this.successMessage = ''
+        location.reload()
+      },1500)
+
     },
     err=>{
-      console.log(err)
+
+      this.errorMessage = err.error
+
     })
+  }
+
+  setTimeout(()=>{
+    this.errorMessage = ''
+    // location.reload()
+  },1500)
+
  }
 
  addCandidate=new FormGroup(
   {
-    category: new FormControl(''),
-    candidatename: new FormControl(''),
-    avatar: new FormControl(''),
-    votingname : new FormControl(this.votingname),
-    user_id : new FormControl(this.user_id)
+    category: new FormControl('',Validators.required),
+    candidatename: new FormControl('',Validators.required),
+    avatar: new FormControl('',Validators.required),
+    votingname : new FormControl(this.votingname,Validators.required),
+    user_id : new FormControl(this.user_id,Validators.required)
   }
   );
 
@@ -152,22 +189,26 @@ export class CandidatesComponent implements OnInit {
   }
 
  submitCandidate(){
-  console.log(this.addCandidate.getRawValue())
+  // console.log(this.addCandidate.getRawValue())
+
+  this.submitted = true
+
+  if(this.addCandidate.invalid) return
 
   this.http.post(`${this.port}candidates/add`,this.addCandidate.getRawValue()).subscribe(
     res=>{
-      console.log(res)
-      this.flashMessage="New Candidate Added Successfully"
+      // console.log(res)
+      this.successMessage="New Candidate Added Successfully"
       //this.message.HTML='hello'
       setTimeout(()=>{
 
-        this.flashMessage=''
+        this.successMessage=''
         //toggleAddCandidate()
         window.location.reload()
-       },900)
+       },1000)
     },
     err=>{
-      console.log(err)
+      // console.log(err)
       if(err.statusText === "Unknown Error"){
           this.errorMessage = "Error Connecting"
         }
@@ -183,6 +224,10 @@ export class CandidatesComponent implements OnInit {
     })
 
   
+ }
+
+ get submitCandidateControls(){
+  return this.addCandidate.controls
  }
 
   submitUpdateCandidate(){
@@ -226,7 +271,7 @@ export class CandidatesComponent implements OnInit {
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
             this.categories.push({
-              "count" : index,
+              "count" : data.count,
               "category" : data.categoryname,
               // "category_id" : data.category_id
             })
@@ -241,7 +286,7 @@ export class CandidatesComponent implements OnInit {
           this.errorMessage = "Error Connecting"
         }
         else{
-        this.errorMessage = err.error
+        // this.errorMessage = err.error
       }
 
       setTimeout(()=>{
@@ -261,7 +306,7 @@ export class CandidatesComponent implements OnInit {
             this.candidates.push({
               "category" : data.category,
               "candidatename" : data.candidatename,
-              "photo" : this.port+data.avatar
+              "photo" : data.avatar
             })
           })
 
@@ -282,6 +327,10 @@ export class CandidatesComponent implements OnInit {
   ngOnInit(): void {//declare var $: any;
   this.msg.nativeElement.innerHTML='hello'
   this.msg.nativeElement.style.backgroundColor='red';
+
+  this.user_id = localStorage.getItem("user_id")
+  this.votingname = localStorage.getItem("votingname")
+
   } 
 
   ngAfterContentChecked(){
@@ -301,13 +350,22 @@ export class CandidatesComponent implements OnInit {
   }
 
 
+
+
+
 ngAfterViewInit(){
 
     var hideAddCategory=document.getElementById('hideAddCategory') as HTMLElement;
 
+    var hideAddCandidate=document.getElementById('hideAddCandidate') as HTMLElement;
+
     //var hideAddCandidate=document.getElementById('hideAddCandidate') as HTMLElement;
 
-    var add_category=document.querySelectorAll('.add_category');
+    // var add_category=document.querySelectorAll('.add_category');
+
+    let addcategory = document.getElementById("addcategory") as HTMLElement
+
+    let addcandidate = document.getElementById("addcandidate") as HTMLElement
 
     var add_category_rm=document.querySelectorAll('.add_category_rm');
 
@@ -319,10 +377,13 @@ ngAfterViewInit(){
 
     hideAddCategory.addEventListener('click',()=>{
 
-      add_category_rm.forEach((btn:any)=>{
-        btn.classList.remove('add_category');
-        btn.classList.add('add_category_rm')
-    });
+      addcategory.classList.add("hidden")
+
+    })
+
+    hideAddCandidate.addEventListener('click',()=>{
+
+      addcandidate.classList.add("hidden")
 
     })
 
@@ -339,10 +400,7 @@ ngAfterViewInit(){
 
     showAddCategory.addEventListener('click',()=>{
 
-      add_category_rm.forEach((btn:any)=>{
-        btn.classList.add('add_category');
-        btn.classList.remove('add_category_rm')
-    });
+      addcategory.classList.remove("hidden")
 
     })
 

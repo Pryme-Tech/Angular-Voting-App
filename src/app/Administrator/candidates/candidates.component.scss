@@ -3,30 +3,21 @@ aside{
 	z-index: 1;
 }
 
+.hidden{
+	display: none !important;
+}
+
 .add_category{
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 90vh;
+	height: 100%;
 	z-index: 3;
 	backdrop-filter: blur(2px);
 
-	h6{
-		position: relative;
-		top: 5%;
-		width: 70%;
-		border-radius: 1rem;
-		letter-spacing: .1rem;
-		word-spacing: .1rem;
-	}
-
 	#submitCategoryMessage{
 		display: none;
-	}
-
-	.catform{
-		width: 70%;
 	}
 
 	form{
@@ -40,25 +31,13 @@ aside{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 90vh;
+	min-height: 100vh;
 	z-index: 2;
 	backdrop-filter: blur(2px);
-
-	h6{
-		position: relative;
-		top: 5%;
-		width: 70%;
-		border-radius: 1rem;
-		letter-spacing: .1rem;
-		word-spacing: .1rem;
-	}
+	overflow: scroll;
 
 	#submitCandidateMessage{
 		display: none;
-	}
-
-	.canform{
-		width: 70%;
 	}
 
 	form{
@@ -72,8 +51,5 @@ aside{
 }
 
 @media(max-width: 500px){
-	.categories{
-		margin: 5%;
-		width: 100vw;
-	}
+	
 }

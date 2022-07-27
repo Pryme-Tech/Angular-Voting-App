@@ -1,4 +1,6 @@
-<button class="btn btn-primary my-3" onclick="document.querySelector('form').style.display='block'" > Add a new voter </button>
+<div class="text-center">
+<button class="btn btn-primary my-3" onclick="document.querySelector('form').style.display='block'" > Click to register a new voter </button>
+</div>
 
 <form class="text-center bg-dark p-4 my-4 mt-0" style=" display: none; " [formGroup]="voters" (ngSubmit)="votersOnsubmit()" >
     <input type="text" class="form-control" placeholder="Enter Name of Voter" formControlName="votersname" >
@@ -7,13 +9,14 @@
 
 <p *ngIf="successMessage" class="text-center border border-5 font-weight-bold py-2 " style="color: green; font-family: monospace !important;"> {{successMessage}} <i class="bg-dark p-2 rounded"> Voting ID: {{votingId}} </i> </p>
 
+<div class="d-flex justify-content-between my-5 mx-auto " style="width: 90%;" > 
+    <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" style="width: 90%;" >
+    <button class="btn btn-primary bg-primary " (click)="searchVoters('all')"> Search </button>
+</div>
+
+<h3 class="text-center" > Registered Voters </h3>
+
 <table class="table table-striped">
-    <tr>
-        <td colspan="3" > 
-            <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" >
-            <button class="btn btn-primary bg-primary my-3 " (click)="searchVoters('all')"> Sort </button>
-        </td>
-    </tr>
 
     <tr>
         <th> # </th>

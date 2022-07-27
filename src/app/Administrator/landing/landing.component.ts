@@ -181,7 +181,58 @@ verifiedAccountError = false
 
 hosted = routes.front
 
+/*
+This below before the constructor deals with the forget password
+*/
+
 forgetPasswordInput  = new FormControl('')
+
+forgetPasswordForm:any
+
+get forgetPasswordControls(){
+  return this.forgetPasswordForm.controls
+}
+
+forgetPasswordFormSubmit(){
+
+  this.submitted = true
+
+  if(this.forgetPasswordForm.invalid) return
+
+  console.log(this.forgetPasswordForm.getRawValue())
+
+  this.http.post(`${this.port}users/forgetPassword`,this.forgetPasswordForm.getRawValue()).subscribe(
+    res=>{
+   console.log(res)
+
+   let i = 3
+
+   let int = setInterval(()=>{
+
+    this.sucMsg = res + "  redirecting in... " + i
+
+    if(i===0){
+      //
+      clearInterval(int)
+      location.replace('/admin/auth/login')
+    }
+
+   i = i-1
+
+   },1000)
+
+  //  setTimeout(()=>{
+  //   // this.sucMsg = ''
+  //   // location.replace('/admin/auth/login')
+  // },1500)
+
+    },
+    err=>{
+      console.log(err)
+    }
+  )
+
+}
 
   forgetPassword(){
     // console.log(this.forgetPasswordInput.value)
@@ -189,12 +240,42 @@ forgetPasswordInput  = new FormControl('')
     this.http.get(`${this.port}users/forgetPassword/generateToken/${this.forgetPasswordInput.value}`).subscribe(
       res=>{
         console.log(res)
+
+        let forgetPasswordRequestMessage = document.getElementById("forgetPasswordRequestMessage") as HTMLElement
+        let input = document.querySelector("#forgetPassword input") as HTMLElement
+        let label = document.querySelector("#forgetPassword label") as HTMLElement
+        let p = document.querySelector("#forgetPassword p") as HTMLElement
+
+        forgetPasswordRequestMessage.classList.remove("hidden")
+
+        input.classList.add("hidden")
+
+        label.classList.add('hidden')
+
+        p.classList.add('hidden')
+
       },
       err=>{
         console.log(err)
+
+        let forgetPasswordRequestMessageError = document.getElementById("forgetPasswordRequestMessageError") as HTMLElement
+        let input = document.querySelector("#forgetPassword input") as HTMLElement
+        let label = document.querySelector("#forgetPassword label") as HTMLElement
+        let p = document.querySelector("#forgetPassword p") as HTMLElement
+
+        forgetPasswordRequestMessageError.classList.remove("hidden")
+
+        input.classList.add("hidden")
+
+        label.classList.add('hidden')
+
+        p.classList.add('hidden')
+
       })
 
   }
+
+  forgetPasswordToken:any
 
   constructor(private http:HttpClient, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { 
 
@@ -229,16 +310,31 @@ forgetPasswordInput  = new FormControl('')
 
     let token = this.route.snapshot.paramMap.get('token')
 
-    console.log(token)
-
     this.http.get(`${this.port}users/forgetPassword/${token}`).subscribe(
       res=>{
         console.log(res)
+        let result = JSON.parse(JSON.stringify(res))
+        localStorage.setItem("forgetPasswordRequestUser",result.user)
+        this.forgetPasswordToken = true
       },
       err=>{
         console.log(err)
+        this.forgetPasswordToken = false
       }
       )
+
+    this.forgetPasswordForm = this.fb.group({
+      token : [token],
+      user : [ localStorage.getItem("forgetPasswordRequestUser") ],
+      password : ['',Validators.required],
+      confirmPassword : ['',Validators.required]
+    },  
+    {
+      validators: [this.mustmatch('password','confirmPassword')]
+      }
+    )
+
+    // console.log(token)
 
     }
 
@@ -256,12 +352,14 @@ forgetPasswordInput  = new FormControl('')
     if(localStorage.getItem("user_id")){
       location.replace('/admin/votings')
     }
+
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(){
+
     let register = document.getElementById('register') as HTMLElement;
 
     let signin = document.getElementById('signin') as HTMLElement;
@@ -295,9 +393,9 @@ forgetPasswordInput  = new FormControl('')
       // signin.classList.remove('flex')
     }
 
-    if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/r`)){
-      forgetPasswordForm.classList.remove('hidden')
-    }
+    // if(location.href.startsWith(`${this.hosted}admin/auth/forgetPassword/r`) && this.forgetPasswordToken ){
+    //   forgetPasswordForm.classList.remove('hidden')
+    // }
 
     if(location.href===`${this.hosted}admin/auth`){
       this.router.navigate(['/admin/auth/login'])

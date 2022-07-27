@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
+import { FormControl , FormGroup , FormBuilder, Validators } from '@angular/forms';
 
 import {HttpClient} from '@angular/common/http';
 
@@ -18,19 +18,30 @@ export class AuthenticatevoterComponent implements OnInit {
   accessvoting = localStorage.getItem('accessvoting')
 
   voters = new FormGroup({
-    index_no : new FormControl(''),
+    index_no : new FormControl('',Validators.required),
     votingname : new FormControl(this.accessvoting)
 })
 
+submitted = false
+
 successMessage:any = ''
+errorMessage:any = ''
+
+get votersControl(){
+  return this.voters.controls
+}
 
 nextVote(){
 
 // console.log(this.voters.getRawValue())
 
+this.submitted = true
+
+if(this.voters.invalid) return
+
 this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
   res=>{
-    console.log(res)
+    // console.log(res)
     let result = JSON.parse(JSON.stringify(res))
     this.successMessage = result.msg
     localStorage.setItem("voterId",result.voterId)
@@ -44,7 +55,10 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
 
   },
   err=>{
-    console.log(err)
+    console.log(err.error)
+
+    this.errorMessage = err.error
+
   }
 )
 

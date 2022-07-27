@@ -3,7 +3,7 @@
 {{successMessage}}
 </h4>
 
-<div class="d-flex justify-content-center align-items-center bg-dark " onclick="location.assign('/');" style="height: 100vh; position: relative; " >
+<div class="d-flex justify-content-center align-items-center bg-dark " style="height: 100vh; position: relative; " >
 
 <div class="bg-light p-2 rounded font-weight-bold " style="position:absolute; top: 10%; left: 1%; cursor: pointer; " >
     <i class="fa-solid fa-rotate-left m-1"  ></i> BACK
@@ -12,6 +12,8 @@
     <form class="p-5 text-center bg-light rounded " style="width: 90%;" [formGroup]="voters" (ngSubmit)="nextVote()">
         <h1 class="mb-5"  > {{accessvoting}}    </h1>
         <label for="voterid"> Enter your voting id to access this event: </label>
+        <p *ngIf=" submitted && votersControl['index_no'].errors?.['required'] " class="text-danger font-weight-bold " > *** This field is required *** </p>
+        <p *ngIf=" submitted && errorMessage " class="text-danger font-weight-bold " > *** {{errorMessage}} *** </p>
         <input type="text" class="form-control" placeholder="Voter's id" formControlName="index_no" >
 
         <button type="submit" class="btn btn-primary mt-3" >Submit</button>
