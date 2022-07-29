@@ -5,26 +5,24 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './page/register/register.component';
-import { FirstComponent } from './first/first.component';
-import { LandingComponent } from './Administrator/landing/landing.component';
+import { RegisterComponent } from './voters/register/register.component';
+import { LandingComponent } from './Administrators/auth/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
-import { VoteComponent } from './page/vote/vote.component';
-import { VotingComponent } from './page/voting/voting.component';
-import { AdminComponent } from './Administrator/admin/admin.component';
+import { VoteComponent } from './voters/vote/vote.component';
+import { VotingComponent } from './voters/voting/voting.component';
+import { AdminComponent } from './Administrators/admin/admin.component';
 import { Page404Component } from './page404/page404.component';
-import { CandidatesComponent } from './Administrator/candidates/candidates.component';
-import { VotesComponent } from './Administrator/votes/votes.component';
-import { VotingsComponent } from './Administrator/votings/votings.component';
-import { OngoingvotingComponent } from './page/ongoingvoting/ongoingvoting.component';
-import { AuthenticatevoterComponent } from './page/authenticatevoter/authenticatevoter.component';
-import { VotersComponent } from './Administrator/voters/voters.component';
+import { CandidatesComponent } from './Administrators/candidates/candidates.component';
+import { VotesComponent } from './Administrators/votes/votes.component';
+import { VotingsComponent } from './Administrators/votings/votings.component';
+import { OngoingvotingComponent } from './voters/ongoingvoting/ongoingvoting.component';
+import { AuthenticatevoterComponent } from './voters/authenticatevoter/authenticatevoter.component';
+import { VotersComponent } from './Administrators/voters/voters.component';
 
 
 const routes: Routes = [
-  { path: 'form', component: FirstComponent },
   //{ path: 'home', component: LandingComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'vote', component: VoteComponent},
@@ -55,7 +53,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     RegisterComponent,
-    FirstComponent,
     LandingComponent,
     VoteComponent,
     VotingComponent,

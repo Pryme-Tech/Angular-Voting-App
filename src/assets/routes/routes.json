@@ -4,5 +4,5 @@
 	"n1" : "https://castvote.netlify.app/admin/auth",
 	"n2" : "https://castvote.netlify.app/admin/votings",
 	"fronty" : "http://localhost:4200/",
-	"front" : "https://castvote.netlify.app/"
+	"front" : "https://voty.netlify.app/"
 }

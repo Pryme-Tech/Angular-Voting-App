@@ -195,9 +195,9 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 
 			<div class="card" *ngFor="let y of categories">
 
-				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.count" style="color: green;"> {{y.category}} </div>
+				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.index" style="color: green;"> {{y.category}} </div>
 
-				<div class="card-body collapse" [id]="'x'+y.count" >
+				<div class="card-body collapse" [id]="'x'+y.index" >
 
 					<div class="text-right mb-3">
 

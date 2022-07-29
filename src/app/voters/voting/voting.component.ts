@@ -169,7 +169,7 @@ status=0
               "count" : index,
               "category" : data.category,
               "candidatename" : data.candidatename,
-              "image" : this.port+data.avatar
+              "image" : data.avatar
             })
           })
 

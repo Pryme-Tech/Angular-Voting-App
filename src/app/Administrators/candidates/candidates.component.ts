@@ -271,6 +271,7 @@ export class CandidatesComponent implements OnInit {
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
             this.categories.push({
+              "index" : index,
               "count" : data.count,
               "category" : data.categoryname,
               // "category_id" : data.category_id
