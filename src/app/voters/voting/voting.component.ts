@@ -20,10 +20,12 @@ export class VotingComponent implements OnInit {
   user_id = localStorage.getItem("accessuser")
   votingname = localStorage.getItem("accessvoting")
   voter = localStorage.getItem("voter")
+  voterid = localStorage.getItem("voterId")
 
  votes = this.fb.group({
   user_id : [this.user_id],
-  votingname : [this.votingname]
+  votingname : [this.votingname],
+  voterid : [this.voterid]
  })
 
  flashSuccessMessage=''
@@ -34,12 +36,9 @@ export class VotingComponent implements OnInit {
 
  see=0
 
- show(){
-  var a=JSON.parse(JSON.stringify(this.votes.getRawValue()));
+ vote(){
 
-  // localStorage.removeItem("accessuser")
-  // localStorage.removeItem("accessvoting")
-  // location.reload()
+  // var a=JSON.parse(JSON.stringify(this.votes.getRawValue()));
 
   console.log(this.votes.getRawValue())
 
@@ -47,7 +46,7 @@ export class VotingComponent implements OnInit {
     res=>{
    let result = JSON.parse(JSON.stringify(res))
 
-      console.log(result)
+      // console.log(result)
 
       this.flashSuccessMessage = result.msg
 
@@ -68,9 +67,9 @@ export class VotingComponent implements OnInit {
       console.log(err)
     })
 
-  for(var key in a){
-    console.log(a[key])
-  }
+  // for(var key in a){
+  //   console.log(a[key])
+  // }
 
  }
 
@@ -91,32 +90,18 @@ status=0
     },800000)
 
     if(localStorage.getItem('accessuser') && localStorage.getItem('accessvoting')){
-      // this.username=localStorage.getItem('username');
-      // this.indexnumber=localStorage.getItem('indexnumber');
-      //this.votes.controls['indexNumber'].setValue(localStorage.getItem('indexnumber'));
     }
 
     else{
       this.router.navigate(['/'])
     }
 
-/*
-    this.candidates.push({
-              "count" : "index",
-              "category" : "data.category",
-              "id" : "5335",
-              "name" : "data.name",
-              "photo" : "data.photo"
-            })
-
-            */
-
     this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
           //console.log(res);
           var response= JSON.parse(JSON.stringify(res))
 
-          console.log(response)
+          // console.log(response)
 
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
@@ -126,22 +111,10 @@ status=0
               // "category_id" : data.category_id
           })
            this.votes.addControl(data.categoryname,this.fb.control(''));
-           console.log(this.votes.getRawValue())
+           // console.log(this.votes.getRawValue())
          })
 
-           //this.categories.forEach((category)=>{
-
-              //this.votes.addControl(data.category,this.fb.control(''));
-
-           // })
-
-           //this.categories.forEach((category)=>{
-
-              //this.votes.addControl(data.category,this.fb.control(''));
-
-            //})
-
-          //this.status=1
+          
 
         },
         err=>{
@@ -151,25 +124,18 @@ status=0
 
     this.http.get(`${this.port}candidates/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
-          console.log(res);
+          // console.log(res);
           var response= JSON.parse(JSON.stringify(res))
 
           response.forEach((data:any,index:any)=>{
-            //console.log(data)
-
-          //   if(data.photo===""){
-          //   var avatar=`${this.port}images/candidates/default.png`
-          // }
-
-          // else{
-          //   avatar=`${this.port}${data.photo}`;
-          // }
+       
 
             this.candidates.push({
               "count" : index,
               "category" : data.category,
               "candidatename" : data.candidatename,
-              "image" : data.avatar
+              "image" : data.avatar,
+              "id" : data.id
             })
           })
 

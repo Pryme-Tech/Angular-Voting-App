@@ -72,7 +72,7 @@ export class VotingsComponent implements OnInit {
 
   constructor(private http:HttpClient) {
 
-    if(!this.user_id){
+    if(!(localStorage.getItem('user_id'))){
       window.location.replace('/admin/auth')
     }
 

@@ -57,7 +57,7 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 					<!-- submitCandidateControls -->
 					<p *ngIf="submitted && errorMessage" class="text-danger" > {{errorMessage}} </p>
 
-					<p *ngIf="submitted && successMessage" class="text-success" > {{errorMessage}} </p>
+					<p *ngIf="submitted && successMessage" class="text-success" > {{successMessage}} </p>
 
                        <label for="name"> Category: </label>
 					   <p *ngIf=" submitted && submitCandidateControls['category'].errors?.['required'] " class="text-danger" >
@@ -207,7 +207,7 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 
 					<ol>
 
-						<div *ngFor="let x of candidates">
+						<ng-container *ngFor="let x of candidates">
 
 						<li class="mt-5" *ngIf="x.category === y.category">
 
@@ -248,15 +248,19 @@ padding: 2%; width: 50%; box-sizing: border-box; z-index: 99;" >
 
 						</li>
 
-					</div>
+					</ng-container>
 
 					</ol>
 
 				</div>
 
 
-				<div class="card-footer text-center font-weight-bold">
-<span style="color: green; font-size: 1.2em;"> {{y.count}} </span>
+				<div *ngIf="y.count > 1" class="card-footer text-center font-weight-bold">
+<span style="color: green; font-size: 1.2em;"> {{y.count}} CANDIDATES </span>
+				</div>
+
+				<div *ngIf="!(y.count > 1)" class="card-footer text-center font-weight-bold">
+<span style="color: green; font-size: 1.2em;"> {{y.count}} CANDIDATE </span>
 				</div>
 
 			</div>

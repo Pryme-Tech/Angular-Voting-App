@@ -1,25 +1,18 @@
 	<!-- Category view with candidates in each category -->
 
 
-	<div class="card mt-5">
+	<div class="card container mt-3">
 
-		<div class="card-header text-center font-weight-bold" style="font-size: 2em;"> VOTES </div>
+		<div class="card-header text-center font-weight-bold t" style="font-size: 2em;"> VIEW OF VOTING RESULTS </div>
 
 		<div class="card-body" >
-
-<!--
-			<div class="text-right mb-3">
-
-			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" > <i class="fas fa-plus"> </i> Add New </button>
-
-		</div>
-	-->
+             <p class="text-center p-1 text-success font-weight-bold "  > DROP EACH CATEGORY TO VIEW VOTING RESULTS UNDER IT </p>
 
 			<div class="card" *ngFor="let y of categories">
 
-				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.count" style="color: green;"> {{y.category}} </div>
+				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.index" style="color: green;"> {{y.category}} </div>
 
-				<div class="card-body collapse" [id]="'x'+y.count" >
+				<div class="card-body collapse" [id]="'x'+y.index" >
 <!--
 					<div class="text-right mb-3">
 
@@ -28,21 +21,23 @@
 		</div>
 	-->
 
-					<ol>
+					<ol class="p-0">
 
-						<div *ngFor="let x of votes">
+						<ng-container *ngFor="let x of votes">
 
-						<li class="mt-5" *ngIf="x.Category === y.category">
+						<li class="mt-3 border border-5 p-3 " *ngIf="x.Category === y.category" style=" list-style-position: inside; border-radius: 1rem;
+" >
 
-							<div class="row">
+							<div class="row ">
 
-								<div class="col">
+								<div class="col-lg-2">
 
-									<div class="m-auto" style="border: 1px solid; width: max-content; border-radius: 1rem; overflow: hidden;"> <img class="rounded" style="width: 100px;" [src]="port + x.photo"> </div>
+									<div class="m-auto" style="border: 1px solid; width: max-content; border-radius: 1rem; overflow: hidden;"> 
+										<img class="rounded" style="width: 100px;" [src]="x.photo"> </div>
 
 								</div>
 
-								<div class="col">
+								<div class="col-lg-5 mt-2">
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
@@ -52,7 +47,7 @@
 
 								</div>
 
-								<div class="col">
+								<div class="col-lg-2 mt-2">
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
@@ -64,7 +59,7 @@
 
 								</div>
 
-								<div class="col">
+								<div class="col-lg-3 mt-3 ">
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
@@ -94,15 +89,19 @@
 
 						</li>
 
-					</div>
+					</ng-container>
 
 					</ol>
 
 				</div>
 
 
-				<div class="card-footer text-center font-weight-bold">
-<span style="color: green; font-size: 1.2em;"> 5 </span>
+				<div *ngIf="y.count > 1" class="card-footer text-center font-weight-bold">
+<marquee style="color: white;  -webkit-text-stroke-width: 1.5px; -webkit-text-stroke-color: black; font-size: 1em;"> {{y.count}} CANDIDATES </marquee>
+				</div>
+
+				<div *ngIf="!(y.count > 1)" class="card-footer text-center font-weight-bold">
+<marquee style="color: white; -webkit-text-stroke-width: 1.5px; -webkit-text-stroke-color: black; font-size: 1em;"> {{y.count}} CANDIDATE </marquee>
 				</div>
 
 			</div>

@@ -29,10 +29,12 @@ export class VotesComponent implements OnInit {
  this.http.get(`${this.port}vote/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
 
+          console.log(res)
+
           let result = JSON.parse(JSON.stringify(res))
 
           result.forEach((data:any,index:any)=>{
-            console.log(data)
+            // console.log(data)
             this.votes.push(data)
           })
 
@@ -47,13 +49,14 @@ export class VotesComponent implements OnInit {
  this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
         res=>{
 
-          console.log(res)
+          // console.log(res)
 
           let result = JSON.parse(JSON.stringify(res))
 
           result.forEach((data:any,index:any)=>{
             this.categories.push({
-              "count" : index,
+              "index" : index,
+              "count" : data.count,
               "category" : data.categoryname
             })
           })

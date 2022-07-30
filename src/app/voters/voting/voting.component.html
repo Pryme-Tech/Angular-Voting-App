@@ -45,43 +45,37 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 
 		<div class="text-center bg-dark py-2 font-weight-bold"> Please select a category to vote </div>
 
-    <form [formGroup]="votes" (ngSubmit)="show()">
+    <form [formGroup]="votes" (ngSubmit)="vote()">
 
 	 <div class="form-step-active mt-3 card" *ngFor="let x of categories" >
 	 	<h6 class="card-header" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;"> {{x.category}} </h6>
 
-    <div class="card-body collapse" [id]="'x'+x.count" >
+    <div class="card-body collapse p-0 " [id]="'x'+x.count" >
 
         <ol class="row px-5">
         
         <ng-container *ngFor="let y of candidates" >
       
-      <li class="pt-3  candidates mt-5 px-5 py-2 col-lg-3 col-md-6 text-dark border border-5" *ngIf="y.category === x.category" >
+      <li class=" candidates mt-5 py-2 col-lg-4 col-md-6 text-dark " *ngIf="y.category === x.category" style=" list-style-position: inside;
+" >
         
-        <div class="thumbnail text-center px-5"  >
+        <div class="thumbnail text-center "  >
 
         <img [src]="y.image" class="img-circle img-responsive "  
         style="height: 150px; width: auto; border: 2px solid grey;"> 
     
-        <div class="bg-light">
+        <div class="bg-light mb-2 py-2 " style="border-radius: 1rem;" >
 
           <h4> {{y.candidatename}} </h4>
 
           <div class="text-center">
             <!-- <label for="check" class="m-0" style="width: 50%;"> Vote </label> -->
-        <input id="check" type="radio" [value]=y.candidatename formControlName={{y.category}}  >
+        <input id="check" type="radio" [value]=y.id formControlName={{y.category}}  >
+        <!-- {{y.id}} -->
           </div>
+        
 
         </div>
-        <!-- <h3 class="rounded caption px-3 bg-light" 
-        style="height: 20%; border: 3px solid; white-space: nowrap; font-size: 1vw;">
-        <span style="width: 50%;">{{y.candidatename}}</span>
-
-        <div class=" py-1 bg-dark" 
-        style="width: 50%; border-top-left-radius: 1rem; border-bottom-right-radius: 1rem;">
-        <label for="check" class="m-0" style="width: 50%;"> Vote </label>
-        <input id="check" type="radio" [value]=y.candidatename formControlName={{y.category}}  ></div> 
-      </h3> -->
 
     </div>
       </li>

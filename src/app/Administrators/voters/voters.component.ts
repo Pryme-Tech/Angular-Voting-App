@@ -87,6 +87,10 @@ export class VotersComponent implements OnInit {
 
   constructor(private http: HttpClient) {
 
+    if(!this.votingName){
+      location.replace('/admin/auth')
+    }
+
     this.searchVoters('all')
 
    }

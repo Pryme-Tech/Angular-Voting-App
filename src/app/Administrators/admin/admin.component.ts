@@ -33,6 +33,10 @@ export class AdminComponent{
 
   }
 
+  // if(!(this.user_id)){
+  //   location.replace("/admin/auth")
+  // }
+
     // if(this.user_id && (location.href)){
     //   console.log(location.href)
     //   //location.replace('/admin/votings')

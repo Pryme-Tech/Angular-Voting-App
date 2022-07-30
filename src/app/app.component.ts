@@ -10,5 +10,20 @@ import { FormBuilder,Validators } from '@angular/forms';
 })
 export class AppComponent {
 
+ constructor(){
+
+
+ }
+
+ ngAfterViewInit(){
+
+
+let h = document.getElementById('preloader') as HTMLElement
+
+setTimeout(()=>{
+  h.classList.add("hidden")
+},2000)
+
+ }
   
 }
