@@ -18,11 +18,11 @@ export class AppComponent {
  ngAfterViewInit(){
 
 
-let h = document.getElementById('preloader') as HTMLElement
+// let h = document.getElementById('preloader') as HTMLElement
 
-setTimeout(()=>{
-  h.classList.add("hidden")
-},2000)
+// setTimeout(()=>{
+//   h.classList.add("hidden")
+// },2000)
 
  }
   

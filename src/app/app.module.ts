@@ -20,6 +20,7 @@ import { VotingsComponent } from './Administrators/votings/votings.component';
 import { OngoingvotingComponent } from './voters/ongoingvoting/ongoingvoting.component';
 import { AuthenticatevoterComponent } from './voters/authenticatevoter/authenticatevoter.component';
 import { VotersComponent } from './Administrators/voters/voters.component';
+import { SuccessComponent } from './voters/success/success.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'votepage', component: VotingComponent},
   { path: 'events', component: OngoingvotingComponent},
   { path: 'auth', component: AuthenticatevoterComponent },
+  { path: 'see', component: SuccessComponent },
 
   { path: 'admin', component: AdminComponent,
   children:[
@@ -63,7 +65,8 @@ const routes: Routes = [
     VotingsComponent,
     OngoingvotingComponent,
     AuthenticatevoterComponent,
-    VotersComponent
+    VotersComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
