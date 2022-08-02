@@ -39,16 +39,19 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 
 	</div> -->
 
-  <h4 class="text-center bg-light py-2 font-weight-bolder " style=" font-family: monospace; " > Welcome {{voter}} </h4>
+  <h4 class="text-center bg-light py-2 font-weight-bolder m-0 " style=" font-family: monospace; " > Welcome {{voter}} </h4>
 
-	<div class="container-fluid pt-3" style="z-index: 1 !important; position: relative;">
+	<div class="container-fluid pt-2" style="z-index: 1 !important; position: relative;">
 
-		<div class="text-center bg-dark py-2 font-weight-bold"> Please select a category to vote </div>
+		<div class="text-center bg-dark py-3 font-weight-bold"> Please select a category to vote </div>
 
     <form [formGroup]="votes" (ngSubmit)="vote()">
 
 	 <div class="form-step-active mt-3 card" *ngFor="let x of categories" >
-	 	<h6 class="card-header" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;"> {{x.category}} </h6>
+	 	<h6 class="card-header d-flex justify-content-between " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;" (click)="this.s.classList.toggle('fa-angle-up')" > 
+      <span style="width: 50%;"> {{x.category}} </span> 
+      
+      <span class="text-right font-weight-bolder fa-solid fa-angle-down" #s style="width: 50%;">  </span>  </h6>
 
     <div class="card-body collapse p-0 " [id]="'x'+x.count" >
 
@@ -64,13 +67,14 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
         <img [src]="y.image" class="img-circle img-responsive "  
         style="height: 150px; width: auto; border: 2px solid grey;"> 
     
-        <div class="bg-light mb-2 py-2 " style="border-radius: 1rem;" >
+        <div class="mx-2 mb-2 py-2 " style="border-radius: 1rem; background-color: white; border: 2px solid grey; " >
 
           <h4> {{y.candidatename}} </h4>
 
-          <div class="text-center">
-            <!-- <label for="check" class="m-0" style="width: 50%;"> Vote </label> -->
-        <input id="check" type="radio" [value]=y.id formControlName={{y.category}}  >
+          <div class="d-flex align-items-center justify-content-center">
+            <!-- <label for="check" class="px-3" > Vote </label> -->
+        <input id="check" type="radio" [value]=y.id formControlName={{y.category}} ondblclick="this.checked = false" >
+        
         <!-- {{y.id}} -->
           </div>
         
@@ -83,39 +87,13 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
     </ng-container>>
   </ol>
 
-      <!-- <thead>
-        <tr class="text-center">
-          <th>Candidate #</th>
-          <th>Photo</th>
-          <th>Candidate Name</th>
-          <th>Selection</th>
-        </tr>
-      </thead>
-      <tbody>
-       
-       	<tr class="text-center" *ngFor="let y of candidates" >
-
-      		<td *ngIf="y.category === x.category"> {{y.count}} </td>
-      		<td *ngIf="y.category === x.category"> <div class="m-auto" style="border: 1px solid; width: max-content !important; border-radius: 1rem; overflow: hidden;"> <img class="rounded" [src]=y.photo> </div> </td>
-      		<td *ngIf="y.category === x.category"> {{y.candidatename}} </td>
-      		<td *ngIf="y.category === x.category"> <input type="radio" [value]=y.candidatename formControlName={{y.category}} >
-          <input type="text"  formControlName="category" value={{y.category}} hidden > </td>
-
-      	</tr>
-
-      </tbody> -->
     </div>
 
-    <!--div class="btns-group">
-        <button type="button" class="btn btn-prev">Previous</button>
-        <button type="button" class="btn btn-next">Next</button>
-      </div-->
-
-      <div class="card-footer text-center"> 0 </div>
+      <div class="card-footer text-center text-dark"> 0 Candidates </div>
 
   </div>
 
-  <div class="text-center mt-5 font-weight-bold" >
+  <div class="text-center py-5 font-weight-bold" >
         <button type="submit" class="m-auto btn-submit p-3 bg"> Submit Vote </button>
       </div>
 

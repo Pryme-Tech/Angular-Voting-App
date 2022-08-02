@@ -57,7 +57,7 @@ export class VotingComponent implements OnInit {
       var v=document.getElementById("countdown") as HTMLElement; 
       v.innerText=x;
       if(x===0){
-        window.location.replace('/');
+        // window.location.replace('/');
       }
     },1000)
 

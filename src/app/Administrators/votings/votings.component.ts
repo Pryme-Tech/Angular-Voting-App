@@ -108,7 +108,7 @@ export class VotingsComponent implements OnInit {
 
       }
 
-      this.welcome = `Welcome ${this.user_id}`
+      this.welcome = `Welcome ${this.user_id?.toUpperCase()}`
 
       },
       err=>{
