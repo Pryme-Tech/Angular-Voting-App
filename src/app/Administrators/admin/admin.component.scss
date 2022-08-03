@@ -79,3 +79,27 @@ aside{
 #menu{
 	transition: all 5s ease;
 }
+
+.fa-close{
+  animation-name: see;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes see{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(180deg);
+	}
+}
+
+/*.fa-bars{
+	transform: rotate(90deg);
+}*/
+
+.activelink{
+	border-bottom: 5px solid blue;
+	border-radius: 1rem;
+}

@@ -1,8 +1,8 @@
 {
-	"host" : "https://castvote.herokuapp.com/",
-	"lhost" : "http://localhost:4000/",
+	"lhost" : "https://castvote.herokuapp.com/",
+	"host" : "http://localhost:4000/",
 	"n1" : "https://castvote.netlify.app/admin/auth",
 	"n2" : "https://castvote.netlify.app/admin/votings",
-	"fronty" : "http://localhost:4200/",
-	"front" : "https://voty.netlify.app/"
+	"front" : "http://localhost:4200/",
+	"fronty" : "https://voty.netlify.app/"
 }

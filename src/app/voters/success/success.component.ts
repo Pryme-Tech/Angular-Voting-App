@@ -7,7 +7,18 @@ import { Component } from '@angular/core';
 })
 export class SuccessComponent {
 
+  accessvoting = localStorage.getItem('accessvoting')
+
+  countdown = 5
+
  constructor(){
+
+  setInterval(()=>{
+    this.countdown--
+    if(this.countdown===0){
+      location.assign('/')
+    }
+  },1000)
 
 
  }

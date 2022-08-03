@@ -38,28 +38,28 @@ export class VotingComponent implements OnInit {
 
  vote(){
 
-  // var a=JSON.parse(JSON.stringify(this.votes.getRawValue()));
-
-  console.log(this.votes.getRawValue())
-
   this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
     res=>{
    let result = JSON.parse(JSON.stringify(res))
 
-      // console.log(result)
+   result.status == true && location.replace('/success')
 
-      this.flashSuccessMessage = result.msg
+   result.status == false && location.replace('/error')
 
-      var x:any=3;
+      // location.replace('/see')
 
-    setInterval(()=>{
-      x--;
-      var v=document.getElementById("countdown") as HTMLElement; 
-      v.innerText=x;
-      if(x===0){
-        // window.location.replace('/');
-      }
-    },1000)
+    //   this.flashSuccessMessage = result.msg
+
+    //   var x:any=3;
+
+    // setInterval(()=>{
+    //   x--;
+    //   var v=document.getElementById("countdown") as HTMLElement; 
+    //   v.innerText=x;
+    //   if(x===0){
+    //     // window.location.replace('/');
+    //   }
+    // },1000)
 
 
     },
@@ -106,7 +106,8 @@ status=0
           response.forEach((data:any,index:any)=>{
             //console.log(data.category)
            this.categories.push({
-            "count" : index,
+            "index" : index,
+            "count" : data.count,
             "category" : data.categoryname,
               // "category_id" : data.category_id
           })

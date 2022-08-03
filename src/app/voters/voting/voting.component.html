@@ -48,12 +48,16 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
     <form [formGroup]="votes" (ngSubmit)="vote()">
 
 	 <div class="form-step-active mt-3 card" *ngFor="let x of categories" >
-	 	<h6 class="card-header d-flex justify-content-between " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.count" style=" color:  green; text-transform: uppercase; font-weight: bold;" (click)="this.s.classList.toggle('fa-angle-up')" > 
+
+	 	<h6 class="card-header d-flex justify-content-between " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.index" style=" color:  green; text-transform: uppercase; font-weight: bold;" (click)="this.s.classList.toggle('fa-angle-up')" > 
+
       <span style="width: 50%;"> {{x.category}} </span> 
       
-      <span class="text-right font-weight-bolder fa-solid fa-angle-down" #s style="width: 50%;">  </span>  </h6>
+      <span class="text-right font-weight-bolder fa-solid fa-angle-down" #s style="width: 50%;">  </span> 
 
-    <div class="card-body collapse p-0 " [id]="'x'+x.count" >
+       </h6>
+
+    <div class="card-body collapse p-0 " [id]="'x'+x.index" >
 
         <ol class="row px-5">
         
@@ -89,7 +93,7 @@ padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
 
     </div>
 
-      <div class="card-footer text-center text-dark"> 0 Candidates </div>
+      <div class="card-footer text-center text-dark"> {{x.count}} Candidates </div>
 
   </div>
 

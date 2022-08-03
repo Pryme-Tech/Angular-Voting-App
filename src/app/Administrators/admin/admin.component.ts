@@ -23,7 +23,7 @@ export class AdminComponent{
 
   constructor(){
 
-    if(this.user_id){
+    if(localStorage.getItem('user_id')){
 
     setTimeout(()=>{
       alert('Session terminated!!! Please login')

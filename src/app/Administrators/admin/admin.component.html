@@ -19,15 +19,17 @@
 
  <div class="bg-light d-flex justify-content-center flex-column p-5" style=" height: 100%; width: 80%; float: right; position: relative; " >
 
-	<i class="fa-solid fa-close fa-2x text-danger " style="position: absolute; top: 10%; left: 10%; " id="toggleSidebarCloseButton" >   </i>
+	<i class="fa-solid fa-close fa-2x text-danger " style="position: absolute; top: 10%; left: 10%; cursor: pointer; " id="toggleSidebarCloseButton" >   </i>
 
-	<h3 class="text-center py-2" routerLink="candidates" style="cursor: pointer; " > CANDIDATES </h3>
+	<h3 class="text-center py-2" routerLink="candidates" style="cursor: pointer; " routerLinkActive="activelink" > CANDIDATES </h3>
 
-	<h3 class="text-center py-2 " routerLink="votes" style="cursor: pointer;" > VOTES RESULTS </h3>
+	<h3 class="text-center py-2 " routerLink="votes" style="cursor: pointer;" routerLinkActive="activelink" > VOTES RESULTS </h3>
 
-	<h3 class="text-center py-2" routerLink="voters" style="cursor: pointer;" > VOTERS </h3>
+	<h3 class="text-center py-2" routerLink="voters" style="cursor: pointer;" routerLinkActive="activelink" > VOTERS </h3>
 
-	<button class="btn btn-danger" type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
+	<button class="btn btn-dark mb-3 font-weight-bold " type="button" > DELETE THIS ELECTION </button>
+
+	<button class="btn btn-danger font-weight-bold " type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
 
  </div>
 
