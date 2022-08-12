@@ -22,6 +22,7 @@ import { AuthenticatevoterComponent } from './voters/authenticatevoter/authentic
 import { VotersComponent } from './Administrators/voters/voters.component';
 import { SuccessComponent } from './voters/success/success.component';
 import { ErrorComponent } from './voters/error/error.component';
+import { landingpageComponent } from './Landingpage/landingpage.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,7 @@ const routes: Routes = [
    {path: '', redirectTo: "votings", pathMatch: 'full'}
   ]},
 
-  {path: '', redirectTo: "events", pathMatch: 'full'},
+  {path: '', component: landingpageComponent },
   {path: '**', component: Page404Component}
 ];
 
