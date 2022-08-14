@@ -72,7 +72,7 @@ export class Page404Component implements OnInit {
         yAxisName: "Percentage (%)",
         numberSuffix: "%",
         //Set the theme for your chart
-        theme: "Umber"
+        theme: "fusion"
       },
       // Chart Data - from step 2
       data: this.chartData
