@@ -25,6 +25,19 @@ import { ErrorComponent } from './voters/error/error.component';
 import { landingpageComponent } from './Landingpage/landingpage.component';
 
 
+// fusion charts module
+
+import { FusionChartsModule } from "angular-fusioncharts";
+
+import * as FusionCharts from "fusioncharts";
+import * as charts from "fusioncharts/fusioncharts.charts";
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+
+// Pass the fusioncharts library and chart modules
+
+FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
+
+
 const routes: Routes = [
   //{ path: 'home', component: LandingComponent},
   { path: 'register', component: RegisterComponent},
@@ -73,6 +86,7 @@ const routes: Routes = [
     ErrorComponent
   ],
   imports: [
+  FusionChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
