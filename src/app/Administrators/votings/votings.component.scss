@@ -48,6 +48,10 @@
     display: flex;
 }
 
+.hidden{
+    display: none !important;
+}
+
 @media(max-width : 500px){
     form{
         width: 90% !important;

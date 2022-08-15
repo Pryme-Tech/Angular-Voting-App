@@ -4,15 +4,15 @@
 
 <p *ngIf="successMessage" class="bg-light text-success text-center m-0 py-2 font-weight-bold animate__animated animate__shakeX" style=" transition: all 2s; font-family: monospace !important; z-index: 999; position: absolute; top: 10%; width: 100%; " > {{successMessage}} </p>
 
-<div class="main bg-success" style="min-height: 100vh;">
+<div class="main" style="min-height: 100vh; background-color: #00808029; ">
 
-	<nav class="py-4 bg-dark">
+	<nav class="py-4" style=" background-color: teal; " >
 
 	<div  class=" text-center d-flex justify-content-between align-items-center">
-		<h4 class="p-2"> {{welcome}} </h4>
+		<h4 class="px-4 font-weight-bolder "> {{welcome}} </h4>
 
 		<div class="m-hide">
-		<button class="p-2" onclick="document.getElementById('addEvents').style.display='block'">Add a New Voting Event</button>
+		<button class="p-2" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Voting Event</button>
 		<button class="m-2 p-2" type="button" onclick="localStorage.clear(); location.reload()">
 			 Log out </button>
 			 </div>
@@ -25,12 +25,12 @@
 
 	</div>
 
-	<div class="mobile-menu-hidden p-0 m-0 vh-100 vw-100 font-weight-bolder animate__animated animate__backInRight " style="border-top: 5px solid; position: absolute; top: 0; z-index: 99; background-color: transparent; backdrop-filter: blur(3px); border: 0; ">
+	<div class="mobile-menu-hidden p-0 m-0 vh-100 vw-100 font-weight-bolder animate__animated animate__backInRight " id="mobile-menu" style="border-top: 5px solid; position: absolute; top: 0; z-index: 99; background-color: transparent; backdrop-filter: blur(3px); border: 0; ">
 		<div class=" bg-light d-flex flex-column align-items-center justify-content-center " style="height: inherit; width: 90%; float: right; position: relative; ">
 
 		<i class="fa-solid fa-close fa-2x text-danger" id="mobile-menu-close-button" style="position: absolute; top: 5%; left: 10%; " ></i>
 
-		<button class="p-2 font-weight-bold" style="background-color: transparent; border: 0; " onclick="document.getElementById('addEvents').style.display='block'">Add a New Voting Event</button>
+		<button class="p-2 font-weight-bold" style="background-color: transparent; border: 0; " onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Voting Event</button>
 		<button class="p-2 font-weight-bold" style="background-color: transparent; border: 0; " type="button" onclick="localStorage.clear(); location.reload()">
 			 Log out </button>
 			</div>
@@ -38,8 +38,8 @@
 
 	</nav>
 
-<div class="d-flex align-items-center " id="addEvents"
-style="display:none !important; width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; backdrop-filter: blur(3px); ">
+<div class="d-flex align-items-center hidden" id="addEvents"
+style="width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; backdrop-filter: blur(3px); ">
 	
 	<form [formGroup]="newVoting" (ngSubmit)="newVotingOnSubmit()" class="py-5 mx-auto bg-dark rounded border border-5 "
 	 style="width: 70%;">
@@ -49,19 +49,19 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 				document.getElementById('newinputbutton').style.display='block';"> Add a New Voting Event </p>
 			</div> -->
 			<div class="text-right px-5">
-			<i class="fa-solid fa-close fa-2x text-danger" onclick="document.getElementById('addEvents').style.display='none !important'"></i>
+			<i class="fa-solid fa-close fa-2x text-danger" onclick="document.getElementById('addEvents').classList.toggle('hidden')"></i>
 			</div>
 
 		<div class="addEventForm">
 
 			<div class="form-group px-5" id="newinput">
-				<label>Enter name for Voting Event :</label>
+				<label>Enter name for your new Election :</label>
 				<input class="form-control text-center" type="text" placeholder="Choose a name for your voting event" formControlName="newVotingInput">
 			</div>
 
 			<div class="form-group px-5 row">
 				<div class="col-sm-6" id="preview-f">
-				<label>Select an image for your event :</label>
+				<label>Select an image for your Election (e.g organization logo) :</label>
 				<input class="form-control" type="file" #file (change)="imagePreview(file.files)">
 				</div>
 				<div class="text-center col-sm-6 mt-2" id="preview">
@@ -71,7 +71,7 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 			
 			<div class="form-group text-center" id="newinputbutton">
 		<button class="btn btn-primary" type="submit">Submit</button>
-		<button class="btn btn-danger mx-2" type="button" onclick="document.getElementById('addEvents').style.display='none !important';">Cancel</button>
+		<button class="btn btn-danger mx-2" type="button" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Cancel</button>
 			</div>
 
 			</div>
@@ -81,18 +81,18 @@ style="display:none !important; width:100%; position: absolute; top: 0; min-heig
 
 <div class="p-0 m-0 main row justify-content-center py-3 px-3"  >
 
-	<div class="border border-5 col-12 py-1 text-center bg-light" *ngIf="noVotingAdded" >
+	<div class="border border-5 col-12 py-1 text-center bg-dark font-weight-bold" *ngIf="noVotingAdded" >
 
 {{noVotingAdded}}
 
 	</div>
 
-<div class="row pt-2">
+<div class="row pt-5">
 
-	<h5 class="text-center"> Select an event to manage </h5>
+	<h5 class="text-center"> Select an Election to manage </h5>
 
 	<div class="bg-dark text-center py-3">
-		<label for="search" style="">Search for a voting event:</label>
+		<label for="search" style="">Search for an Election:</label>
 		<input id="search" type="search" class="form-control mx-auto" style="width: 90%;" placeholder="Search by name">
 		</div>
 

@@ -84,7 +84,7 @@ export class VotingsComponent implements OnInit {
         console.log(result)
 
         if(result.length < 1 ){
-          this.noVotingAdded="No Voting Event Created"
+          this.noVotingAdded="No Elections Created"
 
         }
 
@@ -136,16 +136,20 @@ export class VotingsComponent implements OnInit {
    ngAfterViewInit(){
 
         const btn = document.querySelector(".mobile-menu-button") as HTMLElement;
-        const btnClose = document.querySelector(".mobile-menu-close-button") as HTMLElement;
+        const btnClose = document.querySelector("#mobile-menu-close-button") as HTMLElement;
         const menu = document.querySelector(".mobile-menu-hidden") as HTMLElement;
 
+        const mobile_menu = document.querySelector("#mobile-menu") as HTMLElement;
+
         btn.addEventListener("click",()=>{
-			// alert('hello')
             menu.classList.toggle("mobile-menu-hidden");
         })
 
         btnClose.addEventListener("click",()=>{
-      alert('hello')
+            menu.classList.toggle("mobile-menu-hidden");
+        })
+
+        mobile_menu.addEventListener("click",()=>{
             menu.classList.toggle("mobile-menu-hidden");
         })
 
