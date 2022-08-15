@@ -8,7 +8,7 @@
 
   <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
 
-    <div style="background-color: #7ae69579; margin: 0; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div style="background-color: #0080802e; margin: 0; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
     <h1 class="py-3 font-weight-bold " style=" text-decoration: underline; " > Register </h1>
 
@@ -55,7 +55,7 @@
 
   <div class="form-group" style="width: 60%;">
     <button type="submit" class="btn btn-dark">Register</button>
-    <p class="mt-4 text-center bg-dark" id="changeToSignIn"> Already have an Account? <span class="text-success btn font-weight-bold">Log in Here.</span> </p>
+    <p class="mt-4 text-center bg-dark" id="changeToSignIn"> Already have an Account? <span class="text-danger btn font-weight-bold">Log in Here.</span> </p>
   </div>
 
 </div>
@@ -73,7 +73,7 @@
 
   <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" class="bg-light" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
 
-     <div style="background-color: #7ae69579; margin: auto; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+     <div style="background-color: #0080802e; margin: auto; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
     <h1 class="my-3 font-weight-bold" style=" text-decoration: underline; " > Sign In </h1>
 
@@ -102,10 +102,10 @@
   </div>
 
   <div class="form-group" style="width: 60%;">
-    <a href="" class="p-0 m-0" style="display: block;" routerLink="../forgetPassword" > Forget Password? </a><br>
+    <a href="" class="p-0 m-0 text-danger " style="display: block;" routerLink="../forgetPassword" > Forget Password? </a><br>
     <button type="submit" class="btn btn-dark">Sign in</button>
 
-    <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-primary btn font-weight-bold">Register Here.</span> </p>
+    <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-danger btn font-weight-bold">Register Here.</span> </p>
 
   </div>
 
