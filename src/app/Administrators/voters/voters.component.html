@@ -1,5 +1,6 @@
-<div class="text-center">
-<button class="btn btn-primary my-3" onclick="document.querySelector('form').style.display='block'" > Click to register a new voter </button>
+<div class="text-center mt-3">
+<button class="btn btn-primary mx-3" onclick="document.querySelector('form').style.display='block'" > <i class="fa fa-plus"></i> Add a new voter  </button>
+<button class="btn btn-primary mx-3" onclick="document.querySelector('form').style.display='block'" > <i class="fa fa-cloud-upload"></i> Import Voters </button>
 </div>
 
 <form class="text-center bg-dark p-4 my-4 mt-0" style=" display: none; " [formGroup]="voters" (ngSubmit)="votersOnsubmit()" >
@@ -9,19 +10,19 @@
 
 <p *ngIf="successMessage" class="text-center border border-5 font-weight-bold py-2 " style="color: green; font-family: monospace !important;"> {{successMessage}} <i class="bg-dark p-2 rounded"> Voting ID: {{votingId}} </i> </p>
 
-<div class="d-flex justify-content-between my-5 mx-auto " style="width: 90%;" > 
+<div class="d-flex justify-content-center my-5 mx-auto " style="width: 70%;" > 
     <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" style="width: 90%;" >
     <button class="btn btn-primary bg-primary " (click)="searchVoters('all')"> Search </button>
 </div>
 
-<h3 class="text-center" > Registered Voters </h3>
+<h3 class="text-center py-3 text-light " style=" background-color: teal; "  > Registered Voters </h3>
 
 <table class="table table-striped container ">
 
     <tr>
-        <th> # </th>
-        <th> Name </th>
-        <th> Voting Id </th>
+        <th class="bg-dark" > # </th>
+        <th class="bg-dark" > Name </th>
+        <th class="bg-dark" > Voter Id </th>
     </tr>
 
     <tr *ngFor="let x of votersInfo">

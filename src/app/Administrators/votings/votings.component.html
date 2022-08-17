@@ -6,13 +6,14 @@
 
 <div class="main" style="min-height: 100vh; background-color: #00808029; ">
 
-	<nav class="py-4" style=" background-color: teal; " >
+	<nav
+	 class="py-4" style=" background-color: teal; " >
 
 	<div  class=" text-center d-flex justify-content-between align-items-center">
 		<h4 class="px-4 font-weight-bolder "> {{welcome}} </h4>
 
 		<div class="m-hide">
-		<button class="p-2" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Voting Event</button>
+		<button class="p-2" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Election </button>
 		<button class="m-2 p-2" type="button" onclick="localStorage.clear(); location.reload()">
 			 Log out </button>
 			 </div>
@@ -28,7 +29,7 @@
 	<div class="mobile-menu-hidden p-0 m-0 vh-100 vw-100 font-weight-bolder animate__animated animate__backInRight " id="mobile-menu" style="border-top: 5px solid; position: absolute; top: 0; z-index: 99; background-color: transparent; backdrop-filter: blur(3px); border: 0; ">
 		<div class=" bg-light d-flex flex-column align-items-center justify-content-center " style="height: inherit; width: 90%; float: right; position: relative; ">
 
-		<i class="fa-solid fa-close fa-2x text-danger" id="mobile-menu-close-button" style="position: absolute; top: 5%; left: 10%; " ></i>
+		<i class="fa-solid fa-close fa-2x text-danger mobile-menu-button" style="position: absolute; top: 5%; left: 10%; " ></i>
 
 		<button class="p-2 font-weight-bold" style="background-color: transparent; border: 0; " onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Voting Event</button>
 		<button class="p-2 font-weight-bold" style="background-color: transparent; border: 0; " type="button" onclick="localStorage.clear(); location.reload()">
@@ -49,7 +50,7 @@ style="width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; ba
 				document.getElementById('newinputbutton').style.display='block';"> Add a New Voting Event </p>
 			</div> -->
 			<div class="text-right px-5">
-			<i class="fa-solid fa-close fa-2x text-danger" onclick="document.getElementById('addEvents').classList.toggle('hidden')"></i>
+			<i class="fa-solid fa-close fa-2x text-danger" style="cursor: pointer;" onclick="document.getElementById('addEvents').classList.toggle('hidden')"></i>
 			</div>
 
 		<div class="addEventForm">
@@ -87,7 +88,7 @@ style="width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; ba
 
 	</div>
 
-<div class="row pt-5">
+<div class="row pt-3">
 
 	<h5 class="text-center"> Select an Election to manage </h5>
 

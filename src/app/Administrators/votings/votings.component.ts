@@ -136,7 +136,7 @@ export class VotingsComponent implements OnInit {
    ngAfterViewInit(){
 
         const btn = document.querySelector(".mobile-menu-button") as HTMLElement;
-        const btnClose = document.querySelector("#mobile-menu-close-button") as HTMLElement;
+        // const btnClose = document.getElementById("mobile_menu_cmobile-menu-buttonlose_button") as HTMLElement;
         const menu = document.querySelector(".mobile-menu-hidden") as HTMLElement;
 
         const mobile_menu = document.querySelector("#mobile-menu") as HTMLElement;
@@ -145,9 +145,10 @@ export class VotingsComponent implements OnInit {
             menu.classList.toggle("mobile-menu-hidden");
         })
 
-        btnClose.addEventListener("click",()=>{
-            menu.classList.toggle("mobile-menu-hidden");
-        })
+        // btnClose.addEventListener("click",()=>{
+        //   alert('helooo')
+        //     menu.classList.toggle("mobile-menu-hidden");
+        // })
 
         mobile_menu.addEventListener("click",()=>{
             menu.classList.toggle("mobile-menu-hidden");

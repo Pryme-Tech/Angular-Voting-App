@@ -1,11 +1,13 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-<nav class="main-header py-4 px-3 m-0" id="nav" style="border-bottom: 2px solid green;">
+<div class="d-flex vh-100 flex-column">
+
+<nav *ngIf="votingname" class="main-header py-4 px-3 m-0 d-flex align-items-center justify-content-between " id="nav" style=" height: 10%; background-color: teal;">
 	
-	<div class="d-flex justify-content-between align-items-center  "> 
-<h3> {{ votingname }} </h3>
-<i class="fa-solid fa-bars fa-2x" id="toggleSidebarButton" style="font-weight: bolder; cursor: pointer; "></i>
+	<div class="d-flex justify-content-between align-items-center  " style="width: 100%;"> 
+<h3 class="text-light"> {{ votingname }} </h3>
+<i class="fa-solid fa-bars fa-2x text-light" id="toggleSidebarButton" style="font-weight: bolder; cursor: pointer; "></i>
 
 	 </div>
 
@@ -23,12 +25,12 @@
 
 	<h3 class="text-center py-2" routerLink="candidates" style="cursor: pointer; " routerLinkActive="activelink" > CANDIDATES </h3>
 
-	<h3 class="text-center py-2 " routerLink="votes" style="cursor: pointer;" routerLinkActive="activelink" > VOTES RESULTS </h3>
+	<h3 class="text-center py-2 " routerLink="votes" style="cursor: pointer;" routerLinkActive="activelink" > ELECTION RESULTS </h3>
 
 	<h3 class="text-center py-2" routerLink="voters" style="cursor: pointer;" routerLinkActive="activelink" > VOTERS </h3>
 
-	<button class="btn btn-dark mb-3 font-weight-bold " type="button" > DELETE THIS ELECTION </button>
-
+	<button class="btn btn-dark mb-3 mt-5 rounded font-weight-bold " type="button" > DELETE THIS ELECTION </button>
+ 
 	<button class="btn btn-danger font-weight-bold " type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
 
  </div>
@@ -67,12 +69,14 @@
 
 	<!-- <router-outlet *ngIf="d" ></router-outlet> -->
 
-<div class="" style="position: relative; min-height: 95vh;">
+<div class="" style="position: relative; height: 90%;">
 
 
 	<!-- <span style="color: transparent;"> f </span> -->
 
 	<router-outlet></router-outlet>
+
+</div>
 
 </div>
 
