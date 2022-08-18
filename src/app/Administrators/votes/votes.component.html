@@ -1,16 +1,16 @@
 	<!-- Category view with candidates in each category -->
 
 
-	<div class="card container mt-3">
+	<div class="card container mt-3" style="border: 1px solid teal;">
 
-		<div class="card-header text-center font-weight-bold t" style="font-size: 2em;"> VIEW OF VOTING RESULTS </div>
+		<div class="card-header text-center font-weight-bold t" style="font-size: 2em; border-bottom: 1px solid teal;"> ELECTION RESULTS </div>
+ 
+		<div class="card-body" style="border-color: teal !important;" >
+             <p class="text-center p-1 font-weight-bold " style="color: teal;"  > DROP EACH CATEGORY TO VIEW RESULTS UNDER IT </p>
 
-		<div class="card-body" >
-             <p class="text-center p-1 text-success font-weight-bold "  > DROP EACH CATEGORY TO VIEW VOTING RESULTS UNDER IT </p>
+			<div class="card" *ngFor="let y of categories" style="border: 1px solid teal;">
 
-			<div class="card" *ngFor="let y of categories">
-
-				<div class="card-header font-weight-bold" data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.index" style="color: green;"> {{y.category}} </div>
+				<div class="card-header font-weight-bold d-flex  " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+y.index" style="color: teal; border-color: teal !important;" (click)="this.s.classList.toggle('fa-angle-up')" > <span style="width: 50%;"> {{y.category}} </span> <span style="width: 50%;" class="text-right font-weight-bolder fa-solid fa-angle-down" #s>  </span>  </div>
 
 				<div class="card-body collapse" [id]="'x'+y.index" >
 <!--
