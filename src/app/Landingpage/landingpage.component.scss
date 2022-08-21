@@ -1,4 +1,22 @@
 
+header{
+	/*transition : all 0.01s ease-in-out;*/
+}
+
+header.second{
+	background-color: white !important;
+	transition: all 2s ease-in-out;
+	color: white !important;
+
+	a{
+		/*color: white !important;*/
+	}
+
+	.logo h1{
+		/*color: white !important;*/
+	}
+}
+
 ol{
 	width: max-content;
 	max-width: 100%;
@@ -7,6 +25,34 @@ ol{
 li{
 	font-size: 1.2em;
 	word-wrap: break-word;
+}
+
+div.banner{
+	
+}
+
+@media(max-width: 1450px){
+	div.banner{
+		h1{
+			font-size : 5em !important;
+		}
+
+		p{
+			font-size: 1.5em !important;
+		}
+	}
+}
+
+@media(max-width: 1350px){
+	div.banner{
+		h1{
+			font-size : 4em !important;
+		}
+
+		p{
+			font-size: 1.2em !important;
+		}
+	}
 }
 
 @media(max-width: 840px){
@@ -18,3 +64,30 @@ li{
 		display: none;
 	}
 }
+
+@media(max-width: 500px){
+
+	div.body{
+		padding-top: 7% !important;
+	}
+
+	div.banner{
+
+		background-color: red;
+
+		margin:  0 2% !important;
+
+		h1{
+			font-size : 1.5em !important;
+		}
+
+		p{
+			font-size: .7em !important;
+		}
+
+		.col-7 img{
+			height: 200px !important;
+		}
+	}
+}
+

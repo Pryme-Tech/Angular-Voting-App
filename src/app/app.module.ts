@@ -32,6 +32,7 @@ import { FusionChartsModule } from "angular-fusioncharts";
 import * as FusionCharts from "fusioncharts";
 import * as charts from "fusioncharts/fusioncharts.charts";
 import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import { PricingComponent } from './pricing/pricing.component';
 
 // Pass the fusioncharts library and chart modules
 
@@ -83,7 +84,8 @@ const routes: Routes = [
     AuthenticatevoterComponent,
     VotersComponent,
     SuccessComponent,
-    ErrorComponent
+    ErrorComponent,
+    PricingComponent
   ],
   imports: [
   FusionChartsModule,
