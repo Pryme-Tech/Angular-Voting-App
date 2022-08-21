@@ -58,7 +58,7 @@ div.banner{
 @media(max-width: 840px){
 
 	header{
-		padding: 2% !important;
+		padding: 5% !important;
 	}
 	nav.electionLinks{
 		display: none;
@@ -78,15 +78,16 @@ div.banner{
 		margin:  0 2% !important;
 
 		h1{
-			font-size : 1.5em !important;
+			font-size : 3em !important;
+			padding: 2%;
 		}
 
 		p{
-			font-size: .7em !important;
+			font-size: 1.2em !important;
 		}
 
 		.col-7 img{
-			height: 200px !important;
+			/*height: 200px !important;*/
 		}
 	}
 }
