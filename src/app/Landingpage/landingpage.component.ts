@@ -40,54 +40,54 @@ const role = document.getElementById('role') as HTMLElement
 const testimonials = [
   {
     name: 'Miyah Myles',
-    position: 'Marketing',
+    position: 'Miyah Groups',
     photo:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6',
     text:
-      "I've worked with literally hundreds of HTML/CSS developers and I have to say the top spot goes to this guy. This guy is an amazing developer. He stresses on good, clean code and pays heed to the details. I love developers who respect each and every aspect of a throughly thought out design and do their best to put it in code. He goes over and beyond and transforms ART into PIXELS - without a glitch, every time.",
+      "I appreciate how this is user friendly and made our student cultural group election fair without any bias. I cannot express how awesome this application was as a first time user.",
   },
   {
     name: 'June Cha',
-    position: 'Software Engineer',
+    position: 'ACME CORPS',
     photo: 'https://randomuser.me/api/portraits/women/44.jpg',
     text:
-      'This guy is an amazing frontend developer that delivered the task exactly how we need it, do your self a favor and hire him, you will not be disappointed by the work delivered. He will go the extra mile to make sure that you are happy with your project. I will surely work again with him!',
+      'It is the best online election platform I have ever seen. I really enjoyed working on it.',
   },
   {
     name: 'Iida Niskanen',
-    position: 'Data Entry',
+    position: 'Habatua sims',
     photo: 'https://randomuser.me/api/portraits/women/68.jpg',
     text:
-      "This guy is a hard worker. Communication was also very good with him and he was very responsive all the time, something not easy to find in many freelancers. We'll definitely repeat with him.",
+      "I appreciate how this is user friendly and made our student cultural group election fair without any bias. I cannot express how awesome this application was as a first time user.",
   },
   {
     name: 'Renee Sims',
-    position: 'Receptionist',
+    position: 'Ray Organs',
     photo: 'https://randomuser.me/api/portraits/women/65.jpg',
     text:
-      "This guy does everything he can to get the job done and done right. This is the second time I've hired him, and I'll hire him again in the future.",
+      "Our election went well. The tool is easy to use and the price was right. We needed to extend the election over the weekend and support promptly replied and was able to help us. Great tool!",
   },
   {
     name: 'Jonathan Nunfiez',
-    position: 'Graphic Designer',
+    position: 'Designers hub',
     photo: 'https://randomuser.me/api/portraits/men/43.jpg',
     text:
-      "I had my concerns that due to a tight deadline this project can't be done. But this guy proved me wrong not only he delivered an outstanding work but he managed to deliver 1 day prior to the deadline. And when I asked for some revisions he made them in MINUTES. I'm looking forward to work with him again and I totally recommend him. Thanks again!",
+      "I was so happy with my first transaction with Election Runner! I made a couple of mistakes me their customer service dept was so nice and all about the customer! Wouldn't even think of using anyone else! A+++",
   },
   {
     name: 'Sasha Ho',
-    position: 'Accountant',
+    position: 'School of Chartered Accountants SRC',
     photo:
       'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?h=350&auto=compress&cs=tinysrgb',
     text:
-      'This guy is a top notch designer and front end developer. He communicates well, works fast and produces quality work. We have been lucky to work with him!',
+      'I used this app for a union election for a mid sized law office with a very difficult to please group of people. I found the app easy to use. The support team was excellent and prompt. Would highly recommend as a low cost and simple way to hold an election',
   },
   {
     name: 'Veeti Seppanen',
-    position: 'Director',
+    position: 'SRC Dominion University College',
     photo: 'https://randomuser.me/api/portraits/men/97.jpg',
     text:
-      'This guy is a young and talented IT professional, proactive and responsible, with a strong work ethic. He is very strong in PSD2HTML conversions and HTML/CSS technology. He is a quick learner, eager to learn new technologies. He is focused and has the good dynamics to achieve due dates and outstanding results.',
+      "provides a clean, attractive and easy-to-use voter interface that runs well on all Internet-enabled devices that we've tested. Their support system is unparalleled for the speedy, comprehensive and personal manner in which it is delivered. With a few test elections under our belt, we were totally sold.",
   },
 ]
 
