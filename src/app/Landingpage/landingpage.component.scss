@@ -175,6 +175,8 @@ div.banner{
 	header nav.credentialsLinks a{
 		/*padding: 0 2% !important;*/
 		font-weight: bolder;
+		padding: 5% 2% !important;
+		margin: 0 !important;
 	}
 
 	div.body{
@@ -216,5 +218,21 @@ div.banner{
 	.voting,.hosting{
 		margin-top: 4%;
 	}
+
+	.guide{
+		font-size: 1em !important;
+		line-height: 1.2em !important;
+	}
+
+	.ms{
+		padding-right: 0% !important;
+	}
 }
 
+/*li {
+  list-style-image: url('../../assets/correct1.png');
+  font-size: 1em !important;
+  list-style-type: lower-roman;
+  list-style-position: ;
+
+}*/
