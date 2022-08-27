@@ -2,15 +2,15 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
-import routes from '../../../assets/routes/routes.json';
+import routes from '../../assets/routes/routes.json';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   port = routes.host
 
@@ -47,31 +47,6 @@ submitted = false
 get registerFormsControls(){
   return this.registerForms.controls
 }
-
-//login form input fieds
-loginForms = new FormGroup({
-username: new FormControl('',Validators.required),
-password: new FormControl('',Validators.required)
-})
-
-// get registration form input controls i.e validators included
-get loginFormsControls(){
-  return this.loginForms.controls
-}
-
-// login and register error and success messages
-errMsg = ''
-sucMsg :any = ''
-
-// Acount verification data
-verify:any = []
-
-// http headers sent
-private httpoptions={
-    headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    })
-  }
 
 // Function to  send registration form inputs
 registerFormsOnSubmit(){
@@ -110,6 +85,33 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
   })
 }
+
+//login form input fieds
+loginForms = new FormGroup({
+username: new FormControl('',Validators.required),
+password: new FormControl('',Validators.required)
+})
+
+// get registration form input controls i.e validators included
+get loginFormsControls(){
+  return this.loginForms.controls
+}
+
+// login and register error and success messages
+errMsg = ''
+sucMsg :any = ''
+
+// Acount verification data
+verify:any = []
+
+// http headers sent
+private httpoptions={
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+  }
+
+
 
 // Function to  send login form inputs
 loginFormsOnSubmit(){
@@ -412,3 +414,138 @@ forgetPasswordFormSubmit(){
   }
 
 }
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
+<div class="hidden" id="register" style="height: 100vh; justify-content: center; align-items: center;">
+
+
+<!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
+
+  <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
+
+    <div style="background-color: #0080802e; margin: 0; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+    <h1 class="py-3 font-weight-bold " style=" text-decoration: underline; " > Register </h1>
+<!-- 
+    <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
+{{errMsg}}
+  </div> -->
+
+  <div class="form-group" style="width: 60%;">
+
+      <label> Email: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['email'].errors?.['required']" > *** Email field is required *** </small>
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['email'].errors?.['email']" > *** Please enter a valid email *** </small>
+
+    <input class="form-control" type="text" placeholder="email" formControlName="email" >
+  </div>
+
+    <div class="form-group" style="width: 60%;">
+      <label> UserName: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['username'].errors?.['required']" > *** Username field is required *** </small>
+
+    <input class="form-control" type="text" placeholder="username" formControlName="username">
+  </div>
+
+  <div class="form-group mt-4" style="width: 60%;">
+    <label> Password: </label>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['password'].errors?.['required']" > *** Password field is required *** </small>
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['mustmatch']" > *** Passwords do not match *** </small>
+
+    <input class="form-control" type="password" name="" placeholder="password" formControlName="password">
+  </div>
+
+  <div class="form-group mt-4" style="width: 60%;">
+    <label> Confirm Password: </label>
+    
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['required']" > *** Confirm Password field is required *** </small>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.registerFormsControls['confirmpassword'].errors?.['mustmatch']" > *** Passwords do not match *** </small>
+
+    <input class="form-control" type="password" name="" placeholder="confirm password" formControlName="confirmpassword" >
+  </div>
+
+  <div class="form-group" style="width: 60%;">
+    <button type="submit" class="btn btn-dark">Register</button>
+    <p class="mt-4 text-center bg-dark" id="changeToSignIn"> Already have an Account? <span class="text-danger btn font-weight-bold">Log in Here.</span> </p>
+  </div>
+
+</div>
+
+  </form>
+
+  <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hidden flex" id="signin" style="height: 100vh; justify-content: center; align-items: center;">
+
+    <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
+
+  <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" class="bg-light" style=" background-image:  url(assets/bg.png); background-size: contain; background-color: white; background-repeat: no-repeat; background-position: center; height: inherit; width: 100%; ">
+
+     <div style="background-color: #0080802e; margin: auto; width: 100vw !important; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+    <h1 class="my-3 font-weight-bold" style=" text-decoration: underline; " > Sign In </h1>
+
+    <div *ngIf="errMsg" class="bg-danger text-center p-2 my-2 rounded" style="width: 60%;">
+{{errMsg}}
+  </div>
+
+  <div *ngIf="sucMsg" class="bg-success text-center p-2 my-2 rounded" style="width: 60%;">
+    {{sucMsg}}
+      </div>
+
+    <div class="form-group" style="width: 60%;">
+      <label> Enter your email or password: </label>
+
+      <small class="text-danger font-weight-bold" *ngIf="submitted && this.loginFormsControls['username'].errors?.['required']" > *** Username field is required *** </small>
+
+    <input class="form-control" type="text" placeholder="username" formControlName="username">
+  </div>
+
+  <div class="form-group mt-4" style="width: 60%;">
+    <label> Password: </label>
+
+    <small class="text-danger font-weight-bold" *ngIf="submitted && this.loginFormsControls['password'].errors?.['required']" > *** Password field is required *** </small>
+
+    <input class="form-control" type="password" placeholder="password" formControlName="password">
+  </div>
+
+  <div class="form-group" style="width: 60%;">
+    <a href="" class="p-0 m-0 text-danger " style="display: block;" routerLink="../forgetPassword" > Forget Password? </a><br>
+    <button type="submit" class="btn btn-dark">Sign in</button>
+
+    <p class="mt-4 text-center bg-dark" id="changeToRegister"> New Here? <span class="text-danger btn font-weight-bold">Register Here.</span> </p>
+
+  </div>
+
+</div>
+
+  </form>
+
+  <!-- <div class="sec" style="height: 10vh; width: 100%;"></div> -->
+  </div>
+
+
+<!-- -->

@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   templateUrl: 'landingpage.component.html',
   styleUrls: ['landingpage.component.scss']
 })
 
-export class landingpageComponent{
+export class landingpageComponent implements OnInit{
 
   constructor(){
+
+ }
+
+ ngOnInit(){
 
  }
 

@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './voters/register/register.component';
-import { LandingComponent } from './Administrators/auth/landing.component';
+import { AuthComponent } from './auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -41,29 +41,32 @@ FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
 
 const routes: Routes = [
   //{ path: 'home', component: LandingComponent},
-  { path: 'register', component: RegisterComponent},
+  // { path: 'register', component: RegisterComponent},
   { path: 'vote', component: VoteComponent},
   { path: 'votepage', component: VotingComponent},
   { path: 'events', component: OngoingvotingComponent},
   { path: 'auth', component: AuthenticatevoterComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'error', component: ErrorComponent },
+  { path: 'register', component: AuthComponent},
+  { path: 'login', component: AuthComponent},
 
   { path: 'admin', component: AdminComponent,
   children:[
   {path: "votings", component: VotingsComponent},
-  { path: 'auth', component: LandingComponent},
-  { path: 'auth/verifyuser/:token', component: LandingComponent },
-  {path: 'auth/login', component: LandingComponent},
-  {path: 'auth/register', component: LandingComponent},
-  {path: 'auth/forgetPassword', component: LandingComponent},
-  {path: 'auth/forgetPassword/r/:token', component: LandingComponent},
+  // { path: 'auth', component: LandingComponent},
+  // { path: 'auth/verifyuser/:token', component: LandingComponent },
+  // {path: 'auth/login', component: LandingComponent},
+  // {path: 'auth/register', component: LandingComponent},
+  // {path: 'auth/forgetPassword', component: LandingComponent},
+  // {path: 'auth/forgetPassword/r/:token', component: LandingComponent},
   {path: "candidates", component: CandidatesComponent },
   {path: "votes", component: VotesComponent},
   { path: "voters", component: VotersComponent },
    {path: '', redirectTo: "votings", pathMatch: 'full'}
   ]},
 
+  // {path: 'home', component: landingpageComponent },
   {path: '', component: landingpageComponent },
   {path: '**', component: Page404Component}
 ];
@@ -72,7 +75,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     RegisterComponent,
-    LandingComponent,
+    AuthComponent,
     VoteComponent,
     VotingComponent,
     AdminComponent,
@@ -85,13 +88,15 @@ const routes: Routes = [
     VotersComponent,
     SuccessComponent,
     ErrorComponent,
-    PricingComponent
+    PricingComponent,
+    landingpageComponent
   ],
   imports: [
   FusionChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
       ],
