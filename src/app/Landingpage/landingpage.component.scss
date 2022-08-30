@@ -63,6 +63,9 @@ div.banner{
 .testimonial {
   line-height: 28px;
   text-align: justify;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .user {

@@ -14,7 +14,33 @@ export class AuthComponent implements OnInit {
 
   port = routes.host
 
+  successMessage:any
+  errorMessage:any
+
   submitted = false
+
+  mustmatch(password:string,confirmpassword:string){
+
+    // registration password and confirm password matching function
+
+    return(fg:FormGroup)=>{
+      const control = fg.controls[password]
+      const match = fg.controls[confirmpassword]
+
+      if(match.errors && !match.errors['mustmatch']){
+        return
+      }
+
+      if(control.value !== match.value) {
+        match.setErrors({mustmatch:true})
+      }
+
+      else{
+        match.setErrors(null)
+      }
+      
+    }
+  }
 
   registerForms = this.fb.group({
 
@@ -23,7 +49,11 @@ export class AuthComponent implements OnInit {
     password : ['',Validators.required],
     confirmPassword : ['',Validators.required]
 
-  })
+  },
+    {
+      validators: [this.mustmatch('password','confirmPassword')]
+      }
+)
 
   get registerV(){
     return this.registerForms.controls
@@ -40,16 +70,72 @@ export class AuthComponent implements OnInit {
   // HTTP transport of registration form inputs
 this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
   res=>{
-    console.log(res)
+    // console.log(res)
+
+    let result = JSON.parse(JSON.stringify(res))
+
+    this.successMessage = result.msg
+
+    setTimeout(()=>{
+      this.successMessage=''
+    },3000)
 
   },
   err=>{
-    console.log(err)
+    // console.log(err)
+
+    this.errorMessage = err.error.msg
+
     // this.errMsg = err.error
 
-    // setTimeout(()=>{
-    //   this.errMsg=''
-    // },2000)
+    setTimeout(()=>{
+      this.errorMessage=''
+    },3000)
+
+  })
+
+  }
+
+  loginForms = this.fb.group({
+    email : ['',[Validators.required,Validators.email]],
+    password : ['',Validators.required]
+  })
+
+  get loginV(){
+    return this.loginForms.controls
+  }
+
+  loginFormsOnSubmit(){
+
+    this.submitted = true
+
+    if(this.loginForms.invalid) return
+
+     this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
+  res=>{
+    // console.log(res)
+
+    let result = JSON.parse(JSON.stringify(res))
+
+    localStorage.setItem('token',result.token)
+
+    this.successMessage = result.msg
+
+    setTimeout(()=>{
+      this.successMessage=''
+    },2000)
+
+  },
+  err=>{
+    // console.log(err)
+
+    this.errorMessage = err.error.msg
+
+    // this.errMsg = err.error
+
+    setTimeout(()=>{
+      this.errorMessage=''
+    },3000)
 
   })
 

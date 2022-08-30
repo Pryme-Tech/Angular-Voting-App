@@ -1,15 +1,16 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
+import { UsersService } from '../../users.service';
 
 import routes from '../../../assets/routes/routes.json';
 
 @Component({
-  selector: 'app-votings',
-  templateUrl: './votings.component.html',
-  styleUrls: ['./votings.component.scss']
+  selector: 'app-elections',
+  templateUrl: './elections.component.html',
+  styleUrls: ['./elections.component.scss']
 })
-export class VotingsComponent implements OnInit {
+export class ElectionsComponent implements OnInit {
 
   port = routes.host
 
@@ -23,11 +24,11 @@ export class VotingsComponent implements OnInit {
   noVotingAdded:any = ''
   votings:any = []
 
-  user_id = localStorage.getItem("user_id")
+  user_id = localStorage.getItem("token")
 
   newVoting = new FormGroup({
     newVotingInput : new FormControl(''),
-    user : new FormControl(this.user_id),
+    token : new FormControl(localStorage.getItem('token')),
     imageurl : new FormControl('')
   })
 
@@ -70,10 +71,12 @@ export class VotingsComponent implements OnInit {
     
   }
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient , private users: UsersService ) {
+
+    users.userDetails()
 
     if(!(localStorage.getItem('user_id'))){
-      window.location.replace('/admin/auth')
+      // window.location.replace('/admin/auth')
     }
 
     http.get(`${this.port}votings/${this.user_id}`).subscribe(

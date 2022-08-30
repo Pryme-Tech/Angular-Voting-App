@@ -7,14 +7,14 @@
 <div class="main" style="min-height: 100vh; background-color: #00808029; ">
 
 	<nav
-	 class="py-4" style=" background-color: teal; " >
+	 class="py-4 bg-primary"  >
 
 	<div  class=" text-center d-flex justify-content-between align-items-center">
 		<h4 class="px-4 font-weight-bolder "> {{welcome}} </h4>
 
 		<div class="m-hide">
-		<button class="p-2" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Election </button>
-		<button class="m-2 p-2" type="button" onclick="localStorage.clear(); location.reload()">
+		<button class="p-2 btn btn-light font-weight-bold" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Election </button>
+		<button class="m-2 p-2 btn btn-light font-weight-bold" type="button" onclick="localStorage.clear(); location.reload()">
 			 Log out </button>
 			 </div>
 
@@ -82,20 +82,20 @@ style="width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; ba
 
 <div class="p-0 m-0 main row justify-content-center py-3 px-3"  >
 
-	<div class="border border-5 col-12 py-1 text-center bg-dark font-weight-bold" *ngIf="noVotingAdded" >
+<div class="row pt-3">
+
+	<div class="input-group">
+  <input type="search" class="form-control rounded" placeholder="Search for an Election" aria-label="Search" aria-describedby="search-addon" />
+  <button type="button" class="btn btn-outline-primary">search</button>
+</div>
+
+<h5 class="text-center mt-3"> Select an Election to manage </h5>
+
+<div class="border border-5 col-12 py-1 text-center bg-dark font-weight-bold rounded " *ngIf="noVotingAdded" >
 
 {{noVotingAdded}}
 
 	</div>
-
-<div class="row pt-3">
-
-	<h5 class="text-center"> Select an Election to manage </h5>
-
-	<div class="bg-dark text-center py-3">
-		<label for="search" style="">Search for an Election:</label>
-		<input id="search" type="search" class="form-control mx-auto" style="width: 90%;" placeholder="Search by name">
-		</div>
 
 	<div class="col-sm-4 col-lg-3 col-sm-6 card mt-3" *ngFor="let x of votings" 
 	(click)="redirectToCandidates(x.votingname)" id={{x.votingname}} style="cursor: pointer; background-color: transparent; box-shadow: 0 0 0px rgb(0 0 0 / 13%) ">
