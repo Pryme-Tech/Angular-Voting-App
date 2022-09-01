@@ -9,11 +9,11 @@
 }
 
 .events{
-    transition: all 1.5s ease-in;
+    transition: all 1s ease-in-out;
 }
 
 .events:hover{
-    border: 3px solid black !important;
+    border: 1px solid #007bff !important;
 }
 
 @media(max-width: 600px){

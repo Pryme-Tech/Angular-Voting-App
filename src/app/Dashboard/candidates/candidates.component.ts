@@ -7,6 +7,7 @@ import routes from '../../../assets/routes/routes.json';
 //import * as $ from 'jquery';
 
 import {HttpClient} from '@angular/common/http';
+import { UsersService } from 'src/app/users.service';
 
 @Component({
   selector: 'app-candidates',
@@ -25,7 +26,7 @@ export class CandidatesComponent implements OnInit {
  flashMessage=''
 
  user_id = localStorage.getItem("user_id")
- votingname = localStorage.getItem("votingname")
+ electionName = localStorage.getItem("electionsA")
 
  toggleAddCandidate(data:any){
 
@@ -104,7 +105,7 @@ export class CandidatesComponent implements OnInit {
 
  addCategory=new FormGroup({
   categoryname : new FormControl('',Validators.required),
-  votingname : new FormControl(this.votingname),
+  votingname : new FormControl(this.electionName),
   user_id : new FormControl(this.user_id)
  })
 
@@ -114,13 +115,23 @@ export class CandidatesComponent implements OnInit {
   return this.addCategory.controls
  }
 
+ getU(){
+
+ this.users.userDetails().subscribe(
+  res=>{
+
+  }
+ )
+
+  }
+
  addCategorySubmit(){
 
   this.submitted = true
 
   if(this.addCategory.invalid) return
 
-  if(!(localStorage.getItem('user_id') && localStorage.getItem('votingname'))){
+  if(!(localStorage.getItem('token') && localStorage.getItem('votingname'))){
     // window.location.replace('/admin/auth')
     this.errorMessage = "Unauthrized access...Please login"
 
@@ -252,11 +263,11 @@ export class CandidatesComponent implements OnInit {
   
  }
 
-  constructor( private http: HttpClient, private ElementRef:ElementRef ) {
+  constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService ) {
 
-    if(!(this.user_id && this.votingname)){
-      window.location.replace('/admin/auth')
-    }
+    // if(!(this.user_id && this.votingname)){
+    //   window.location.replace('/admin/auth')
+    // }
 
     // this.http.get('http://localhost:4000/votings/myname').subscribe(
     //   res=>{
@@ -330,7 +341,7 @@ export class CandidatesComponent implements OnInit {
   this.msg.nativeElement.style.backgroundColor='red';
 
   this.user_id = localStorage.getItem("user_id")
-  this.votingname = localStorage.getItem("votingname")
+  // this.votingname = localStorage.getItem("votingname")
 
   } 
 

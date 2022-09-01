@@ -24,7 +24,7 @@ import { SuccessComponent } from './voters/success/success.component';
 import { ErrorComponent } from './voters/error/error.component';
 import { landingpageComponent } from './Landingpage/landingpage.component';
 
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // fusion charts module
 
 import { FusionChartsModule } from "angular-fusioncharts";
@@ -50,6 +50,8 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'register', component: AuthComponent},
   { path: 'login', component: AuthComponent},
+
+  { path: 'candidates', component: CandidatesComponent },
 
   { path: 'elections', component: ElectionsComponent },
 
@@ -98,8 +100,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule,
     ReactiveFormsModule,
+    NgbModule,
     RouterModule.forRoot(routes)
       ],
   providers: [],

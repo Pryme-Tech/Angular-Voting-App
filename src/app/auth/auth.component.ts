@@ -76,8 +76,11 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     this.successMessage = result.msg
 
+    localStorage.setItem('token',result.token)
+
     setTimeout(()=>{
       this.successMessage=''
+      this.route.navigate(['/elections'])
     },3000)
 
   },
@@ -123,6 +126,7 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     setTimeout(()=>{
       this.successMessage=''
+      this.route.navigate(['/elections'])
     },2000)
 
   },
@@ -141,7 +145,7 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
   }
 
-  constructor( private fb : FormBuilder, private http : HttpClient ){
+  constructor( private fb : FormBuilder, private http : HttpClient, private route : Router ){
   }
 
    ngOnInit(){

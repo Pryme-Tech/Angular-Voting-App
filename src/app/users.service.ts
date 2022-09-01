@@ -8,15 +8,10 @@ export class UsersService {
 
   token = localStorage.getItem('token')
 
-  userDetails(){
-    this.http.get(`http://localhost:4000/users/verifyUserToken/${this.token}`).subscribe(
-      res=>{
-        console.log(res)
-      },
-      err=>{
+  a:any
 
-      }
-      )
+  userDetails(){
+    return this.http.get(`http://localhost:4000/users/verifyUserToken/${this.token}`)
   }
 
   constructor( private http: HttpClient ) { }

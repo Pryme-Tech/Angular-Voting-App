@@ -19,7 +19,7 @@ export class AdminComponent{
 
   user_id = localStorage.getItem('user_id')
 
-  votingname = localStorage.getItem('votingname')
+  electionName = localStorage.getItem('electionsA')
 
   constructor(){
 
