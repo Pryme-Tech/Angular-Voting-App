@@ -25,7 +25,7 @@ export class CandidatesComponent implements OnInit {
 
  flashMessage=''
 
- user_id = localStorage.getItem("user_id")
+ userId:any
  electionName = localStorage.getItem("electionsA")
 
  toggleAddCandidate(data:any){
@@ -103,11 +103,7 @@ export class CandidatesComponent implements OnInit {
  submitCategoryMessage=""
  submitCandidateMessage=""
 
- addCategory=new FormGroup({
-  categoryname : new FormControl('',Validators.required),
-  votingname : new FormControl(this.electionName),
-  user_id : new FormControl(this.user_id)
- })
+ addCategory:any
 
  submitted = false
 
@@ -131,38 +127,29 @@ export class CandidatesComponent implements OnInit {
 
   if(this.addCategory.invalid) return
 
-  if(!(localStorage.getItem('token') && localStorage.getItem('votingname'))){
-    // window.location.replace('/admin/auth')
-    this.errorMessage = "Unauthrized access...Please login"
 
-    return
+  // this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
+  //   res=>{
 
-  }  
+  //     this.successMessage = res 
 
-  else{
+  //     setTimeout(()=>{
+  //       this.successMessage = ''
+  //       location.reload()
+  //     },1500)
 
-  this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
-    res=>{
+  //   },
+  //   err=>{
 
-      this.successMessage = res 
+  //     this.errorMessage = err.error
 
-      setTimeout(()=>{
-        this.successMessage = ''
-        location.reload()
-      },1500)
+  //   })
+  
 
-    },
-    err=>{
-
-      this.errorMessage = err.error
-
-    })
-  }
-
-  setTimeout(()=>{
-    this.errorMessage = ''
-    // location.reload()
-  },1500)
+  // setTimeout(()=>{
+  //   this.errorMessage = ''
+  //   // location.reload()
+  // },1500)
 
  }
 
@@ -171,8 +158,8 @@ export class CandidatesComponent implements OnInit {
     category: new FormControl('',Validators.required),
     candidatename: new FormControl('',Validators.required),
     avatar: new FormControl('',Validators.required),
-    votingname : new FormControl(this.votingname,Validators.required),
-    user_id : new FormControl(this.user_id,Validators.required)
+    votingname : new FormControl('',Validators.required),
+    user_id : new FormControl('',Validators.required)
   }
   );
 
@@ -265,6 +252,23 @@ export class CandidatesComponent implements OnInit {
 
   constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService ) {
 
+    users.userDetails().subscribe(
+      res=>{
+        let result = JSON.parse(JSON.stringify(res))
+
+        this.userId = result.id
+
+        this.addCategory = new FormGroup({
+          categoryName : new FormControl('',Validators.required),
+          electionNme : new FormControl(localStorage.getItem('electionsA')),
+          userId : new FormControl(result.id)
+         })
+
+      },
+      err=>{
+        location.replace('http://localhost:4200/login')
+      })
+
     // if(!(this.user_id && this.votingname)){
     //   window.location.replace('/admin/auth')
     // }
@@ -274,7 +278,7 @@ export class CandidatesComponent implements OnInit {
     //     console.log(res)
     //   })
 
-    this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
+    this.http.get(`${this.port}categories/${this.userId}/}`).subscribe(
         res=>{
 
           var response= JSON.parse(JSON.stringify(res))
@@ -309,7 +313,7 @@ export class CandidatesComponent implements OnInit {
         }
         )
 
-    this.http.get(`${this.port}candidates/${this.user_id}/${this.votingname}`).subscribe(
+    this.http.get(`${this.port}candidates/`).subscribe(
         res=>{
           var response= JSON.parse(JSON.stringify(res))
 
@@ -340,7 +344,7 @@ export class CandidatesComponent implements OnInit {
   this.msg.nativeElement.innerHTML='hello'
   this.msg.nativeElement.style.backgroundColor='red';
 
-  this.user_id = localStorage.getItem("user_id")
+  // this.user_id = localStorage.getItem("user_id")
   // this.votingname = localStorage.getItem("votingname")
 
   } 
