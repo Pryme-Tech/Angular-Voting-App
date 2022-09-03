@@ -28,6 +28,10 @@ export class CandidatesComponent implements OnInit {
  userId:any
  electionName = localStorage.getItem("electionsA")
 
+ getElectionLink(){
+  alert(localStorage.getItem('electionsA'))
+ }
+
  toggleAddCandidate(data:any){
 
   this.addCandidate.controls['category'].setValue(data);
@@ -127,41 +131,44 @@ export class CandidatesComponent implements OnInit {
 
   if(this.addCategory.invalid) return
 
+  // alert('helo')
 
-  // this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
-  //   res=>{
+  this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
+    res=>{
 
-  //     this.successMessage = res 
+      let result = JSON.parse(JSON.stringify(res))
 
-  //     setTimeout(()=>{
-  //       this.successMessage = ''
-  //       location.reload()
-  //     },1500)
+      this.successMessage = result.msg
 
-  //   },
-  //   err=>{
+      setTimeout(()=>{
+        this.successMessage = ''
+        location.reload()
+      },1500)
 
-  //     this.errorMessage = err.error
+    },
+    err=>{
 
-  //   })
+      this.errorMessage = err.error.msg
+
+    })
   
 
-  // setTimeout(()=>{
-  //   this.errorMessage = ''
-  //   // location.reload()
-  // },1500)
+  setTimeout(()=>{
+    this.errorMessage = ''
+    // location.reload()
+  },1500)
 
  }
 
  addCandidate=new FormGroup(
   {
     category: new FormControl('',Validators.required),
-    candidatename: new FormControl('',Validators.required),
+    candidateName: new FormControl('',Validators.required),
     avatar: new FormControl('',Validators.required),
-    votingname : new FormControl('',Validators.required),
-    user_id : new FormControl('',Validators.required)
+    electionId : new FormControl(localStorage.getItem('electionsA'),Validators.required),
+    userId : new FormControl('',Validators.required)
   }
-  );
+  )
 
   updateCandidate=new FormGroup(
   {
@@ -179,7 +186,7 @@ export class CandidatesComponent implements OnInit {
     let reader= new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload=(_event)=>{
-      console.log(reader.result)
+      // console.log(reader.result)
       this.src=reader.result;
       this.addCandidate.controls['avatar'].setValue(reader.result);
     }
@@ -187,23 +194,29 @@ export class CandidatesComponent implements OnInit {
   }
 
  submitCandidate(){
-  // console.log(this.addCandidate.getRawValue())
+
 
   this.submitted = true
 
   if(this.addCandidate.invalid) return
 
+  // console.log(this.addCandidate.getRawValue())
+  // alert('helooo')
+
   this.http.post(`${this.port}candidates/add`,this.addCandidate.getRawValue()).subscribe(
     res=>{
       // console.log(res)
-      this.successMessage="New Candidate Added Successfully"
-      //this.message.HTML='hello'
+      let result = JSON.parse(JSON.stringify(res))
+
+      this.successMessage=result.message
+
       setTimeout(()=>{
 
         this.successMessage=''
         //toggleAddCandidate()
         window.location.reload()
-       },1000)
+       },2000)
+
     },
     err=>{
       // console.log(err)
@@ -258,11 +271,73 @@ export class CandidatesComponent implements OnInit {
 
         this.userId = result.id
 
+        this.addCandidate.controls['userId'].setValue(result.id);
+
         this.addCategory = new FormGroup({
           categoryName : new FormControl('',Validators.required),
-          electionNme : new FormControl(localStorage.getItem('electionsA')),
+          electionId : new FormControl(localStorage.getItem('electionsA')),
           userId : new FormControl(result.id)
          })
+
+         this.http.get(`${this.port}categories/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
+          res=>{
+
+            console.log(res)
+  
+            let result = JSON.parse(JSON.stringify(res))
+  
+            result.forEach((data:any,index:any)=>{
+              //console.log(data.category)
+              this.categories.push({
+                "index" : index,
+                "count" : data.count,
+                "category" : data.categoryName,
+                // "category_id" : data.category_id
+              })
+            })
+  
+            // console.log(this.categories)
+  
+          },
+          err=>{
+            console.log(err)
+        //     if(err.statusText === "Unknown Error"){
+        //     this.errorMessage = "Error Connecting"
+        //   }
+        //   else{
+        //   // this.errorMessage = err.error
+        // }
+  
+        // setTimeout(()=>{
+        //   this.errorMessage = ''
+        //   // window.location.reload()
+        // },10000)
+  
+          }
+          )
+
+          this.http.get(`${this.port}candidates/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
+            res=>{
+              console.log(res)
+
+              let result= JSON.parse(JSON.stringify(res))
+    
+              result.forEach((data:any,index:any)=>{
+    
+                this.candidates.push({
+                  "category" : data.category,
+                  "candidatename" : data.candidateName,
+                  "photo" : data.avatar
+                })
+              })
+    
+              // console.log(this.candidates)
+    
+            },
+            err=>{
+              console.log(err)
+            }
+            )
 
       },
       err=>{
@@ -277,62 +352,6 @@ export class CandidatesComponent implements OnInit {
     //   res=>{
     //     console.log(res)
     //   })
-
-    this.http.get(`${this.port}categories/${this.userId}/}`).subscribe(
-        res=>{
-
-          var response= JSON.parse(JSON.stringify(res))
-
-          response.forEach((data:any,index:any)=>{
-            //console.log(data.category)
-            this.categories.push({
-              "index" : index,
-              "count" : data.count,
-              "category" : data.categoryname,
-              // "category_id" : data.category_id
-            })
-          })
-
-          console.log(this.categories)
-
-        },
-        err=>{
-          console.log(err)
-          if(err.statusText === "Unknown Error"){
-          this.errorMessage = "Error Connecting"
-        }
-        else{
-        // this.errorMessage = err.error
-      }
-
-      setTimeout(()=>{
-        this.errorMessage = ''
-        // window.location.reload()
-      },10000)
-
-        }
-        )
-
-    this.http.get(`${this.port}candidates/`).subscribe(
-        res=>{
-          var response= JSON.parse(JSON.stringify(res))
-
-          response.forEach((data:any,index:any)=>{
-
-            this.candidates.push({
-              "category" : data.category,
-              "candidatename" : data.candidatename,
-              "photo" : data.avatar
-            })
-          })
-
-          console.log(this.candidates)
-
-        },
-        err=>{
-          console.log(err)
-        }
-        )
 
    }
 

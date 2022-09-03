@@ -14,5 +14,9 @@ export class UsersService {
     return this.http.get(`http://localhost:4000/users/verifyUserToken/${this.token}`)
   }
 
+  election(data:any){
+    return this.http.get(`http://localhost:4000/votings/verifyElectionToken/${data}`)
+  }
+
   constructor( private http: HttpClient ) { }
 }

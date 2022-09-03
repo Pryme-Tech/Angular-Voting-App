@@ -5,6 +5,8 @@ import { FormControl , FormGroup , FormBuilder, Validators } from '@angular/form
 import {HttpClient} from '@angular/common/http';
 
 import routes from '../../../assets/routes/routes.json';
+import { ActivatedRoute } from '@angular/router';
+import { UsersService } from 'src/app/users.service';
 
 @Component({
   selector: 'app-authenticatevoter',
@@ -64,8 +66,23 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
 
 
   }
+  a:any
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient , private route: ActivatedRoute, private user : UsersService ) {
+    let a = this.route.snapshot.paramMap.get('token')
+
+    user.election(a).subscribe(
+      res=>{
+        console.log(res)
+        let result = JSON.parse(JSON.stringify(res))
+        this.a = result.msg
+      },
+      err=>{
+
+      }
+    )
+
+   }
 
   ngOnInit(): void {
   }

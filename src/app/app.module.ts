@@ -42,7 +42,7 @@ FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
 const routes: Routes = [
   //{ path: 'home', component: LandingComponent},
   // { path: 'register', component: RegisterComponent},
-  { path: 'vote', component: VoteComponent},
+  { path: 'access-election/:token', component: AuthenticatevoterComponent},
   { path: 'votepage', component: VotingComponent},
   { path: 'events', component: OngoingvotingComponent},
   { path: 'auth', component: AuthenticatevoterComponent },

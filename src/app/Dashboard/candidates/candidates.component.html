@@ -14,6 +14,7 @@
 
 					   <p *ngIf="successMessage" class="text-success " > {{successMessage}} </p>
 					   <p *ngIf="errorMessage" class="text-danger  " > {{errorMessage}} </p>
+
                        <input type="text" class="form-control" placeholder="Enter Category Name" id="name" formControlName="categoryName">
                       </div>
 
@@ -55,10 +56,10 @@
 
 					 <div class="form-group mt-3">
                        <label for="name"> Name Of Candidate: </label>
-					   <p *ngIf=" submitted && submitCandidateControls['candidatename'].errors?.['required'] " class="text-danger" >
+					   <p *ngIf=" submitted && submitCandidateControls['candidateName'].errors?.['required'] " class="text-danger" >
 						*** This field is required ***
 					</p>
-                       <input type="text" class="form-control" placeholder="Enter Candidate Name" id="name" formControlName="candidatename" >
+                       <input type="text" class="form-control" placeholder="Enter Candidate Name" id="name" formControlName="candidateName" >
                       </div>
 
                       <div class="form-group mt-3">
@@ -234,7 +235,7 @@
 
 		<div class="form-group mt-5 text-center">
 
-			<button class="btn btn-dark"> Continue to launch election </button>
+			<button class="btn btn-dark" type="button" (click)="getElectionLink()" > Continue to launch election </button>
 
 		</div>
 

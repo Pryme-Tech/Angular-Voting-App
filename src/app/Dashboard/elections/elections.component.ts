@@ -95,9 +95,11 @@ export class ElectionsComponent implements OnInit {
 
         http.get(`${this.port}votings/${result.id}`).subscribe(
           res=>{
-            
+        
             let imageurl=''
             let result = JSON.parse(JSON.stringify(res))
+
+            // alert(result.length)
     
             if(result.length < 1 ){
               this.noVotingAdded="No Elections Created"
@@ -117,6 +119,7 @@ export class ElectionsComponent implements OnInit {
               //   imageurl = this.port+i.imageurl
               // }
               this.votings.push({
+                "electionId" : i.id,
                 "votingname" : i.electionName,
                 "imageurl" : i.imageurl
               })
