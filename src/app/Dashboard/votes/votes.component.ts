@@ -38,9 +38,11 @@ export class VotesComponent implements OnInit {
             console.log(res)
             let results = JSON.parse(JSON.stringify(res))
             this.electionName = results.electionName
+            this.isElectionLaunched = results.status
           },
           err=>{
             this.electionName = err.error.electionName
+            this.isElectionLaunched = err.error.status
           }
           )        
 
