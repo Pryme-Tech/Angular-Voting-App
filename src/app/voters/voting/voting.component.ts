@@ -93,7 +93,7 @@ status=0
     }
 
     else{
-      this.router.navigate(['/'])
+      // this.router.navigate(['/'])
     }
 
     this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(

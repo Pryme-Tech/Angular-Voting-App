@@ -58,12 +58,21 @@ export class CandidatesComponent implements OnInit {
 
  electionLink = new FormGroup({
   electionId : new FormControl( localStorage.getItem('electionsA') ),
-  start : new FormControl(''),
-  end : new FormControl(''),
-  expiresOn : new FormControl('')
+  start : new FormControl('',Validators.required),
+  end : new FormControl('',Validators.required),  
+  expiresOn : new FormControl(''),
+  host : new FormControl(location.host)
  })
 
+ get electionLinkV(){
+  return this.electionLink.controls
+ }
+
  getElectionLink(){
+
+  this.submitted = true
+
+  if(this.electionLink.invalid) return
 
   this.electionLink.controls['expiresOn'].setValue(Math.abs(Date.parse(this.electionLink.getRawValue().end) - Date.parse(this.electionLink.getRawValue().start)))
 
@@ -224,6 +233,8 @@ export class CandidatesComponent implements OnInit {
  }
 
   constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService, private fb: FormBuilder ) {
+
+    // alert(location.host)
 
     this.checkElectionIsLaunched()
 

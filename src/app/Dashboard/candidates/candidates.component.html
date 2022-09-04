@@ -234,6 +234,8 @@
 
 			<label> Start Date </label>
 
+			<span class=" text-danger " *ngIf=" submitted && electionLinkV['start'].errors?.['required'] " > *** This field is required *** </span>
+
 			<input type="datetime-local" class="form-control" formControlName="start" >
 
 		</div>
@@ -241,6 +243,8 @@
 		<div class="form-group">
 
 			<label> End Date </label>
+
+			<span class=" text-danger " *ngIf=" submitted && electionLinkV['end'].errors?.['required'] " > *** This field is required *** </span>	
 
 			<input type="datetime-local" class="form-control" formControlName="end" >
 

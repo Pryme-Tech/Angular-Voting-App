@@ -22,28 +22,36 @@
 
 </div> -->
 
-<div class="vh-100 bg-light d-flex flex-column align-items-center pt-5 " *ngIf="a">
+<app-voting style="display: none;"></app-voting>
+
+<p *ngIf="successMessage" class="fixed-top bg-success text-center py-2 "> {{successMessage}} </p>
+
+<p *ngIf="errorMessage" class="fixed-top bg-danger text-center py-2 "> {{errorMessage}} </p>
+
+<div class="vh-100 bg-light d-flex flex-column align-items-center pt-5 " *ngIf="a" style=" background-color: rgba(240, 248, 255, 0.466) !important; ">
 
     <!-- <div class="bg-dark" styl> sfd </div>{{a.id}} -->
 
-    <img [src]="a.imageurl" class="img-responsive img-thumbnail my-5" style="height: 150px;">
+    <img src="assets/bg.png" class="fixed-top" style="z-index: -1; width: 100%; " >
+
+    <img [src]="a.imageurl" class="img-responsive img-circle border border-5 my-3" style="height: 150px;">
 
     <h3> {{a.electionName}} </h3>
 
-    <form class="border border-5 pb-2 rounded overflow-hidden " style="width:50%">
+    <form [formGroup]="voters" (ngSubmit)="submitVoters()" class="border border-5 pb-2 rounded overflow-hidden " style="width:50%">
         <p class="bg-primary p-3"> Login to vote </p>
 
     <div class="form-group m-3" >
 
-        
+        <small *ngIf=" this.submitted && this.votersControl['votersId'].errors?.['required'] " class="text-danger font-weight-bold"> *** This input is required *** </small>
 
-        <input type="text" class="form-control" placeholder="Enter Voting Id" formControlName="votingId" >
+        <input type="text" class="form-control" placeholder="Enter Voting Id" formControlName="votersId" >
 
     </div>
 
     <div class="m-3">
 
-        <button class="btn btn-outline-primary"> Submit </button>
+        <button class="btn btn-outline-primary"  type="submit" > Submit </button>
 
     </div>
 
@@ -51,4 +59,3 @@
 
     </div>
 
-<h1> {{a}} </h1>
