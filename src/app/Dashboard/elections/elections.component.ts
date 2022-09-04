@@ -67,9 +67,13 @@ export class ElectionsComponent implements OnInit {
       })
   }
 
-  redirectToCandidates(election:any){
+  redirectToCandidates(election:any,launched:any){
 
     localStorage.setItem("electionsA",election)
+
+    if(launched) localStorage.setItem("launched",'true')
+
+    else localStorage.setItem("launched",'false')
 
     window.location.assign('/candidates')
 
@@ -121,7 +125,8 @@ export class ElectionsComponent implements OnInit {
               this.votings.push({
                 "electionId" : i.id,
                 "votingname" : i.electionName,
-                "imageurl" : i.imageurl
+                "imageurl" : i.imageurl,
+                "launched" : i.link
               })
             })
     

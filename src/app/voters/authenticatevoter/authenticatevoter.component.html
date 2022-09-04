@@ -22,4 +22,33 @@
 
 </div> -->
 
+<div class="vh-100 bg-light d-flex flex-column align-items-center pt-5 " *ngIf="a">
+
+    <!-- <div class="bg-dark" styl> sfd </div>{{a.id}} -->
+
+    <img [src]="a.imageurl" class="img-responsive img-thumbnail my-5" style="height: 150px;">
+
+    <h3> {{a.electionName}} </h3>
+
+    <form class="border border-5 pb-2 rounded overflow-hidden " style="width:50%">
+        <p class="bg-primary p-3"> Login to vote </p>
+
+    <div class="form-group m-3" >
+
+        
+
+        <input type="text" class="form-control" placeholder="Enter Voting Id" formControlName="votingId" >
+
+    </div>
+
+    <div class="m-3">
+
+        <button class="btn btn-outline-primary"> Submit </button>
+
+    </div>
+
+</form>
+
+    </div>
+
 <h1> {{a}} </h1>

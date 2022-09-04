@@ -18,18 +18,76 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
+
+
+  isElectionLaunched = false
+  link:any
+  start:any
+  end:any
+
+  electionName:any
+
+  checkElectionIsLaunched(){
+    this.http.get(`${this.port}votings/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
+      res=>{
+        // console.log(res)
+        let result = JSON.parse(JSON.stringify(res))
+
+        this.isElectionLaunched = result.status
+        this.link = result.link
+        this.start = result.start
+        this.end = result.end
+
+        this.electionName = result.electionName
+      },
+      err=>{
+        this.electionName = err.error.electionName
+        this.isElectionLaunched = err.error.status
+      }
+      )
+  }
+
+
+
   port = routes.host
 
   successMessage:any
   errorMessage:any
 
- flashMessage=''
-
  userId:any
- electionName = localStorage.getItem("electionsA")
+
+ electionLink = new FormGroup({
+  electionId : new FormControl( localStorage.getItem('electionsA') ),
+  start : new FormControl(''),
+  end : new FormControl(''),
+  expiresOn : new FormControl('')
+ })
 
  getElectionLink(){
-  alert(localStorage.getItem('electionsA'))
+
+  this.electionLink.controls['expiresOn'].setValue(Math.abs(Date.parse(this.electionLink.getRawValue().end) - Date.parse(this.electionLink.getRawValue().start)))
+
+  this.http.post(`${this.port}votings/getElectionLink`,this.electionLink.getRawValue()).subscribe(
+    res=>{
+
+      let result = JSON.parse(JSON.stringify(res))
+
+      this.successMessage = result.msg
+
+      this.isElectionLaunched = result.status
+        this.link = result.link
+        this.start = result.start
+        this.end = result.end
+
+        this.electionName = result.electionName
+
+    },
+    err=>{
+      console.log(err)
+    }
+    )
+  
+  // console.log(this.electionLink.getRawValue())
  }
 
  toggleAddCandidate(data:any){
@@ -40,74 +98,15 @@ export class CandidatesComponent implements OnInit {
 
   addcandidate.classList.remove("hidden")
 
-  // if(data==="close"){
-  //   form.classList.remove('add_candidate');
-
-  // form.classList.add('add_candidate_rm');
-
-  // return;
-  // }
-  // //alert(data);
-
-  // form.classList.remove('add_candidate_rm');
-
-  // form.classList.add('add_candidate');
-
-  // this.addCandidate.controls['category'].setValue(data);
-
-  // if(name && photo){
-  //   this.addCandidate.controls['name'].setValue(name);
-  //   this.addCandidate.controls['photo'].setValue(photo);
-  // }
-
  }
 
-  toggleUpdateCandidate(form:any,data?:any,name?:any,photo?:any){
-
-     if(data==="close"){
-    form.classList.remove('add_candidate');
-
-  form.classList.add('add_candidate_rm');
-
-  return;
-  }
-  //alert(data);
-
-  form.classList.remove('add_candidate_rm');
-
-  form.classList.add('add_candidate');
-
-  this.updateCandidate.controls['category'].setValue(data);
-
-  if(name && photo){
-    this.updateCandidate.controls['name'].setValue(name);
-    this.updateCandidate.controls['photo'].setValue(photo);
-  }
-
- }
-
- deleteCandidate(data:any,category:any){
-  //alert(data);
-  //alert(category);
-  this.http.get(`${this.port}candidates/del/${data}/${category}`).subscribe(
-    res=>{
-      console.log(res)
-      var response=JSON.stringify(res)
-      this.flashMessage="Candidate Deleted Successfully"//response.replace(/"/g,'')
-      setTimeout(()=>{
-      this.flashMessage='' //window.location.reload()
-       },900)
-    },
-    err=>{
-      console.log(err)
-    }
-    )
- }
-
- submitCategoryMessage=""
- submitCandidateMessage=""
-
- addCategory:any
+ 
+ addCategory = this.fb.group({
+          categoryName: ['',Validators.required],
+          electionId: [''],
+          userId: ['']
+        }
+          )
 
  submitted = false
 
@@ -115,15 +114,6 @@ export class CandidatesComponent implements OnInit {
   return this.addCategory.controls
  }
 
- getU(){
-
- this.users.userDetails().subscribe(
-  res=>{
-
-  }
- )
-
-  }
 
  addCategorySubmit(){
 
@@ -131,7 +121,7 @@ export class CandidatesComponent implements OnInit {
 
   if(this.addCategory.invalid) return
 
-  // alert('helo')
+  console.log(this.addCategory.getRawValue())
 
   this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
     res=>{
@@ -169,14 +159,6 @@ export class CandidatesComponent implements OnInit {
     userId : new FormControl('',Validators.required)
   }
   )
-
-  updateCandidate=new FormGroup(
-  {
-    category: new FormControl(''),
-    name: new FormControl(''),
-    photo: new FormControl('')
-  }
-  );
 
   src:any=""
 
@@ -241,29 +223,9 @@ export class CandidatesComponent implements OnInit {
   return this.addCandidate.controls
  }
 
-  submitUpdateCandidate(){
-  console.log(this.addCandidate.getRawValue())
+  constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService, private fb: FormBuilder ) {
 
-  this.http.post(`${this.port}candidates/update/candidate`,this.updateCandidate.getRawValue()).subscribe(
-    res=>{
-      console.log(res)
-      this.flashMessage="Candidate Successfully Updated"
-      //this.message.HTML='hello'
-      setTimeout(()=>{
-
-        this.flashMessage=''
-        window.location.reload();
-        //toggleAddCandidate()
-       },900)
-    },
-    err=>{
-      console.log(err)
-    })
-
-  
- }
-
-  constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService ) {
+    this.checkElectionIsLaunched()
 
     users.userDetails().subscribe(
       res=>{
@@ -273,16 +235,14 @@ export class CandidatesComponent implements OnInit {
 
         this.addCandidate.controls['userId'].setValue(result.id);
 
-        this.addCategory = new FormGroup({
-          categoryName : new FormControl('',Validators.required),
-          electionId : new FormControl(localStorage.getItem('electionsA')),
-          userId : new FormControl(result.id)
-         })
+        this.addCategory.controls['electionId'].setValue(localStorage.getItem('electionsA'))
+
+        this.addCategory.controls['userId'].setValue(result.id)
 
          this.http.get(`${this.port}categories/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
           res=>{
 
-            console.log(res)
+            // console.log(res)
   
             let result = JSON.parse(JSON.stringify(res))
   
@@ -301,24 +261,13 @@ export class CandidatesComponent implements OnInit {
           },
           err=>{
             console.log(err)
-        //     if(err.statusText === "Unknown Error"){
-        //     this.errorMessage = "Error Connecting"
-        //   }
-        //   else{
-        //   // this.errorMessage = err.error
-        // }
-  
-        // setTimeout(()=>{
-        //   this.errorMessage = ''
-        //   // window.location.reload()
-        // },10000)
   
           }
           )
 
           this.http.get(`${this.port}candidates/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
             res=>{
-              console.log(res)
+              // console.log(res)
 
               let result= JSON.parse(JSON.stringify(res))
     
@@ -344,15 +293,6 @@ export class CandidatesComponent implements OnInit {
         location.replace('http://localhost:4200/login')
       })
 
-    // if(!(this.user_id && this.votingname)){
-    //   window.location.replace('/admin/auth')
-    // }
-
-    // this.http.get('http://localhost:4000/votings/myname').subscribe(
-    //   res=>{
-    //     console.log(res)
-    //   })
-
    }
 
    categories:any=[]
@@ -362,9 +302,6 @@ export class CandidatesComponent implements OnInit {
   ngOnInit(): void {//declare var $: any;
   this.msg.nativeElement.innerHTML='hello'
   this.msg.nativeElement.style.backgroundColor='red';
-
-  // this.user_id = localStorage.getItem("user_id")
-  // this.votingname = localStorage.getItem("votingname")
 
   } 
 
@@ -394,10 +331,6 @@ ngAfterViewInit(){
 
     var hideAddCandidate=document.getElementById('hideAddCandidate') as HTMLElement;
 
-    //var hideAddCandidate=document.getElementById('hideAddCandidate') as HTMLElement;
-
-    // var add_category=document.querySelectorAll('.add_category');
-
     let addcategory = document.getElementById("addcategory") as HTMLElement
 
     let addcandidate = document.getElementById("addcandidate") as HTMLElement
@@ -422,70 +355,11 @@ ngAfterViewInit(){
 
     })
 
-/*
-    hideAddCandidate.addEventListener('click',()=>{
-
-      add_candidate_rm.forEach((btn:any)=>{
-        btn.classList.remove('add_candidate');
-        btn.classList.add('add_category_rm')
-    });
-
-    })
-    */
-
     showAddCategory.addEventListener('click',()=>{
 
       addcategory.classList.remove("hidden")
 
     })
-
-    // submitCategory.addEventListener('click',()=>{
-
-    //   let submitCategoryMessage=document.getElementById('submitCategoryMessage') as HTMLElement;
-      
-    //   let categoryform=document.getElementById('categoryform') as HTMLElement;
-
-    //   console.log(this.addCategory.value);
-
-    //    this.http.get(`${this.port}categories/add/${this.addCategory.value}`).subscribe(
-    //     res=>{
-          
-    //       var response=JSON.stringify(res)
-    //       var data=JSON.parse(response)
-    //       console.log(data.data);
-    //       this.submitCategoryMessage="Category Successfully Created";
-    //       submitCategoryMessage.style.display='block';
-    //       categoryform.style.display='none';
-
-    //       setInterval(()=>{
-    //         add_category_rm.forEach((btn:any)=>{
-    //     btn.classList.remove('add_category');
-    //     btn.classList.add('add_category_rm')
-    // });
-    // window.location.reload()
-    //       },1000)
-    //     },
-    //     err=>{
-    //       console.log(err)
-    //       this.submitCategoryMessage="Error Inserting Data Please Try Again";
-    //       submitCategoryMessage.style.display='block';
-    //       submitCategoryMessage.classList.remove('bg-success');
-    //       submitCategoryMessage.classList.add('bg-danger');
-          
-    //       categoryform.style.display='none';
-
-    //       setInterval(()=>{
-    //         /*add_category_rm.forEach((btn:any)=>{
-    //     btn.classList.remove('add_category');
-    //     btn.classList.add('add_category_rm')
-    // });*/
-    // window.location.reload()
-    //       },1000)
-    //     }
-    //     )
-
-    // })
-
     
 
 }

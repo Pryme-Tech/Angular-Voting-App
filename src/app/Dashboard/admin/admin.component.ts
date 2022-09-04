@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterContentChecked,  ElementRef, ViewChild } from '@angular/core' ;
+import { Component, Input, OnInit, AfterViewInit, AfterContentChecked,  ElementRef, ViewChild } from '@angular/core' ;
 
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
@@ -19,7 +19,9 @@ export class AdminComponent{
 
   user_id = localStorage.getItem('user_id')
 
-  electionName = localStorage.getItem('electionsA')
+  @Input('electionName') electionName = ''
+
+  // electionName = localStorage.getItem('electionsA')
 
   constructor(){
 

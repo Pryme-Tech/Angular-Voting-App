@@ -1,21 +1,23 @@
+<app-admin [electionName]="electionName" ></app-admin>
+
 <div class="text-center mt-3">
 <button class="btn btn-primary mx-3" onclick="document.querySelector('form').style.display='block'" > <i class="fa fa-plus"></i> Add a new voter  </button>
 <button class="btn btn-primary mx-3" onclick="document.querySelector('form').style.display='block'" > <i class="fa fa-cloud-upload"></i> Import Voters </button>
 </div>
 
-<form class="text-center bg-dark p-4 my-4 mt-0" style=" display: none; " [formGroup]="voters" (ngSubmit)="votersOnsubmit()" >
-    <input type="text" class="form-control" placeholder="Enter Name of Voter" formControlName="votersname" >
+<form class="container text-center bg-dark p-4 my-4 mt-0" style=" display: none; " [formGroup]="voters" (ngSubmit)="votersOnsubmit()" >
+    <input type="text" class="form-control" placeholder="Enter Name of Voter to generate ID" formControlName="name" >
     <button class="btn btn-primary mt-3"> Submit </button>
 </form>
 
 <p *ngIf="successMessage" class="text-center border border-5 font-weight-bold py-2 " style="color: green; font-family: monospace !important;"> {{successMessage}} <i class="bg-dark p-2 rounded"> Voting ID: {{votingId}} </i> </p>
 
-<div class="d-flex justify-content-center my-5 mx-auto " style="width: 70%;" > 
-    <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" style="width: 90%;" >
+<div class="d-flex justify-content-end my-5 mx-3 "  > 
+    <input type="search" class="form-control" placeholder="Search for a voter" #search (input)="searchVoters(this.search.value)" style="width: 50%;" >
     <button class="btn btn-primary bg-primary " (click)="searchVoters('all')"> Search </button>
 </div>
 
-<h3 class="text-center py-3 text-light " style=" background-color: teal; "  > Registered Voters </h3>
+<h3 class="text-center py-3 text-light font-italic bg-primary "  > Registered Voters </h3>
 
 <table class="table table-striped container ">
 

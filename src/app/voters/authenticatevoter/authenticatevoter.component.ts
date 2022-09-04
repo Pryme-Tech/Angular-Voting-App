@@ -71,14 +71,14 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
   constructor( private http: HttpClient , private route: ActivatedRoute, private user : UsersService ) {
     let a = this.route.snapshot.paramMap.get('token')
 
-    user.election(a).subscribe(
+    this.user.election(a).subscribe(
       res=>{
         console.log(res)
         let result = JSON.parse(JSON.stringify(res))
-        this.a = result.msg
+        this.a = result
       },
       err=>{
-
+console.log(err)
       }
     )
 

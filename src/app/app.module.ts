@@ -51,6 +51,9 @@ const routes: Routes = [
   { path: 'register', component: AuthComponent},
   { path: 'login', component: AuthComponent},
 
+  { path: 'voters', component: VotersComponent },
+  { path: 'results', component: VotesComponent },
+
   { path: 'candidates', component: CandidatesComponent },
 
   { path: 'elections', component: ElectionsComponent },

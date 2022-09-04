@@ -101,17 +101,19 @@
 
 <div class="d-flex align-items-center justify-content-center flex-column vh-100 " style=" background-color: #00808029; ">
 
-	<app-admin class="bg-dark" style="width: 100%;"></app-admin>
+	<app-admin style="width: 100%;" [electionName]="electionName" > </app-admin>
 
-	<div class="card container categories mt-3 border border-5 overflow-scroll" style="height: 90% !important; border-color: teal !important; ">
+	<div class="card container categories mt-3 border border-5 overflow-scroll" style="height: 90% !important; border-color: #007bff !important;  ">
 
-		<div class="card-header text-center font-weight-bold border-bottom border-5 " style="font-size: .9em; border-color: teal !important; "> CATEGORIES & CANDIDATES UNDER THIS ELECTION </div>
+		<div class="card-header text-center font-weight-bold border-bottom border-5 py-3 " style="font-size: .9em; border-color: #007bff !important; "> CATEGORIES & CANDIDATES UNDER THIS ELECTION </div>
 
 		<div class="card-body" >
 
 			<div class="text-right mb-3">
 
-			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" > <i class="fas fa-plus"> </i> Add a New Category </button>
+			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" *ngIf="!isElectionLaunched"  > <i class="fas fa-plus"> </i> Add a New Category </button>
+
+			<button class="btn btn-light" style="border: 1px solid" id="showAddCategory" *ngIf="isElectionLaunched"  disabled> <i class="fas fa-plus"> </i> Add a New Category </button>
 
 		</div>
 
@@ -128,9 +130,12 @@
 
 					<div class="text-right m-0 p-0">
 
-			<button class="btn btn-light showAddCandidate mx-2 " #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(y.category) > <i class="fas fa-plus" > </i> Add New Candidate </button>
+			<button *ngIf="isElectionLaunched" disabled class="btn btn-light showAddCandidate mx-2 " #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(y.category) > <i class="fas fa-plus" > </i> Add New Candidate </button>
 
-			<button class="btn btn-light text-danger border border-5">Delete this category</button>
+			<button *ngIf="!isElectionLaunched" class="btn btn-light showAddCandidate mx-2 " #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(y.category) > <i class="fas fa-plus" > </i> Add New Candidate </button>
+
+			<button *ngIf="isElectionLaunched" disabled class="btn btn-light text-danger border border-5">Delete this category</button>
+			<button *ngIf="!isElectionLaunched" class="btn btn-light text-danger border border-5">Delete this category</button>
 
 		</div>
 
@@ -162,12 +167,18 @@
 
 									<div class="justify-content-center d-flex flex-column" style="height: 100%;">
 
-									<button class="btn btn-success" onclick="alert('SORRY!!! This feature is not available at the moment.')">
+									<button *ngIf="isElectionLaunched" disabled class="btn btn-success" onclick="alert('SORRY!!! This feature is not available at the moment.')">
 									 Edit Candidate 
 									 <!-- (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo) -->
 									</button>
 
-									<button class="btn btn-danger mt-2" (click)=deleteCandidate(x.name,x.category) [value]="x.name"> Delete Candidate </button>
+									<button *ngIf="!isElectionLaunched" class="btn btn-success" onclick="alert('SORRY!!! This feature is not available at the moment.')">
+									 Edit Candidate 
+									 <!-- (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo) -->
+									</button>
+
+									<button *ngIf="isElectionLaunched" disabled class="btn btn-danger mt-2"  [value]="x.name"> Delete Candidate </button>
+									<button *ngIf="!isElectionLaunched" class="btn btn-danger mt-2"  [value]="x.name"> Delete Candidate </button>
 
 								</div>
 
@@ -206,22 +217,24 @@
 
 <!-- LAUNCH ELECTION FORM -->
 
-<div class="d-flex align-items-center justify-content-center hidden" id="launchElection" style=" position: absolute; top: 0; width: 100%; height: 100%; backdrop-filter: blur(3px); " >
+<div class="d-flex align-items-center justify-content-center hidden flex-column" id="launchElection" style=" position: absolute; top: 0; width: 100%; height: 100%; backdrop-filter: blur(3px); " >
 
-	<form class="bg-secondary p-5 rounded" style="position: relative;">
+	<form *ngIf="!isElectionLaunched" [formGroup]="electionLink" (ngSubmit)="getElectionLink()" class="bg-secondary p-5 rounded" style="position: relative; width: 50%; ">
+
+		<p *ngIf="successMessage" > {{successMessage}} </p>
 
 
 		<i class="text-danger fa fa-close fa-2x" onclick="document.getElementById('launchElection').classList.toggle('hidden')" style="position: absolute; right:2%; top:2%;"></i>
 
-		<p> Election URL: http://localhost:4200/sfsdfdfsdfa  </p>
+		<!-- <p> Election URL: http://localhost:4200/sfsdfdfsdfa  </p> -->
 
-		<button class="btn btn-light"> Copy Election Link </button>
+		<!-- <button class="btn btn-light"> Copy Election Link </button> -->
 
 		<div class="form-group mt-3">
 
 			<label> Start Date </label>
 
-			<input type="Date" class="form-control" name="">
+			<input type="datetime-local" class="form-control" formControlName="start" >
 
 		</div>
 
@@ -229,17 +242,39 @@
 
 			<label> End Date </label>
 
-			<input type="Date" class="form-control" name="">
+			<input type="datetime-local" class="form-control" formControlName="end" >
 
 		</div>
 
 		<div class="form-group mt-5 text-center">
 
-			<button class="btn btn-dark" type="button" (click)="getElectionLink()" > Continue to launch election </button>
+			<button class="btn btn-dark" type="submit" > Continue to launch election </button>
 
 		</div>
 
 	</form>
+
+	<div class="bg-secondary p-5 rounded" *ngIf="isElectionLaunched" style="position: relative; width: 50%; ">
+
+		<i class="text-danger fa fa-close fa-2x" onclick="document.getElementById('launchElection').classList.toggle('hidden')" style="position: absolute; right:2%; top:2%;"></i>
+
+		<p class="text-center bg-dark p-3 rounded font-weight-bolder " id="copied" style="position: absolute; top:10%; left: 50%; display: none; " > Copied </p>
+
+		<h3> Election is launched </h3>
+
+		<p> Election Url </p>
+
+		<p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; " id="e" > {{link}} </p>
+
+		<p> Start Date: {{start}} </p>
+
+		<p> End Date: {{end}} </p>
+
+		<button class="btn btn-light" onclick="navigator.clipboard.writeText(document.getElementById('e').innerText); document.getElementById('copied').style.display='block'; setTimeout(()=>{ document.getElementById('copied').style.display='none'; },2000) " > Copy Election Link </button>
+
+		<button class="btn btn-primary mx-2"> Share Link </button>
+
+	</div>
 
 
 </div>

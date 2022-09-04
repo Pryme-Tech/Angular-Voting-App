@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {FormBuilder,FormControl,FormGroup} from '@angular/forms';
 
 import routes from '../../../assets/routes/routes.json';
+import { UsersService } from 'src/app/users.service';
 
 @Component({
   selector: 'app-voters',
@@ -14,6 +15,8 @@ export class VotersComponent implements OnInit {
 
   port = routes.host
 
+  electionName:any
+
   votingName = localStorage.getItem('votingname')
 
   votersInfo:any = []
@@ -22,8 +25,9 @@ export class VotersComponent implements OnInit {
   votingId = ''
 
   voters = new FormGroup({
-    "votersname" : new FormControl(''),
-    "votingname" : new FormControl(this.votingName)
+    "name" : new FormControl(''),
+    "userId" : new FormControl(''),
+    "electionId" : new FormControl(localStorage.getItem('electionsA'))
   })
 
   votersOnsubmit(){
@@ -60,7 +64,7 @@ export class VotersComponent implements OnInit {
       sort = 'all'
     }
 
-    this.http.get(`${this.port}voters/${this.votingName}/${sort}`).subscribe(
+    this.http.get(`${this.port}voters/${localStorage.getItem('electionsA')}/${sort}`).subscribe(
       res=>{
 
         let result = JSON.parse(JSON.stringify(res))
@@ -69,8 +73,8 @@ export class VotersComponent implements OnInit {
 
           this.votersInfo.push({
             index : index,
-            votersId : voters.index_no,
-            votersName : voters.votersname
+            votersId : voters.votersId,
+            votersName : voters.name
           })
 
           // console.log(this.votersInfo)
@@ -85,11 +89,31 @@ export class VotersComponent implements OnInit {
 
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private users: UsersService) {
 
-    if(!this.votingName){
-      location.replace('/admin/auth')
-    }
+      users.userDetails().subscribe(
+      res=>{
+        let result = JSON.parse(JSON.stringify(res))
+
+        this.voters.controls['userId'].setValue(result.id);
+
+        this.http.get(`${this.port}votings/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
+          res=>{
+            console.log(res)
+            let results = JSON.parse(JSON.stringify(res))
+            this.electionName = results.electionName
+          },
+          err=>{
+            this.electionName = err.error.electionName
+          }
+          )        
+
+      },
+      err=>{
+        location.replace('http://localhost:4200/login')
+      })
+
+
 
     this.searchVoters('all')
 
