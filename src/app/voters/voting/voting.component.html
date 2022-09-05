@@ -1,109 +1,65 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- 
+  <div class="fixed-top vh-100 d-flex align-items-center justify-content-center " style=" backdrop-filter: blur(5px); " >
 
-  <!-- Flash Messages -->
+    <div class=" bg-success p-5 rounded text-center " >
 
-<div class="text-center bg-dark" *ngIf="flashSuccessMessage"
-style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
-padding: .5%; width: 70%; box-sizing: border-box; z-index: 99;" >
-<span class="badge badge-light m-2" style="width: 5%; background-color: white; color: black;" id="countdown">3</span>
-{{flashSuccessMessage}} <img src="assets/correct.png" style="width: 5%;">
-</div>
+      <i class="fa-solid fa-circle-check fa-3x m-2 "></i>
 
-<div class="text-center bg-light text-danger" *ngIf="flashErrorMessage"
-style="position: fixed; font-weight: bold; font-family: monospace !important; font-size: 1.2em; top: 1%; left: 15%; 
-padding: .5%; width: 70%; box-sizing: border-box; z-index: 99; color: red;" >
-<span class="badge badge-danger m-2" style="width: 5%; " id="countdown">3</span>
-{{flashErrorMessage}} <img src="assets/error.png" style="width: 8%;">
-</div>
+      <h3> Voting Successful </h3>
 
-<h3 class="text-center p-3 m-0 bg-dark font-weight-bold"> {{votingname}} </h3>
-
-<!-- <marquee class=" font-weight-bold "> Message From SRC President: Please Vote wisely, Vote Peacefully... Thank you </marquee> -->
-
-<div class="container-fluid full bg-success" >
-
-<div class="text-center" style="position: fixed; width: 100vw; top: -40%; left: 0; z-index: 0;">
-  <img src="assets/bg.png" style="width: inherit; opacity: 8%;" >
-</div>
-
-<!-- 	<div class="row user p-4 text-center">
-
-		<div class="col-sm-6">
-			<span> -- {{username}} </span>
-		</div>
-
-		<div class="col-sm-6">
-			<span> -- {{indexnumber}} </span>
-
-		</div>
-
-	</div> -->
-
-  <h4 class="text-center bg-light py-2 font-weight-bolder m-0 " style=" font-family: monospace; " > Welcome {{voter}} </h4>
-
-	<div class="container-fluid pt-2" style="z-index: 1 !important; position: relative;">
-
-		<div class="text-center bg-dark py-3 font-weight-bold"> Please select a category to vote </div>
-
-    <form [formGroup]="votes" (ngSubmit)="vote()">
-
-	 <div class="form-step-active mt-3 card" *ngFor="let x of categories" >
-
-	 	<h6 class="card-header d-flex justify-content-between " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.index" style=" color:  green; text-transform: uppercase; font-weight: bold;" (click)="this.s.classList.toggle('fa-angle-up')" > 
-
-      <span style="width: 50%;"> {{x.category}} </span> 
-      
-      <span class="text-right font-weight-bolder fa-solid fa-angle-down" #s style="width: 50%;">  </span> 
-
-       </h6>
-
-    <div class="card-body collapse p-0 " [id]="'x'+x.index" >
-
-        <ol class="row px-5">
-        
-        <ng-container *ngFor="let y of candidates" >
-      
-      <li class=" candidates mt-5 py-2 col-lg-4 col-md-6 text-dark " *ngIf="y.category === x.category" style=" list-style-position: inside;
-" >
-        
-        <div class="thumbnail text-center "  >
-
-        <img [src]="y.image" class="img-circle img-responsive "  
-        style="height: 150px; width: auto; border: 2px solid grey;"> 
-    
-        <div class="mx-2 mb-2 py-2 " style="border-radius: 1rem; background-color: white; border: 2px solid grey; " >
-
-          <h4> {{y.candidatename}} </h4>
-
-          <div class="d-flex align-items-center justify-content-center">
-            <!-- <label for="check" class="px-3" > Vote </label> -->
-        <input id="check" type="radio" [value]=y.id formControlName={{y.category}} ondblclick="this.checked = false" >
-        
-        <!-- {{y.id}} -->
-          </div>
-        
-
-        </div>
-
-    </div>
-      </li>
-      
-    </ng-container>>
-  </ol>
+      <p> Thank you for voting! </p>
 
     </div>
 
-      <div class="card-footer text-center text-dark"> {{x.count}} Candidates </div>
+
+    <div class=" bg-danger p-5 rounded text-center " >
+
+      <i class="fa-solid fa-circle-exclamation fa-5x m-2"></i>
+
+      <h3> You have already voted </h3>
+
+      <p> If this error is not right, contact us. </p>
+
+    </div>
+
+  </div> -->
+
+  <div class=" text-center py-3 " >
+
+    <img [src]="electionLogo" class="img-rounded my-3 "  >
+
+    <h3> {{electionName}} </h3>
 
   </div>
 
-  <div class="text-center py-5 font-weight-bold" >
-        <button type="submit" class="m-auto btn-submit p-3 bg"> Submit Vote </button>
-      </div>
+  <div class="card container p-0 " *ngFor=" let x of categories " >
 
-</form>
-		
+    <div (click)="  this.arrow.classList.toggle('fa-circle-chevron-up'); " class="card-header bg-primary d-flex justify-content-between align-items-center " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.index" style=" cursor : pointer; " > <p class="p-0 m-0 font-weight-bold " style="width: 70%; text-align: left;"> {{x.category}} </p> <i style="width: 30%; text-align: right; " class="fa-solid fa-circle-chevron-down " #arrow ></i> </div>
+
+    <div class="card-body collapse" [id]="'x'+x.index" >
+
+<ng-container *ngFor="let y of candidates">
+
+  <div class=" d-flex mt-4 align-items-center justify-content-between " *ngIf=" y.category === x.category " > 
+
+    <input type="radio"> 
+    <img [src]="y.image" class="border border-5" style="width: 100px;">
+   <p class="text-center font-weight-bold " style="width:50%;" > {{y.candidatename}} </p>
 
 </div>
 
+</ng-container>
+
 </div>
+
+    
+
+  </div>
+
+  <div class=" text-center my-3 " >
+
+    <button class="btn btn-outline-primary " > Submit Vote </button>
+
+  </div>
+
+  <!-- <h3 class="text-primary text-center py-3 " > Welcome {{a}} </h3> -->

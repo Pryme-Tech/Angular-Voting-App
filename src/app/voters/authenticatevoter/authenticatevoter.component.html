@@ -22,23 +22,26 @@
 
 </div> -->
 
-<app-voting style="display: none;"></app-voting>
+<!-- <app-voting style="display: none;"></app-voting> -->
 
-<p *ngIf="successMessage" class="fixed-top bg-success text-center py-2 "> {{successMessage}} </p>
+<p *ngIf="successMessage" class="fixed-top bg-success text-center py-2 d-flex align-items-center justify-content-center "> <i class="fa-solid fa-circle-check fa-2x m-2 "></i> {{successMessage}} </p>
 
-<p *ngIf="errorMessage" class="fixed-top bg-danger text-center py-2 "> {{errorMessage}} </p>
+<p *ngIf="errorMessage" class="fixed-top bg-danger text-center py-2 d-flex align-items-center justify-content-center "> <i class="fa-solid fa-circle-exclamation fa-2x m-2"></i> {{errorMessage}} </p>
 
-<div class="vh-100 bg-light d-flex flex-column align-items-center pt-5 " *ngIf="a" style=" background-color: rgba(240, 248, 255, 0.466) !important; ">
+<div class="vh-100 bg-dark d-flex flex-column align-items-center pt-5 " *ngIf="a" style=" 
+    background-color: rgb(0 123 255 / 12%) !important; ">
 
     <!-- <div class="bg-dark" styl> sfd </div>{{a.id}} -->
 
-    <img src="assets/bg.png" class="fixed-top" style="z-index: -1; width: 100%; " >
+    <img src="assets/bg.png" class="fixed-top" style="z-index: -1; width: 100%; opacity: 50%; " >
 
-    <img [src]="a.imageurl" class="img-responsive img-circle border border-5 my-3" style="height: 150px;">
+    <img src="assets/bg.png" class="fixed-bottom" style="z-index: -2; width: 100%; opacity: 50%; " >
 
-    <h3> {{a.electionName}} </h3>
+    <img [src]="a.imageurl" class="img-responsive img-rounded  my-3" style="height: 150px;">
 
-    <form [formGroup]="voters" (ngSubmit)="submitVoters()" class="border border-5 pb-2 rounded overflow-hidden " style="width:50%">
+    <h3 class="text-dark font-weight-bolder " > {{a.electionName}} </h3>
+
+    <form [formGroup]="voters" (ngSubmit)="submitVoters()" class="border bg-light border-5 pb-2 rounded overflow-hidden " style="width:50%">
         <p class="bg-primary p-3"> Login to vote </p>
 
     <div class="form-group m-3" >

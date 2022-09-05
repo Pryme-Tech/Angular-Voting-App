@@ -35,7 +35,7 @@ input{
       -moz-appearance: none;
       -webkit-appearance: none;
       border: 3px solid green;
-      border-radius: 20%;
+      border-radius: 50%;
     }
 
     input:checked{
@@ -143,7 +143,7 @@ input{
     gap: 1.5rem;
   }
   
-  .btn {
+  /*.btn {
     padding: 0.75rem;
     display: block;
     text-decoration: none;
@@ -156,7 +156,7 @@ input{
   }
   .btn:hover {
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgb(11, 78, 179);
-  }
+  }*/
 
   .btn-submit{
     background-color: transparent;

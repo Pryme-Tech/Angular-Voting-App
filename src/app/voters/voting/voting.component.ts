@@ -4,7 +4,7 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 
 import {HttpClient} from '@angular/common/http';
 
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 import routes from '../../../assets/routes/routes.json';
 
@@ -81,24 +81,29 @@ candidates:any=[]
 
 status=0
 
+a = ''
 
-  constructor( private fb: FormBuilder, private http: HttpClient, private router: Router ) { 
+electionLogo:any
+electionName:any
 
-    setTimeout(()=>{
-      localStorage.clear()
-      location.reload()
-    },800000)
 
-    if(localStorage.getItem('accessuser') && localStorage.getItem('accessvoting')){
-    }
+  constructor( private fb: FormBuilder, private http: HttpClient, private router: Router, private rout: ActivatedRoute ) { 
 
-    else{
-      // this.router.navigate(['/'])
-    }
+    this.http.get(`${this.port}voters/verifyVoteLink/${this.rout.snapshot.paramMap.get('token')}`).subscribe(
+      res=>{
+        console.log(res)
 
-    this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
+        let result = JSON.parse(JSON.stringify(res))
+
+        this.a = result.verifyToken.voter
+
+        this.electionLogo = result.verifyToken.electionURL
+        this.electionName = result.verifyToken.electionName
+
+        this.http.get(`${this.port}categories/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
         res=>{
-          //console.log(res);
+          console.log(res);
+
           var response= JSON.parse(JSON.stringify(res))
 
           // console.log(response)
@@ -108,7 +113,7 @@ status=0
            this.categories.push({
             "index" : index,
             "count" : data.count,
-            "category" : data.categoryname,
+            "category" : data.categoryName,
               // "category_id" : data.category_id
           })
            this.votes.addControl(data.categoryname,this.fb.control(''));
@@ -123,7 +128,8 @@ status=0
         }
         )
 
-    this.http.get(`${this.port}candidates/${this.user_id}/${this.votingname}`).subscribe(
+
+        this.http.get(`${this.port}candidates/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
         res=>{
           // console.log(res);
           var response= JSON.parse(JSON.stringify(res))
@@ -134,17 +140,29 @@ status=0
             this.candidates.push({
               "count" : index,
               "category" : data.category,
-              "candidatename" : data.candidatename,
+              "candidatename" : data.candidateName,
               "image" : data.avatar,
               "id" : data.id
             })
           })
+
+          console.log(this.candidates)
 
         },
         err=>{
           console.log(err)
         }
         )
+
+
+      },
+      err=>{
+        console.log(err.error)
+      })
+
+    
+
+    
 
 
 }

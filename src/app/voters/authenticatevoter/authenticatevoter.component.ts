@@ -21,7 +21,7 @@ export class AuthenticatevoterComponent implements OnInit {
 
   voters = new FormGroup({
     votersId : new FormControl('',Validators.required),
-    electionId : new FormControl(localStorage.getItem('electionsA'))
+    electionId : new FormControl('')
 })
 
 submitted = false
@@ -46,9 +46,14 @@ submitVoters(){
       let result = JSON.parse(JSON.stringify(res))
       this.successMessage = result.msg
 
+      // alert(result.electionId)
+      console.log(res)
+
       setTimeout(()=>{
         this.successMessage = ""
+        location.assign(`vote/${result.token}`)
       },2000)
+
     },
     err=>{
       this.errorMessage = err.error.msg
@@ -100,8 +105,10 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
 
     this.user.election(a).subscribe(
       res=>{
-        console.log(res)
+        
         let result = JSON.parse(JSON.stringify(res))
+        // console.log(result.id)
+        this.voters.controls['electionId'].setValue(result.id)
         this.a = result
       },
       err=>{
