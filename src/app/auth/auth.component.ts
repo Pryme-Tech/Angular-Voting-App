@@ -156,7 +156,11 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     location.pathname == '/register'  && register.classList.remove('hidden')
 
-    location.pathname == '/login'  && login.classList.remove('hidden')
+    location.pathname == '/register'  && register.classList.add('d-flex')
+
+    location.pathname == '/login'  &&  login.classList.remove('hidden')
+
+    location.pathname == '/login'  && login.classList.add('d-flex')
 
   }
 
