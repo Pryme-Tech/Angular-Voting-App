@@ -27,16 +27,16 @@ import { landingpageComponent } from './Landingpage/landingpage.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // fusion charts module
 
-import { FusionChartsModule } from "angular-fusioncharts";
+// import { FusionChartsModule } from "angular-fusioncharts";
 
-import * as FusionCharts from "fusioncharts";
-import * as charts from "fusioncharts/fusioncharts.charts";
-import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
-import { PricingComponent } from './pricing/pricing.component';
+// import * as FusionCharts from "fusioncharts";
+// import * as charts from "fusioncharts/fusioncharts.charts";
+// import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+// import { PricingComponent } from './pricing/pricing.component';
 
 // Pass the fusioncharts library and chart modules
 
-FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
+// FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
 
 
 const routes: Routes = [
@@ -97,11 +97,11 @@ const routes: Routes = [
     VotersComponent,
     SuccessComponent,
     ErrorComponent,
-    PricingComponent,
+    // PricingComponent,
     landingpageComponent
   ],
   imports: [
-  FusionChartsModule,
+  // FusionChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

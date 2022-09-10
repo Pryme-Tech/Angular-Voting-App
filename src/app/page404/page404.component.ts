@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page404Component implements OnInit {
 
-  dataSource: Object;
+  // dataSource: Object;
   
   title = "trial graph"
 
@@ -46,40 +46,40 @@ export class Page404Component implements OnInit {
   // }
   // ]
 
-  chartData = [
-{
-  label : "Abdul-latif Mohammed",
-  value : "67"
-},
-{
-  label : "Emmanuel Brew",
-  value : "33"
-}
-  ]
+//   chartData = [
+// {
+//   label : "Abdul-latif Mohammed",
+//   value : "67"
+// },
+// {
+//   label : "Emmanuel Brew",
+//   value : "33"
+// }
+//   ]
 
   // STEP 3 - Chart Configuration
-    dataSource1 = {
-      chart: {
-        "yAxisMaxValue": "100",
-        "yAxisMinValue": "0",
-        //Set the chart caption
-        caption: "Countries With Most Oil Reserves [2017-18]",
-        //Set the chart subcaption
-        subCaption: "In MMbbl = One Million barrels",
-        //Set the x-axis name
-        xAxisName: "Country",
-        //Set the y-axis name
-        yAxisName: "Percentage (%)",
-        numberSuffix: "%",
-        //Set the theme for your chart
-        theme: "fusion"
-      },
-      // Chart Data - from step 2
-      data: this.chartData
-    }
+    // dataSource1 = {
+    //   chart: {
+    //     "yAxisMaxValue": "100",
+    //     "yAxisMinValue": "0",
+    //     //Set the chart caption
+    //     caption: "Countries With Most Oil Reserves [2017-18]",
+    //     //Set the chart subcaption
+    //     subCaption: "In MMbbl = One Million barrels",
+    //     //Set the x-axis name
+    //     xAxisName: "Country",
+    //     //Set the y-axis name
+    //     yAxisName: "Percentage (%)",
+    //     numberSuffix: "%",
+    //     //Set the theme for your chart
+    //     theme: "fusion"
+    //   },
+    //   // Chart Data - from step 2
+    //   data: this.chartData
+    // }
 
   constructor() {
-this.dataSource = this.dataSource1;
+// this.dataSource = this.dataSource1;
   }
 
   ngOnInit(): void {
