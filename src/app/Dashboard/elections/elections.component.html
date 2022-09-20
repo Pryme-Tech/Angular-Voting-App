@@ -10,7 +10,7 @@
 	 class="py-4 bg-primary"  >
 
 	<div  class=" text-center d-flex justify-content-between align-items-center">
-		<h4 class="px-4 font-weight-bolder "> {{welcome}} </h4>
+		<h4 class="px-2 font-weight-bolder "> {{welcome}} </h4>
 
 		<div class="m-hide d-flex justify-content-between align-items-center" style="width: max-content ;">
 
@@ -20,9 +20,8 @@
 			 <div class="col">
 				<div ngbDropdown class="d-inline-block">
 					<!-- <i class="fa-solid fa-user border border-5 p-3 "  style="border-radius: 50%;" ></i> -->
-				  <button type="button" class="btn btn-outline-primary p-2 text-light border-light" style="border-radius: 50%;" id="dropdownBasic1" ngbDropdownToggle>
-					<i class="fa-solid fa-user "   ></i></button>
-
+				  <button type="button" class="btn btn-outline-primary  text-light border-light" style="border-radius: 50%;" id="dropdownBasic1" ngbDropdownToggle>
+					<i class="fa-solid fa-user  "   ></i></button>
 				  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
 
 					<button ngbDropdownItem  onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Election </button>
@@ -112,9 +111,10 @@ style="width:100%; position: absolute; top: 0; min-height: 100vh; z-index: 9; ba
 
 <h5 class="text-center mt-3"> Select an Election to manage </h5>
 
-<div class="border border-5 col-12 py-1 text-center bg-dark font-weight-bold rounded " *ngIf="noVotingAdded" >
+<div class="border border-5 col-12 py-5 text-center bg-dark font-weight-bold rounded " *ngIf="noVotingAdded" >
 
-{{noVotingAdded}}
+<h5> {{noVotingAdded}} </h5>
+<button class="p-3 btn btn-light mx-4" onclick="document.getElementById('addEvents').classList.toggle('hidden')">Add a New Election </button>
 
 	</div>
 

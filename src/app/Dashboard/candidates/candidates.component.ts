@@ -18,7 +18,8 @@ export class CandidatesComponent implements OnInit {
 
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
-
+  process = false
+  process1 = false
 
   isElectionLaunched = false
   link:any
@@ -28,7 +29,7 @@ export class CandidatesComponent implements OnInit {
   electionName:any
 
   checkElectionIsLaunched(){
-    this.http.get(`${this.port}votings/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
+    this.http.get(`${this.port}elections/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
       res=>{
         // console.log(res)
         let result = JSON.parse(JSON.stringify(res))
@@ -76,7 +77,7 @@ export class CandidatesComponent implements OnInit {
 
   this.electionLink.controls['expiresOn'].setValue(Math.abs(Date.parse(this.electionLink.getRawValue().end) - Date.parse(this.electionLink.getRawValue().start)))
 
-  this.http.post(`${this.port}votings/getElectionLink`,this.electionLink.getRawValue()).subscribe(
+  this.http.post(`${this.port}elections/getElectionLink`,this.electionLink.getRawValue()).subscribe(
     res=>{
 
       let result = JSON.parse(JSON.stringify(res))
@@ -130,6 +131,12 @@ export class CandidatesComponent implements OnInit {
 
   if(this.addCategory.invalid) return
 
+    this.process = true
+
+  let addcategoryform = document.getElementById('addcategory') as HTMLElement
+
+        addcategoryform.classList.add('hidden')
+
   console.log(this.addCategory.getRawValue())
 
   this.http.post(`${this.port}categories/add`,this.addCategory.getRawValue()).subscribe(
@@ -138,16 +145,29 @@ export class CandidatesComponent implements OnInit {
       let result = JSON.parse(JSON.stringify(res))
 
       this.successMessage = result.msg
+      this.process = false
 
       setTimeout(()=>{
         this.successMessage = ''
-        location.reload()
-      },1500)
+
+        if(this.categories = []){
+
+        this.aaa(this.userId)
+      }
+
+      },3000)
 
     },
     err=>{
 
       this.errorMessage = err.error.msg
+
+      this.process = false
+
+      setTimeout(()=>{
+        this.errorMessage = ''
+
+      },3000)
 
     })
   
@@ -232,6 +252,65 @@ export class CandidatesComponent implements OnInit {
   return this.addCandidate.controls
  }
 
+ aaa(userId:any){
+
+  this.process1 = true
+
+  this.http.get(`${this.port}categories/${userId}/${localStorage.getItem('electionsA')}`).subscribe(
+          res=>{
+
+            // console.log(res)
+  
+            let result = JSON.parse(JSON.stringify(res))
+  
+            result.forEach((data:any,index:any)=>{
+              //console.log(data.category)
+              this.categories.push({
+                "index" : index,
+                "count" : data.count,
+                "category" : data.categoryName,
+                // "category_id" : data.category_id
+              })
+            })
+
+            this.process1 = false
+  
+            // console.log(this.categories)
+  
+          },
+          err=>{
+            console.log(err)
+  
+          }
+          )
+
+          this.http.get(`${this.port}candidates/${userId}/${localStorage.getItem('electionsA')}`).subscribe(
+            res=>{
+              // console.log(res)
+
+              let result= JSON.parse(JSON.stringify(res))
+    
+              result.forEach((data:any,index:any)=>{
+    
+                this.candidates.push({
+                  "category" : data.category,
+                  "candidatename" : data.candidateName,
+                  "photo" : data.avatar
+                })
+              })
+
+              this.process1 = false
+    
+              // console.log(this.candidates)
+    
+            },
+            err=>{
+              console.log(err)
+            }
+            )
+
+ }
+
   constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService, private fb: FormBuilder ) {
 
     // alert(location.host)
@@ -250,54 +329,9 @@ export class CandidatesComponent implements OnInit {
 
         this.addCategory.controls['userId'].setValue(result.id)
 
-         this.http.get(`${this.port}categories/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
-          res=>{
+        this.aaa(result.id)
 
-            // console.log(res)
-  
-            let result = JSON.parse(JSON.stringify(res))
-  
-            result.forEach((data:any,index:any)=>{
-              //console.log(data.category)
-              this.categories.push({
-                "index" : index,
-                "count" : data.count,
-                "category" : data.categoryName,
-                // "category_id" : data.category_id
-              })
-            })
-  
-            // console.log(this.categories)
-  
-          },
-          err=>{
-            console.log(err)
-  
-          }
-          )
-
-          this.http.get(`${this.port}candidates/${result.id}/${localStorage.getItem('electionsA')}`).subscribe(
-            res=>{
-              // console.log(res)
-
-              let result= JSON.parse(JSON.stringify(res))
-    
-              result.forEach((data:any,index:any)=>{
-    
-                this.candidates.push({
-                  "category" : data.category,
-                  "candidatename" : data.candidateName,
-                  "photo" : data.avatar
-                })
-              })
-    
-              // console.log(this.candidates)
-    
-            },
-            err=>{
-              console.log(err)
-            }
-            )
+         
 
       },
       err=>{

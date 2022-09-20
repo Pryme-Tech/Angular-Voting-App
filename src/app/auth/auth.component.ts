@@ -14,6 +14,8 @@ export class AuthComponent implements OnInit {
 
   port = routes.host
 
+  process = false
+
   successMessage:any
   errorMessage:any
 
@@ -65,6 +67,8 @@ export class AuthComponent implements OnInit {
 
     if(this.registerForms.invalid) return
 
+      this.process = true
+
     console.log(this.registerForms.getRawValue())
 
   // HTTP transport of registration form inputs
@@ -76,6 +80,8 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     this.successMessage = result.msg
 
+    this.process = false
+
     localStorage.setItem('token',result.token)
 
     setTimeout(()=>{
@@ -85,11 +91,22 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
   },
   err=>{
-    // console.log(err)
+
+    if(!err.error.msg){
+      this.errorMessage = "Error sending request. Try again later!"
+      this.process = false
+
+       setTimeout(()=>{
+      this.errorMessage=''
+    },3000)
+       
+      return
+    }
+
 
     this.errorMessage = err.error.msg
 
-    // this.errMsg = err.error
+    this.process = false
 
     setTimeout(()=>{
       this.errorMessage=''
@@ -114,6 +131,8 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     if(this.loginForms.invalid) return
 
+      this.process = true
+
      this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
   res=>{
     // console.log(res)
@@ -124,6 +143,8 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     this.successMessage = result.msg
 
+    this.process = false
+
     setTimeout(()=>{
       this.successMessage=''
       this.route.navigate(['/elections'])
@@ -131,11 +152,21 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
   },
   err=>{
-    // console.log(err)
+
+    if(!err.error.msg){
+      this.errorMessage = "Error sending request. Try again later!"
+      this.process = false
+
+       setTimeout(()=>{
+      this.errorMessage=''
+    },3000)
+
+      return
+    }
 
     this.errorMessage = err.error.msg
 
-    // this.errMsg = err.error
+    this.process = false
 
     setTimeout(()=>{
       this.errorMessage=''

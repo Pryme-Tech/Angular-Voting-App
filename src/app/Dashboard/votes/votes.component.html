@@ -1,6 +1,6 @@
 	<!-- Category view with candidates in each category -->
 
-<app-admin [electionName]="electionName" ></app-admin>
+<app-admin></app-admin>
 
 	<div *ngIf="isElectionLaunched" class="card container mt-3" style="border: 1px solid teal;">
 
@@ -111,8 +111,8 @@
 
 </div>
 
-<h6 class="text-center mt-3 bg-dark p-3" *ngIf="!isElectionLaunched">
-Election is not yet launched. Please launch election to view results.
-	</h6>
+<h5 class="justify-content-center d-flex align-items-center mt-3 bg-dark py-5 flex-column " style="height: 500px;" *ngIf="!isElectionLaunched">
+ <i class="fa-solid fa-ban fa-5x text-danger "> </i> <span class="pt-2"> Election is not yet launched. Please launch election to view results. </span>
+	</h5>
 
 <!-- End Of Category View -->

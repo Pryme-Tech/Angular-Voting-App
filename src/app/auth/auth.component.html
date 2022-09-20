@@ -130,7 +130,12 @@
 
   </div>
 
+<div *ngIf="process" class="bg-dark d-flex justify-content-center align-items-center flex-column" style="opacity: 80%; z-index: 99; position: absolute; top:0; width: 100%; height: 100vh;" > <i class="fas fa-cog fa-spin fa-5x"></i> <p class="fa-2x font-weight-bold"> PROCESSING... </p> </div>
 
-  <p *ngIf="successMessage" class="fixed-top bg-success text-center py-4 font-weight-bolder " > <i class="fa-solid fa-circle-check"></i> {{successMessage}} </p>
+  <div *ngIf="successMessage" class="fixed-top font-weight-bolder animate__animated animate__zoomIn d-flex justify-content-center " style=" transition: all 2s ease-in-out;" > 
+    <div class="d-flex justify-content-center bg-success rounded p-4 align-items-center" style="width:max-content;"> <i class="fa-solid fa-2x mx-3 fa-circle-check"></i> {{successMessage}} </div>
+  </div>
 
-    <p *ngIf="errorMessage" class="fixed-top bg-danger text-center py-4 font-weight-bolder animate__animated animate__zoomIn " style=" transition: all 2s ease-in-out;"> <i class="fa-solid fa-circle-exclamation"></i>  {{errorMessage}} </p>
+    <div *ngIf="errorMessage" class="fixed-top  font-weight-bolder animate__animated animate__zoomIn d-flex justify-content-center  " style=" transition: all 2s ease-in-out;"> 
+    <div class="d-flex justify-content-center bg-danger rounded p-4 align-items-center" style="width:max-content;"> <i class="fa-solid fa-circle-exclamation fa-2x mx-3 "></i>  {{errorMessage}} </div>
+  </div>

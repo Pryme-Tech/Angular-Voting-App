@@ -32,7 +32,7 @@ export class ElectionsComponent implements OnInit {
   newVotingOnSubmit(){
     console.log(this.newVoting.getRawValue())
 
-    this.http.post(`${this.port}votings/add`,this.newVoting.getRawValue()).subscribe(
+    this.http.post(`${this.port}elections/add`,this.newVoting.getRawValue()).subscribe(
       res=>{
         // // console.log(res)
         let result = JSON.parse(JSON.stringify(res))
@@ -52,17 +52,7 @@ export class ElectionsComponent implements OnInit {
           this.errorMessage = ''
         },2000)
         
-      //   if(err.statusText === "Unknown Error"){
-      //     this.errorMessage = "Error Connecting"
-      //   }
-      //   else{
-      //   this.errorMessage = err.error
-      // }
-
-      // setTimeout(()=>{
-      //   this.errorMessage = ''
-      //   // window.location.reload()
-      // },2000)
+    
 
       })
   }
@@ -97,7 +87,7 @@ export class ElectionsComponent implements OnInit {
           imageurl : new FormControl('')
         })
 
-        http.get(`${this.port}votings/${result.id}`).subscribe(
+        http.get(`${this.port}elections/${result.id}`).subscribe(
           res=>{
         
             let imageurl=''

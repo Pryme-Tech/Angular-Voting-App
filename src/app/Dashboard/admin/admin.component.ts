@@ -19,11 +19,19 @@ export class AdminComponent{
 
   user_id = localStorage.getItem('user_id')
 
-  @Input('electionName') electionName = ''
+  // @Input('electionName') electionName = ''
 
-  // electionName = localStorage.getItem('electionsA')
+  electionName:any
 
-  constructor(){
+  constructor( private http : HttpClient ){
+
+    this.http.get(`http://localhost:4000/elections/election/1`).subscribe(
+      res=>{
+        this.electionName = res
+      },
+      err=>{
+
+      })
 
     if(localStorage.getItem('user_id')){
 
