@@ -28,9 +28,10 @@ export class AdminComponent{
     this.http.get(`http://localhost:4000/elections/election/1`).subscribe(
       res=>{
         this.electionName = res
+        // alert('hello')
       },
       err=>{
-
+        console.log('err')
       })
 
     if(localStorage.getItem('user_id')){

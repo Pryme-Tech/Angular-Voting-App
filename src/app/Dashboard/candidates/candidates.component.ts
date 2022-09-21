@@ -19,7 +19,7 @@ export class CandidatesComponent implements OnInit {
   @ViewChild("see", { static: true }) msg!: ElementRef;
 
   process = false
-  process1 = false
+  process1 = true
 
   isElectionLaunched = false
   link:any
@@ -35,7 +35,7 @@ export class CandidatesComponent implements OnInit {
         let result = JSON.parse(JSON.stringify(res))
 
         this.isElectionLaunched = result.status
-        this.link = result.link
+        this.link = `${location.host}/${result.link}`
         this.start = result.start
         this.end = result.end
 
@@ -85,7 +85,7 @@ export class CandidatesComponent implements OnInit {
       this.successMessage = result.msg
 
       this.isElectionLaunched = result.status
-        this.link = result.link
+        this.link = `${location.host}/${result.link}`
         this.start = result.start
         this.end = result.end
 
@@ -100,9 +100,11 @@ export class CandidatesComponent implements OnInit {
   // console.log(this.electionLink.getRawValue())
  }
 
- toggleAddCandidate(data:any){
+ toggleAddCandidate(data:any,categoryId:any){
 
   this.addCandidate.controls['category'].setValue(data);
+
+  this.addCandidate.controls['categoryId'].setValue(categoryId);
 
   let addcandidate = document.getElementById("addcandidate") as HTMLElement
 
@@ -182,6 +184,7 @@ export class CandidatesComponent implements OnInit {
  addCandidate=new FormGroup(
   {
     category: new FormControl('',Validators.required),
+    categoryId : new FormControl('',Validators.required),
     candidateName: new FormControl('',Validators.required),
     avatar: new FormControl('',Validators.required),
     electionId : new FormControl(localStorage.getItem('electionsA'),Validators.required),
@@ -211,31 +214,40 @@ export class CandidatesComponent implements OnInit {
 
   if(this.addCandidate.invalid) return
 
-  // console.log(this.addCandidate.getRawValue())
-  // alert('helooo')
+  this.process = true
 
   this.http.post(`${this.port}candidates/add`,this.addCandidate.getRawValue()).subscribe(
     res=>{
       // console.log(res)
       let result = JSON.parse(JSON.stringify(res))
 
-      this.successMessage=result.message
+      this.successMessage=result.msg
+
+      this.process = false
+
+      let addcandidate = document.getElementById("addcandidate") as HTMLElement
+
+  addcandidate.classList.add("hidden")
 
       setTimeout(()=>{
 
         this.successMessage=''
-        //toggleAddCandidate()
-        window.location.reload()
+        
+        if(this.categories = []){
+
+          this.aaa(this.userId)
+        }
+        
        },2000)
 
     },
     err=>{
       // console.log(err)
-      if(err.statusText === "Unknown Error"){
+      if(!err.error.msg){
           this.errorMessage = "Error Connecting"
         }
         else{
-        this.errorMessage = err.error
+        this.errorMessage = err.error.msg
       }
 
       setTimeout(()=>{
@@ -256,10 +268,10 @@ export class CandidatesComponent implements OnInit {
 
   this.process1 = true
 
-  this.http.get(`${this.port}categories/${userId}/${localStorage.getItem('electionsA')}`).subscribe(
+  this.http.get(`${this.port}categories//a/${localStorage.getItem('electionsA')}`).subscribe(
           res=>{
 
-            // console.log(res)
+            console.log(res)
   
             let result = JSON.parse(JSON.stringify(res))
   
@@ -267,15 +279,16 @@ export class CandidatesComponent implements OnInit {
               //console.log(data.category)
               this.categories.push({
                 "index" : index,
+                "categoryId" : data.id,
                 "count" : data.count,
                 "category" : data.categoryName,
+                "candidates" : data.candidates
                 // "category_id" : data.category_id
               })
+
             })
 
             this.process1 = false
-  
-            // console.log(this.categories)
   
           },
           err=>{
@@ -284,31 +297,7 @@ export class CandidatesComponent implements OnInit {
           }
           )
 
-          this.http.get(`${this.port}candidates/${userId}/${localStorage.getItem('electionsA')}`).subscribe(
-            res=>{
-              // console.log(res)
-
-              let result= JSON.parse(JSON.stringify(res))
-    
-              result.forEach((data:any,index:any)=>{
-    
-                this.candidates.push({
-                  "category" : data.category,
-                  "candidatename" : data.candidateName,
-                  "photo" : data.avatar
-                })
-              })
-
-              this.process1 = false
-    
-              // console.log(this.candidates)
-    
-            },
-            err=>{
-              console.log(err)
-            }
-            )
-
+  
  }
 
   constructor( private http: HttpClient, private ElementRef:ElementRef, private users: UsersService, private fb: FormBuilder ) {

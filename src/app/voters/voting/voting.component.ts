@@ -23,9 +23,10 @@ export class VotingComponent implements OnInit {
   voterid = localStorage.getItem("voterId")
 
  votes = this.fb.group({
-  user_id : [this.user_id],
-  votingname : [this.votingname],
-  voterid : [this.voterid]
+  userId : [this.user_id],
+  electionId : [''],
+  votersId : [this.voterid],
+  categoryId : [this.voterid]
  })
 
  flashSuccessMessage=''
@@ -38,34 +39,36 @@ export class VotingComponent implements OnInit {
 
  vote(){
 
-  this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
-    res=>{
-   let result = JSON.parse(JSON.stringify(res))
+  console.log(this.votes.getRawValue())
 
-   result.status == true && location.replace('/success')
+  // this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
+  //   res=>{
+  //  let result = JSON.parse(JSON.stringify(res))
 
-   result.status == false && location.replace('/error')
+  //  result.status == true && location.replace('/success')
 
-      // location.replace('/see')
+  //  result.status == false && location.replace('/error')
 
-    //   this.flashSuccessMessage = result.msg
+  //     // location.replace('/see')
 
-    //   var x:any=3;
+  //   //   this.flashSuccessMessage = result.msg
 
-    // setInterval(()=>{
-    //   x--;
-    //   var v=document.getElementById("countdown") as HTMLElement; 
-    //   v.innerText=x;
-    //   if(x===0){
-    //     // window.location.replace('/');
-    //   }
-    // },1000)
+  //   //   var x:any=3;
+
+  //   // setInterval(()=>{
+  //   //   x--;
+  //   //   var v=document.getElementById("countdown") as HTMLElement; 
+  //   //   v.innerText=x;
+  //   //   if(x===0){
+  //   //     // window.location.replace('/');
+  //   //   }
+  //   // },1000)
 
 
-    },
-    err=>{
-      console.log(err)
-    })
+  //   },
+  //   err=>{
+  //     console.log(err)
+  //   })
 
   // for(var key in a){
   //   console.log(a[key])
@@ -100,59 +103,90 @@ electionName:any
         this.electionLogo = result.verifyToken.electionURL
         this.electionName = result.verifyToken.electionName
 
-        this.http.get(`${this.port}categories/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
-        res=>{
-          console.log(res);
+        this.http.get(`${this.port}categories//a/${localStorage.getItem('electionsA')}`).subscribe(
+          res=>{
 
-          var response= JSON.parse(JSON.stringify(res))
+            console.log(res)
+  
+            let result = JSON.parse(JSON.stringify(res))
+  
+            result.forEach((data:any,index:any)=>{
+              //console.log(data.category)
+              this.categories.push({
+                "index" : index,
+                "categoryId" : data.id,
+                "count" : data.count,
+                "category" : data.categoryName,
+                "candidates" : data.candidates
+                // "category_id" : data.category_id
+              })
 
-          // console.log(response)
+              this.votes.addControl(data.categoryName,this.fb.control(''));
 
-          response.forEach((data:any,index:any)=>{
-            //console.log(data.category)
-           this.categories.push({
-            "index" : index,
-            "count" : data.count,
-            "category" : data.categoryName,
-              // "category_id" : data.category_id
-          })
-           this.votes.addControl(data.categoryname,this.fb.control(''));
-           // console.log(this.votes.getRawValue())
-         })
+            })
+
+            // this.process1 = false
+  
+          },
+          err=>{
+            console.log(err)
+  
+          }
+          )
+
+      //   this.http.get(`${this.port}categories/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
+      //   res=>{
+      //     console.log(res);
+
+      //     var response= JSON.parse(JSON.stringify(res))
+
+      //     // console.log(response)
+
+      //     response.forEach((data:any,index:any)=>{
+      //       //console.log(data.category)
+      //      this.categories.push({
+      //       "index" : index,
+      //       "count" : data.count,
+      //       "category" : data.categoryName,
+      //         // "category_id" : data.category_id
+      //     })
+      //      this.votes.addControl(data.categoryname,this.fb.control(''));
+      //      // console.log(this.votes.getRawValue())
+      //    })
 
           
 
-        },
-        err=>{
-          console.log(err)
-        }
-        )
+      //   },
+      //   err=>{
+      //     console.log(err)
+      //   }
+      //   )
 
 
-        this.http.get(`${this.port}candidates/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
-        res=>{
-          // console.log(res);
-          var response= JSON.parse(JSON.stringify(res))
+      //   this.http.get(`${this.port}candidates/${result.verifyToken.userId}/${result.verifyToken.electionId}`).subscribe(
+      //   res=>{
+      //     // console.log(res);
+      //     var response= JSON.parse(JSON.stringify(res))
 
-          response.forEach((data:any,index:any)=>{
+      //     response.forEach((data:any,index:any)=>{
        
 
-            this.candidates.push({
-              "count" : index,
-              "category" : data.category,
-              "candidatename" : data.candidateName,
-              "image" : data.avatar,
-              "id" : data.id
-            })
-          })
+      //       this.candidates.push({
+      //         "count" : index,
+      //         "category" : data.category,
+      //         "candidatename" : data.candidateName,
+      //         "image" : data.avatar,
+      //         "id" : data.id
+      //       })
+      //     })
 
-          console.log(this.candidates)
+      //     console.log(this.candidates)
 
-        },
-        err=>{
-          console.log(err)
-        }
-        )
+      //   },
+      //   err=>{
+      //     console.log(err)
+      //   }
+      //   )
 
 
       },

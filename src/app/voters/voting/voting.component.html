@@ -32,19 +32,21 @@
 
   </div>
 
+  <form [formGroup]="votes" (ngSubmit)="vote()" >
+
   <div class="card container p-0 " *ngFor=" let x of categories " >
 
     <div (click)="  this.arrow.classList.toggle('fa-circle-chevron-up'); " class="card-header bg-primary d-flex justify-content-between align-items-center " data-bs-toggle="collapse" [attr.data-bs-target]="'#x'+x.index" style=" cursor : pointer; " > <p class="p-0 m-0 font-weight-bold " style="width: 70%; text-align: left;"> {{x.category}} </p> <i style="width: 30%; text-align: right; " class="fa-solid fa-circle-chevron-down " #arrow ></i> </div>
 
     <div class="card-body collapse" [id]="'x'+x.index" >
 
-<ng-container *ngFor="let y of candidates">
+<ng-container *ngFor="let y of x.candidates">
 
-  <div class=" d-flex mt-4 align-items-center justify-content-between " *ngIf=" y.category === x.category " > 
+  <div class=" d-flex mt-4 align-items-center justify-content-between " > 
 
-    <input type="radio"> 
-    <img [src]="y.image" class="border border-5" style="width: 100px;">
-   <p class="text-center font-weight-bold " style="width:50%;" > {{y.candidatename}} </p>
+    <input type="radio" [formControlName]="x.category" [value]="y.candidateName" > 
+    <img [src]="y.avatar" class="border border-5" style="width: 100px;">
+   <p class="text-center font-weight-bold " style="width:50%;" > {{y.candidateName}} </p>
 
 </div>
 
@@ -58,8 +60,10 @@
 
   <div class=" text-center my-3 " >
 
-    <button class="btn btn-outline-primary " > Submit Vote </button>
+    <button class="btn btn-outline-primary " type="submit" > Submit Vote </button>
 
   </div>
+
+  </form>
 
   <!-- <h3 class="text-primary text-center py-3 " > Welcome {{a}} </h3> -->
