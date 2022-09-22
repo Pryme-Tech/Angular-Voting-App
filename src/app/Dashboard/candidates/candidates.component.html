@@ -138,9 +138,9 @@
 
 			<button *ngIf="!isElectionLaunched" class="btn btn-light showAddCandidate mx-2 " #showAddCandidate style="border: 1px solid" (click)=toggleAddCandidate(y.category,y.categoryId) > <i class="fas fa-plus" > </i> Add New Candidate </button>
 
-			<button *ngIf="isElectionLaunched" disabled class="btn btn-light text-danger border border-5">Delete this category</button>
+			<button *ngIf="isElectionLaunched" disabled class="btn btn-light text-danger border border-5 ">Delete this category</button>
 			<button *ngIf="!isElectionLaunched" class="btn btn-light text-danger border border-5">Delete this category</button>
-
+<!-- <i class="fa-solid fa-trash"></i> -->
 		</div>
 
 					<ol>
@@ -181,8 +181,8 @@
 									 (click)=toggleUpdateCandidate(this.update_candidate,y.category,x.name,x.photo)
 									</button> -->
 
-									<button *ngIf="isElectionLaunched" disabled class="btn btn-danger mt-2"  [value]="x.name"> Delete Candidate </button>
-									<button *ngIf="!isElectionLaunched" class="btn btn-danger mt-2"  [value]="x.name"> Delete Candidate </button>
+									<button *ngIf="isElectionLaunched" disabled class="btn btn-danger mt-2"  [value]="x.name"> <i class="fa-solid fa-trash"></i> <!-- Delete Candidate --> </button>
+									<button *ngIf="!isElectionLaunched" class="btn btn-danger mt-2"  [value]="x.name"> <i class="fa-solid fa-trash"></i> <!-- Delete Candidate --> </button>
 
 								</div>
 
@@ -223,7 +223,7 @@
 
 <div class="d-flex align-items-center justify-content-center hidden flex-column" id="launchElection" style=" position: absolute; top: 0; width: 100%; height: 100%; backdrop-filter: blur(3px); " >
 
-	<form *ngIf="!isElectionLaunched" [formGroup]="electionLink" (ngSubmit)="getElectionLink()" class="bg-secondary p-5 rounded" style="position: relative; width: 50%; ">
+	<form *ngIf="!isElectionLaunched" [formGroup]="electionLink" (ngSubmit)="getElectionLink()" class="bg-secondary p-5 rounded electionLink" style="position: relative; width: 50%; ">
 
 		<p *ngIf="successMessage" > {{successMessage}} </p>
 
@@ -262,17 +262,17 @@
 
 	</form>
 
-	<div class="bg-secondary p-5 rounded" *ngIf="isElectionLaunched" style="position: relative; width: 50%; ">
+	<div class="bg-secondary p-4 rounded electionLink" *ngIf="isElectionLaunched" style="position: relative; width: 50%; ">
 
 		<i class="text-danger fa fa-close fa-2x" onclick="document.getElementById('launchElection').classList.toggle('hidden')" style="position: absolute; right:2%; top:2%;"></i>
 
 		<p class="text-center bg-dark p-3 rounded font-weight-bolder " id="copied" style="position: absolute; top:10%; left: 50%; display: none; " > Copied </p>
 
-		<h3> Election is launched </h3>
+		<h5 > Election is launched </h5>
 
 		<p> Election Url </p>
 
-		<p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; " id="e" > {{link}} </p>
+		<p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; " id="e" > <a [href]="link" target="blank" > {{link}} </a> </p>
 
 		<p> Start Date: {{start}} </p>
 

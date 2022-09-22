@@ -35,7 +35,7 @@ export class CandidatesComponent implements OnInit {
         let result = JSON.parse(JSON.stringify(res))
 
         this.isElectionLaunched = result.status
-        this.link = `${location.host}/${result.link}`
+        this.link = `${this.port1.fronty}${result.link}`
         this.start = result.start
         this.end = result.end
 
@@ -51,6 +51,8 @@ export class CandidatesComponent implements OnInit {
 
 
   port = routes.host
+
+  port1 = routes
 
   successMessage:any
   errorMessage:any
@@ -89,7 +91,7 @@ export class CandidatesComponent implements OnInit {
       this.process = false
 
       this.isElectionLaunched = result.status
-        this.link = `${location.host}/${result.link}`
+        this.link = `${this.port1.fronty}${result.link}`
         this.start = result.start
         this.end = result.end
 

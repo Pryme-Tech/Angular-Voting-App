@@ -19,19 +19,19 @@
 <div class="hidden animate__animated animate__backInRight " style=" backdrop-filter: blur(2px);
  position: absolute; top:0; width: 100%; z-index: 9; height: 100%; " id="menu">
 
- <div class="bg-light d-flex justify-content-center flex-column p-5" style=" height: 100%; width: 80%; float: right; position: relative; " >
+ <div class="bg-light d-flex justify-content-center flex-column p-5" style=" height: 100%; width: 90%; float: right; position: relative; " >
 
 	<i class="fa-solid fa-close fa-2x text-danger " style="position: absolute; top: 10%; left: 10%; cursor: pointer; " id="toggleSidebarCloseButton" >   </i>
 
-	<h3 class="text-center py-2" routerLink="/candidates" style="cursor: pointer; " routerLinkActive="activelink" > CANDIDATES </h3>
+	<p class="text-center py-2 font-weight-bold " routerLink="/candidates" style="cursor: pointer; " routerLinkActive="activelink" > CANDIDATES </p>
 
-	<h3 class="text-center py-2 " routerLink="/results" style="cursor: pointer;" routerLinkActive="activelink" > ELECTION RESULTS </h3>
+	<p class="text-center py-2 font-weight-bold " routerLink="/results" style="cursor: pointer;" routerLinkActive="activelink" > ELECTION RESULTS </p>
 
-	<h3 class="text-center py-2" routerLink="/voters" style="cursor: pointer;" routerLinkActive="activelink" > VOTERS </h3>
+	<p class="text-center py-2 font-weight-bold " routerLink="/voters" style="cursor: pointer;" routerLinkActive="activelink" > VOTERS </p>
 
-	<button class="btn btn-dark mb-3 mt-5 rounded font-weight-bold " type="button" > DELETE THIS ELECTION </button>
+	<button class="btn btn-dark mb-3 mt-5 rounded  " type="button" > DELETE THIS ELECTION </button>
  
-	<button class="btn btn-danger font-weight-bold " type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
+	<button class="btn btn-danger  " type="button" onclick="localStorage.clear(); location.reload()"> Sign out </button>
 
  </div>
 
