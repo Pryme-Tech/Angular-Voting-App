@@ -23,14 +23,18 @@ export class VotingComponent implements OnInit {
   voterid = localStorage.getItem("voterId")
 
  votes = this.fb.group({
-  userId : [this.user_id],
-  electionId : [''],
-  votersId : [this.voterid],
-  categoryId : [this.voterid]
+  userId : [''],
+  electionId : [localStorage.getItem("electionsA")],
+  votersId : [''],
+  categoryId : []
  })
 
  flashSuccessMessage=''
  flashErrorMessage=''
+
+ successMessage:any
+ errorMessage:any
+ process = false
 
  username:any=''
  indexnumber:any=''
@@ -39,40 +43,32 @@ export class VotingComponent implements OnInit {
 
  vote(){
 
-  console.log(this.votes.getRawValue())
+  // console.log(this.votes.getRawValue())
 
-  // this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
-  //   res=>{
-  //  let result = JSON.parse(JSON.stringify(res))
+  this.process = true
 
-  //  result.status == true && location.replace('/success')
+  this.http.post(`${this.port}vote`,this.votes.getRawValue()).subscribe(
+    res=>{
+      console.log(res)
+      let result = JSON.parse(JSON.stringify(res))
+      this.process = false
+      if(result.status){
+        this.successMessage = true
+      }
+      else{
+        this.errorMessage = true
+      }
 
-  //  result.status == false && location.replace('/error')
+      setTimeout(()=>{
+        location.replace('/')
+      },3000)
 
-  //     // location.replace('/see')
-
-  //   //   this.flashSuccessMessage = result.msg
-
-  //   //   var x:any=3;
-
-  //   // setInterval(()=>{
-  //   //   x--;
-  //   //   var v=document.getElementById("countdown") as HTMLElement; 
-  //   //   v.innerText=x;
-  //   //   if(x===0){
-  //   //     // window.location.replace('/');
-  //   //   }
-  //   // },1000)
-
-
-  //   },
-  //   err=>{
-  //     console.log(err)
-  //   })
-
-  // for(var key in a){
-  //   console.log(a[key])
-  // }
+    },
+    err=>{
+      console.log(err)
+      this.process = false
+      // this.errorMessage=true
+    })
 
  }
 
@@ -99,6 +95,10 @@ electionName:any
         let result = JSON.parse(JSON.stringify(res))
 
         this.a = result.verifyToken.voter
+
+        this.votes.controls['userId'].setValue(result.verifyToken.userId)
+
+        this.votes.controls['votersId'].setValue(result.verifyToken.votersId)
 
         this.electionLogo = result.verifyToken.electionURL
         this.electionName = result.verifyToken.electionName

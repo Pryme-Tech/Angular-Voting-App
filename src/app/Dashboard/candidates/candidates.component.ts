@@ -75,6 +75,8 @@ export class CandidatesComponent implements OnInit {
 
   if(this.electionLink.invalid) return
 
+    this.process = true
+
   this.electionLink.controls['expiresOn'].setValue(Math.abs(Date.parse(this.electionLink.getRawValue().end) - Date.parse(this.electionLink.getRawValue().start)))
 
   this.http.post(`${this.port}elections/getElectionLink`,this.electionLink.getRawValue()).subscribe(
@@ -84,12 +86,19 @@ export class CandidatesComponent implements OnInit {
 
       this.successMessage = result.msg
 
+      this.process = false
+
       this.isElectionLaunched = result.status
         this.link = `${location.host}/${result.link}`
         this.start = result.start
         this.end = result.end
 
         this.electionName = result.electionName
+
+      setTimeout(()=>{
+        this.successMessage = ''
+
+      },3000)
 
     },
     err=>{
@@ -264,6 +273,8 @@ export class CandidatesComponent implements OnInit {
   return this.addCandidate.controls
  }
 
+ noCategory:any
+
  aaa(userId:any){
 
   this.process1 = true
@@ -274,6 +285,14 @@ export class CandidatesComponent implements OnInit {
             console.log(res)
   
             let result = JSON.parse(JSON.stringify(res))
+
+            this.noCategory = ''
+
+            if(result.length < 1){
+              this.noCategory = "Your category list is empty"
+              this.process1 = false
+              return
+            }
   
             result.forEach((data:any,index:any)=>{
               //console.log(data.category)
@@ -292,8 +311,9 @@ export class CandidatesComponent implements OnInit {
   
           },
           err=>{
-            console.log(err)
-  
+            // console.log(err)
+            // this.process1 = false
+            // alert("errror")
           }
           )
 

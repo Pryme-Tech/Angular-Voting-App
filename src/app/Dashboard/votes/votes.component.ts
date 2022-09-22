@@ -25,6 +25,8 @@ export class VotesComponent implements OnInit {
 
   votingname = localStorage.getItem("votingname")
 
+  noOfVoters:any
+
   constructor(private http: HttpClient, private users: UsersService) {
 
      users.userDetails().subscribe(
@@ -33,12 +35,14 @@ export class VotesComponent implements OnInit {
 
         // this.voters.controls['userId'].setValue(result.id);
 
-        this.http.get(`${this.port}votings/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
+        this.http.get(`${this.port}elections/checkLink/${localStorage.getItem('electionsA')}`).subscribe(
           res=>{
             console.log(res)
             let results = JSON.parse(JSON.stringify(res))
             this.electionName = results.electionName
             this.isElectionLaunched = results.status
+
+            // alert(results.status)
           },
           err=>{
             this.electionName = err.error.electionName
@@ -51,49 +55,71 @@ export class VotesComponent implements OnInit {
         location.replace('http://localhost:4200/login')
       })
 
-
- this.http.get(`${this.port}vote/${this.user_id}/${this.votingname}`).subscribe(
+      this.http.get(`${this.port}categories/aa/${localStorage.getItem("electionsA")}`).subscribe(
         res=>{
-
           console.log(res)
-
           let result = JSON.parse(JSON.stringify(res))
+          // this.categories.push(result)
 
-          result.forEach((data:any,index:any)=>{
-            // console.log(data)
-            this.votes.push(data)
-          })
-
-          console.log(this.votes)
-
-        },
-        err=>{
-          console.log(err)
-        }
-        )
-
- this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
-        res=>{
-
-          // console.log(res)
-
-          let result = JSON.parse(JSON.stringify(res))
-
-          result.forEach((data:any,index:any)=>{
+           result.r.forEach((data:any,index:any)=>{
             this.categories.push({
               "index" : index,
               "count" : data.count,
-              "category" : data.categoryname
+              "categoryName" : data.categoryName,
+              "candidates" : data.candidates
             })
           })
 
-          // console.log(this.votes)
+           this.noOfVoters = result.rr
 
         },
         err=>{
-          console.log(err)
-        }
-        )
+alert('error')
+        })
+
+
+ // this.http.get(`${this.port}vote/${this.user_id}/${this.votingname}`).subscribe(
+ //        res=>{
+
+ //          console.log(res)
+
+ //          let result = JSON.parse(JSON.stringify(res))
+
+ //          result.forEach((data:any,index:any)=>{
+ //            // console.log(data)
+ //            this.votes.push(data)
+ //          })
+
+ //          console.log(this.votes)
+
+ //        },
+ //        err=>{
+ //          console.log(err)
+ //        }
+ //        )
+
+ // this.http.get(`${this.port}categories/${this.user_id}/${this.votingname}`).subscribe(
+ //        res=>{
+
+ //          // console.log(res)
+
+ //          let result = JSON.parse(JSON.stringify(res))
+
+ //          result.forEach((data:any,index:any)=>{
+ //            this.categories.push({
+ //              "index" : index,
+ //              "count" : data.count,
+ //              "category" : data.categoryname
+ //            })
+ //          })
+
+ //          // console.log(this.votes)
+
+ //        },
+ //        err=>{
+ //          console.log(err)
+ //        }
+ //        )
 
   //console.log(this.categories)
   //console.log(this.votes)

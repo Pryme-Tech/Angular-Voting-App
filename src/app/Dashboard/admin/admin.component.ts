@@ -21,11 +21,13 @@ export class AdminComponent{
 
   // @Input('electionName') electionName = ''
 
+  port = routes.host
+
   electionName:any
 
   constructor( private http : HttpClient ){
 
-    this.http.get(`http://localhost:4000/elections/election/1`).subscribe(
+    this.http.get(`${this.port}elections/election/${localStorage.getItem('electionsA')}`).subscribe(
       res=>{
         this.electionName = res
         // alert('hello')
