@@ -113,6 +113,7 @@ this.http.post(`${this.port}voters/access`,this.voters.getRawValue()).subscribe(
       },
       err=>{
 console.log(err)
+// this.errorMessage="error"
       }
     )
 
