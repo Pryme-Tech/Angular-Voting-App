@@ -4,17 +4,21 @@
   /*font-family: 'inter', sans-serif !important;*/
 }
 
-@font-face{
-	font-family: Inder;
-	src: url(assets/inder/Inder-Regular.ttf);
-}
+// @font-face{
+// 	font-family: Inder;
+// 	src: url(assets/inder/Inder-Regular.ttf);
+// }
 
-@font-face{
-	font-family: inter-bold;
-	src: url(assets/inter/Inter-Black.ttf);
-}
+// @font-face{
+// 	font-family: inter-bold;
+// 	src: url(assets/inter/Inter-Black.ttf);
+// }
 
-@font-face{
-	font-family: inter-light;
-	src: url(assets/inter/Inter-Light.ttf);
-}
+// @font-face{
+// 	font-family: inter-light;
+// 	src: url(assets/inter/Inter-Light.ttf);
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Inter:wght@400;600;700&display=swap');
