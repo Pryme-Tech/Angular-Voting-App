@@ -17,13 +17,16 @@
 .banner{
     background-image: url(../../assets/banner3.jpg);
     background-size: cover;
-    background-position: bottom right;
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     position: relative;
     z-index: 1;
 
     height: 800px;
+
+    margin-top: 4%;
 }
 
 .banner div{
@@ -55,20 +58,23 @@
     }
 }
 
-@media(max-width: 900px){
-   .m-none{
-    display: none !important;
-   }
-   .m-block{
-    display: block !important;
-   }
-}
-
 @media(max-width: 850px){
     .logo{
         width: 25%;
     }
 }
+
+@media(max-width: 800px){
+    .m-none{
+     display: none !important;
+    }
+    .m-block{
+     display: block !important;
+    }
+    .banner{
+        margin-top: 0%;
+    }
+ }
 
 @media(max-width: 600px){
     .logo{
