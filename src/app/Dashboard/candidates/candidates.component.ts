@@ -346,7 +346,8 @@ export class CandidatesComponent implements OnInit {
 
       },
       err=>{
-        location.replace('http://localhost:4200/login')
+        // location.replace('http://localhost:4200/login')
+        location.replace(`${routes.front}login`)
       })
 
    }

@@ -25,22 +25,12 @@ import { ErrorComponent } from './voters/error/error.component';
 import { landingpageComponent } from './Landingpage/landingpage.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// fusion charts module
+import { HomepageComponent } from './homepage/homepage.component';
 
-// import { FusionChartsModule } from "angular-fusioncharts";
-
-// import * as FusionCharts from "fusioncharts";
-// import * as charts from "fusioncharts/fusioncharts.charts";
-// import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
-// import { PricingComponent } from './pricing/pricing.component';
-
-// Pass the fusioncharts library and chart modules
-
-// FusionChartsModule.fcRoot(FusionCharts,charts,FusionTheme);
 
 
 const routes: Routes = [
-  //{ path: 'home', component: LandingComponent},
+  { path: 'home', component: HomepageComponent},
   // { path: 'register', component: RegisterComponent},
   { path: 'access-election/:token', component: AuthenticatevoterComponent},
   { path: 'vote/:token', component: VotingComponent},
@@ -98,7 +88,8 @@ const routes: Routes = [
     SuccessComponent,
     ErrorComponent,
     // PricingComponent,
-    landingpageComponent
+    landingpageComponent,
+    HomepageComponent
   ],
   imports: [
   // FusionChartsModule,

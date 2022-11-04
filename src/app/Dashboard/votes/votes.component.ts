@@ -13,7 +13,7 @@ export class VotesComponent implements OnInit {
 
   port = routes.host
 
-  isElectionLaunched = false
+  isElectionLaunched = true
 
   categories:any = []
 
