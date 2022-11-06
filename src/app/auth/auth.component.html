@@ -2,8 +2,9 @@
 
 <div class="hidden bg-primary d-flex align-items-center justify-content-center" id="register" style="height: 100vh; ">
 
+  <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.534);" >
 
-    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center p-3 rounded w-50 " style="background-color: rgba(0, 0, 0, 0.534);" >
+    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center p-3 rounded w-50 "  >
 
       <h1 class="text-center mb-3 text-light " > Register for free </h1>
 
@@ -60,6 +61,8 @@
 
     </form>
 
+    </div>
+
 </div>
 
 
@@ -67,7 +70,9 @@
 
 <div class="hidden bg-primary" id="login" style="height: 100vh; justify-content: center; align-items: center;">
 
-    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" style="background-color: rgba(0, 0, 0, 0.534);" class="d-flex flex-column justify-content-center p-3 rounded w-50   ">
+  <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.534);" >
+
+    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()"  class=" d-flex flex-column justify-content-center p-3 rounded w-50   ">
 
       <h1 class="text-center mb-5 " > Login </h1>
 
@@ -107,7 +112,7 @@
       </div>
 
     </form>
-
+</div>
 
   </div>
 
