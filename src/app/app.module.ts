@@ -66,7 +66,7 @@ const routes: Routes = [
   // ]},
 
   // {path: 'home', component: landingpageComponent },
-  {path: '', component: landingpageComponent },
+  {path: '', component: HomepageComponent },
   {path: '**', component: Page404Component}
 ];
 
