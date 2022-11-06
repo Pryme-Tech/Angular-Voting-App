@@ -181,6 +181,17 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
    ngOnInit(){
 
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', () => {
+      vh = window.innerHeight * 0.01;
+      // console.log(vh)
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+    // console.log(vh)
+
+    // The above script is just to 
+
     let register = document.getElementById('register') as HTMLElement
 
     let login = document.getElementById('login') as HTMLElement
