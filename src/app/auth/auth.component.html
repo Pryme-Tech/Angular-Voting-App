@@ -1,12 +1,9 @@
 
 
-<div class="hidden bg-primary d-flex flex-column " id="register" style="height: 100vh; ">
+<div class="hidden bg-primary d-flex align-items-center justify-content-center" id="register" style="height: 100vh; ">
 
-  <!-- <h1 class="p-0 text-center m-0 d-flex align-items-center justify-content-center " style="height: 10%" > VOTY </h1> -->
 
-  <div class="container row m-auto m-0 p-0 border border-5 rounded" style="height: 90%" >
-
-    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center px-3 ">
+    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center p-3 rounded w-50 " style="background-color: rgba(0, 0, 0, 0.534);" >
 
       <h1 class="text-center mb-3 text-light " > Register for free </h1>
 
@@ -63,12 +60,6 @@
 
     </form>
 
-    <div class="col-lg-6 btn-secondary " id="img" style="background-image:  url(assets/bg.png); background-size: contain; background-repeat: no-repeat; background-position: top; " >
-
-    </div>
-
-  </div>
-
 </div>
 
 
@@ -76,11 +67,7 @@
 
 <div class="hidden bg-primary" id="login" style="height: 100vh; justify-content: center; align-items: center;">
 
-    <!-- <h1 class="p-0 text-center m-0 d-flex align-items-center justify-content-center " style="height: 10%" > VOTY </h1> -->
-
-  <div class="container row m-auto m-0 p-0 rounded border " style="height: 90%" >
-
-    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center px-3 ">
+    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()" style="background-color: rgba(0, 0, 0, 0.534);" class="d-flex flex-column justify-content-center p-3 rounded w-50   ">
 
       <h1 class="text-center mb-5 " > Login </h1>
 
@@ -120,12 +107,6 @@
       </div>
 
     </form>
-
-    <div class="col-lg-6 btn-secondary " id="img" style="background-image:  url(assets/bg.png); background-size: contain; background-repeat: no-repeat; background-position: top; " >
-
-    </div>
-
-  </div>
 
 
   </div>
