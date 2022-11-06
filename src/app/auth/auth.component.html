@@ -4,9 +4,11 @@
 
   <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.534);" >
 
-    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center p-3 rounded w-50 "  >
+    <form [formGroup]="registerForms" (ngSubmit)="registerFormsOnSubmit()" class="col-lg-6 d-flex flex-column justify-content-center p-3 rounded w-50 border "  >
 
-      <h1 class="text-center mb-3 text-light " > Register for free </h1>
+      <h6 class="" > <img style="width: 50px;" class="rounded-circle mx-2" src="../../assets/ELECTRONIC BALLOT.gif" /> Electronic Ballot </h6>
+
+      <h1 class="text-center mb-3 text-light mt-0" > Register for free </h1>
 
       <div class="form-group" style="width: 100% !important;" >
 
@@ -72,9 +74,11 @@
 
   <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.534);" >
 
-    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()"  class=" d-flex flex-column justify-content-center p-3 rounded w-50   ">
+    <form [formGroup]="loginForms" (ngSubmit)="loginFormsOnSubmit()"  class="border d-flex flex-column justify-content-center p-3 rounded w-50   ">
 
-      <h1 class="text-center mb-5 " > Login </h1>
+      <h6 class="" > <img style="width: 50px;" class="rounded-circle mx-2" src="../../assets/ELECTRONIC BALLOT.gif" /> Electronic Ballot </h6>
+
+      <h1 class="text-center mb-3 " > Login </h1>
 
       <div class="form-group " style="width: 100% !important;" >
 
