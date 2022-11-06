@@ -190,7 +190,7 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
     });
     // console.log(vh)
 
-    // The above script is just to 
+    // The above script is just to fix the viewheight because 100vh causes problems on mobile devices
 
     let register = document.getElementById('register') as HTMLElement
 

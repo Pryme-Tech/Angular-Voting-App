@@ -17,6 +17,7 @@ div.full{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	height: calc(var(--vh, 1vh) * 100);
 }
 
 /*a{
