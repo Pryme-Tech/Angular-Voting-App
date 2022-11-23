@@ -18,7 +18,7 @@ export class ElectionsComponent implements OnInit {
 
   port = routes.host
 
-  modeText = "Light Mode"
+  modeText = "Light"
 
   toggleMode(){
     let main = document.getElementById('main') as HTMLElement
@@ -26,7 +26,7 @@ export class ElectionsComponent implements OnInit {
     main.classList.toggle('bg-dark')
     toggleButton.classList.toggle('btn-dark')
 
-    this.modeText = main.classList.contains('bg-dark') ? "Light Mode" : "Dark Mode"
+    this.modeText = main.classList.contains('bg-dark') ? "Light" : "Dark"
   }
 
   // port = "http://localhost:4000/"
