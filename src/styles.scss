@@ -24,3 +24,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Inter:wght@400;600;700&display=swap');
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #b1ecc1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #28a745; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

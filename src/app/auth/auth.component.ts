@@ -2,8 +2,9 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
-import routes from '../../assets/routes/routes.json';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-auth',
@@ -12,14 +13,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  port = routes.host
-
   process = false
+  // checks if form is being processed
 
   successMessage:any
   errorMessage:any
 
   submitted = false
+
+
 
   mustmatch(password:string,confirmpassword:string){
 
@@ -44,10 +46,12 @@ export class AuthComponent implements OnInit {
     }
   }
 
+
+
   registerForms = this.fb.group({
 
     email : ['',[Validators.required,Validators.email]],
-    username : ['',Validators.required],
+    fullname : ['',Validators.required],
     password : ['',Validators.required],
     confirmPassword : ['',Validators.required]
 
@@ -57,22 +61,26 @@ export class AuthComponent implements OnInit {
       }
 )
 
+
+
   get registerV(){
     return this.registerForms.controls
   }
 
+
+
   registerFormsOnSubmit(){
 
     this.submitted = true
+    // setting submitted to true when method is called
 
     if(this.registerForms.invalid) return
+    // returns empty when registration forms fails validation
 
       this.process = true
 
-    console.log(this.registerForms.getRawValue())
-
   // HTTP transport of registration form inputs
-this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).subscribe(
+  this.http.post(`${environment.apiKey}users/register`,this.registerForms.getRawValue()).subscribe(
   res=>{
     // console.log(res)
 
@@ -86,7 +94,7 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
     setTimeout(()=>{
       this.successMessage=''
-      this.route.navigate(['/elections'])
+      // this.route.navigate(['/elections'])
     },3000)
 
   },
@@ -95,16 +103,11 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
     if(!err.error.msg){
       this.errorMessage = "Error sending request. Try again later!"
       this.process = false
-
-       setTimeout(()=>{
-      this.errorMessage=''
-    },3000)
-       
-      return
     }
 
-
-    this.errorMessage = err.error.msg
+    else{
+      this.errorMessage = err.error.msg
+    }
 
     this.process = false
 
@@ -133,9 +136,8 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
 
       this.process = true
 
-     this.http.post(`${this.port}users/login`,this.loginForms.getRawValue()).subscribe(
+     this.http.post(`${environment.apiKey}users/login`,this.loginForms.getRawValue()).subscribe(
   res=>{
-    // console.log(res)
 
     let result = JSON.parse(JSON.stringify(res))
 
@@ -148,23 +150,12 @@ this.http.post(`${this.port}users/register`,this.registerForms.getRawValue()).su
     setTimeout(()=>{
       this.successMessage=''
       this.route.navigate(['/elections'])
-    },2000)
+    },3000)
 
   },
   err=>{
 
-    if(!err.error.msg){
-      this.errorMessage = "Error sending request. Try again later!"
-      this.process = false
-
-       setTimeout(()=>{
-      this.errorMessage=''
-    },3000)
-
-      return
-    }
-
-    this.errorMessage = err.error.msg
+    this.errorMessage = err.error.msg ? err.error.msg :  "Error sending request. Try again later!"
 
     this.process = false
 

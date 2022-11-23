@@ -1,66 +1,19 @@
-
-#mobile-menu-button{
-    display: none;
+#main{
+    transition: all 3s;
+    // font-family: 'Montserrat', sans-serif;
 }
 
-.addEventForm{
-    width: 80%;
-    margin: auto;
+.createdElection{
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-.events{
-    transition: all 1s ease-in-out;
+.card:hover{
+    border: 5px solid rgb(40 167 69) !important;
 }
 
-.events:hover{
-    border: 1px solid #007bff !important;
-}
-
-.dropdown-toggle::after{
-    display : none;
-}
-
-@media(max-width: 600px){
-
-    .preview{
-        display: none !important;
-    }
-
-    .preview-f{
-        width: 100%;
-    }
-
-.m-hide{
-    display: none;
-}
-
-#mobile-menu-button{
-    display: block;
-}
-
-.d-hide{
-    display: block;
-}
-
-}
-
-.mobile-menu-hidden{
-    display: none;
-}
-
-.mobile-menu{
-    display: flex;
-}
-
-.hidden{
-    display: none !important;
-}
-
-@media(max-width : 500px){
-    form{
-        width: 90% !important;
-    }
-    .form-group{
-        padding: 0% !important;
+@media(max-width : 500px) {
+    .addElection{
+        width: 100% !important;
     }
 }

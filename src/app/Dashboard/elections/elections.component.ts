@@ -4,6 +4,7 @@ import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 import { UsersService } from '../../users.service';
 
 import routes from '../../../assets/routes/routes.json';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +14,20 @@ import { Router } from '@angular/router';
 })
 export class ElectionsComponent implements OnInit {
 
+  a = [1,2,3,4,5,6,7,8,9,10]
+
   port = routes.host
+
+  modeText = "Light Mode"
+
+  toggleMode(){
+    let main = document.getElementById('main') as HTMLElement
+    let toggleButton = document.getElementById('toggleButton') as HTMLElement
+    main.classList.toggle('bg-dark')
+    toggleButton.classList.toggle('btn-dark')
+
+    this.modeText = main.classList.contains('bg-dark') ? "Light Mode" : "Dark Mode"
+  }
 
   // port = "http://localhost:4000/"
 
@@ -56,6 +70,8 @@ export class ElectionsComponent implements OnInit {
 
       })
   }
+
+
 
   redirectToCandidates(election:any,launched:any){
 
@@ -132,7 +148,7 @@ export class ElectionsComponent implements OnInit {
 
       },
       err=>{
-        location.replace('http://localhost:4200/login')
+        // location.replace('http://localhost:4200/login')
       }
     )
 
@@ -157,6 +173,17 @@ export class ElectionsComponent implements OnInit {
 
 
    ngAfterViewInit(){
+
+    const createdElection = document.querySelectorAll('.createdElection')
+
+    const manageElections = document.querySelectorAll('.manage')
+
+    createdElection.forEach( (election:any) => {
+       election.addEventListener( 'mouseover',()=> election.querySelector('.manage').classList.add('d-flex')  )
+       election.addEventListener( 'mouseleave',()=> election.querySelector('.manage').classList.remove('d-flex')  )
+    }) 
+
+    // manageElections.forEach( (election:any) => election.addEventListener( 'mouseover',()=> election.classList.remove('d-none') )  )
 
         const btn = document.querySelector(".mobile-menu-button") as HTMLElement;
         // const btnClose = document.getElementById("mobile_menu_cmobile-menu-buttonlose_button") as HTMLElement;
