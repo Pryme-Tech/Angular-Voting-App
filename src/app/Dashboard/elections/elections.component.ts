@@ -14,6 +14,30 @@ import { Router } from '@angular/router';
 })
 export class ElectionsComponent implements OnInit {
 
+  // ngx-dropzone logic used here for uploading of election image
+
+  file: File[] = [] ;
+
+	onSelect(event:any) {
+
+  //   var reader = new FileReader();
+  //  reader.readAsDataURL(event);
+  //  reader.onload = function () {
+  //    console.log(reader.result);
+  //  };
+
+    this.file.splice(0);
+		console.log(event);
+		this.file.push(...event.addedFiles);
+    this.file = event.addedFiles
+    console.log(event.addedFiles)
+	}
+
+	onRemove() {
+		// console.log(event);
+		this.file.splice(0);
+	}
+
   a = [1,2,3,4,5,6,7,8,9,10]
 
   port = routes.host

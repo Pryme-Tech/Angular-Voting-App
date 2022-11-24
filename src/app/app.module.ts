@@ -26,6 +26,7 @@ import { landingpageComponent } from './Landingpage/landingpage.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomepageComponent } from './homepage/homepage.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -98,6 +99,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxDropzoneModule,
     RouterModule.forRoot(routes)
       ],
   providers: [],

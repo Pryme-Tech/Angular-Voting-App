@@ -65,7 +65,7 @@
 </div>
 
 
-<div #addElection class="vh-100 px-3 d-none justify-content-center align-items-center fixed-top"  >
+<div #addElection class="vh-100 px-3 d-flex justify-content-center align-items-center fixed-top"  >
 
 	<form class="addElection border border-5 w-50 bg-light p-2 rounded ">
 
@@ -78,6 +78,29 @@
 		<div class="form-group">
 			<label> Name your election </label>
 			<input type="text" class="form-control" placeholder="e.g Executives Elections, S.R.C Elections " >
+		</div>
+		
+		<div class="form-group">
+			<label> Upload an image for your election </label>
+
+			<p class="bg-dark rounded p-2" style=" font-style: italic; " > This can be a logo of your institute or an image representing your institute; your voters will be seeing this image. </p>
+
+		<div class="form-group custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+	
+			<ngx-dropzone-label>
+				<div class="bg-dark p-2 rounded" >
+					<i class="fa-solid fa-circle-plus"></i> <br>
+					 click to select your image <br>
+					or <br>
+					<span class="text-success"> drag here </span>
+				</div>
+			</ngx-dropzone-label>
+			
+			<ngx-dropzone-image-preview class="w-100" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of file" [file]="f" [removable]="true" (removed)="onRemove()">
+				<!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+			</ngx-dropzone-image-preview>
+		</div>
+
 		</div>
 
 		<div class="form-group mt-3 text-center ">
