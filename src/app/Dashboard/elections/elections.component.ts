@@ -19,19 +19,25 @@ export class ElectionsComponent implements OnInit {
   file: File[] = [] ;
 
 	onSelect(event:any) {
-
-  //   var reader = new FileReader();
-  //  reader.readAsDataURL(event);
-  //  reader.onload = function () {
-  //    console.log(reader.result);
-  //  };
-
     this.file.splice(0);
-		console.log(event);
+    
 		this.file.push(...event.addedFiles);
-    this.file = event.addedFiles
-    console.log(event.addedFiles)
+
+    this.fileToBase64(this.file)
+
 	}
+
+  fileToBase64(file: File[]){
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file[0]);
+
+    reader.onload=(_event)=>{
+          this.addElectionForm.controls['electionImage'].setValue(reader.result)
+        }
+
+  }
 
 	onRemove() {
 		// console.log(event);
@@ -52,8 +58,25 @@ export class ElectionsComponent implements OnInit {
 
     this.modeText = main.classList.contains('bg-dark') ? "Light" : "Dark"
   }
+  
+  addElectionForm = this.fb.group({
+    electionName : [''],
+    electionImage : [''],
+    userToken : ['']
+  })
 
-  // port = "http://localhost:4000/"
+  addElectionSubmit(){
+    this.addElectionForm.controls['userToken'].setValue('fddff')
+    this.http.post(`${environment.apiKey}elections/add`,this.addElectionForm.getRawValue()).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+    console.log(this.addElectionForm.getRawValue())
+  }
 
   welcome = ''
 
@@ -111,7 +134,7 @@ export class ElectionsComponent implements OnInit {
     
   }
 
-  constructor(private http:HttpClient , private users: UsersService, private route : Router ) {
+  constructor(private http:HttpClient , private fb : FormBuilder, private users: UsersService, private route : Router ) {
 
     users.userDetails().subscribe(
       res=>{

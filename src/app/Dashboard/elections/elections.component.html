@@ -65,19 +65,19 @@
 </div>
 
 
-<div #addElection class="vh-100 px-3 d-flex justify-content-center align-items-center fixed-top"  >
+<div #addElection class="vh-100 px-3 d-none justify-content-center align-items-center fixed-top"  >
 
-	<form class="addElection border border-5 w-50 bg-light p-2 rounded ">
+	<form [formGroup]="addElectionForm" (ngSubmit)="addElectionSubmit()" class="addElection border border-5 w-50 bg-light p-2 rounded ">
 
 		<div class="static-top text-end">
 		<i (click)="this.addElection.classList.toggle('d-flex')" class="fa-solid fa-circle-xmark text-danger fa-2x " style="cursor: pointer;"  ></i>
 		</div>
 
-		<h3 class="text-center text-success" > Host Election </h3>
+		<h3 class="text-center mb-3 text-success" > Host Election </h3>
 
 		<div class="form-group">
 			<label> Name your election </label>
-			<input type="text" class="form-control" placeholder="e.g Executives Elections, S.R.C Elections " >
+			<input type="text" class="form-control" formControlName="electionName" placeholder="e.g Executives Elections, S.R.C Elections " >
 		</div>
 		
 		<div class="form-group">
