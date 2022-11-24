@@ -13,6 +13,10 @@
 }
 
 @media(max-width : 500px) {
+    .mobile-padding{
+        padding-left: 3% !important;
+        padding-right: 3% !important;
+    }
     .addElection{
         width: 100% !important;
     }
