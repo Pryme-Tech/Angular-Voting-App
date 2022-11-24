@@ -67,7 +67,7 @@
 
 <div #addElection class="px-3 d-none justify-content-center align-items-center fixed-top" style="height: calc(var(--vh, 1vh) * 100);"  >
 
-	<form [formGroup]="addElectionForm" (ngSubmit)="addElectionSubmit()" class="addElection border border-5 w-50 bg-light p-2 rounded ">
+	<form [formGroup]="addElectionForm" (ngSubmit)="addElectionSubmit()" class="addElection border border-5 w-50 bg-light p-2 rounded shadow ">
 
 		<div class="static-top text-end">
 		<i (click)="this.addElection.classList.toggle('d-flex')" class="fa-solid fa-circle-xmark text-danger fa-2x " style="cursor: pointer;"  ></i>
@@ -89,7 +89,7 @@
 	
 			<ngx-dropzone-label>
 				<div class="bg-dark p-2 rounded" >
-					<i class="fa-solid fa-circle-plus"></i> <br>
+					<i class="fa-solid fa-circle-plus fa-2x"></i> <br>
 					 click to select your image <br>
 					or <br>
 					<span class="text-success"> drag here </span>
