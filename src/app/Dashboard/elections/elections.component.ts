@@ -178,8 +178,6 @@ export class ElectionsComponent implements OnInit {
 
   constructor(private http:HttpClient , private fb : FormBuilder, private users: UsersService, private route : Router ) {
 
-    this.getUserElections()
-
     users.userDetails().subscribe(
       res=>{
         // console.log(res)
@@ -304,6 +302,7 @@ export class ElectionsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     window.addEventListener('resize', () => {
@@ -311,6 +310,9 @@ export class ElectionsComponent implements OnInit {
       // console.log(vh)
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
+
+    this.getUserElections()
+    
   }
 
 }
