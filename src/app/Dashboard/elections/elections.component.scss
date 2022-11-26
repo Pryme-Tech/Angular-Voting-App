@@ -12,6 +12,12 @@
     border: 5px solid rgb(40 167 69) !important;
 }
 
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
 @media(max-width : 500px) {
     .mobile-padding{
         padding-left: 3% !important;
@@ -19,5 +25,13 @@
     }
     .addElection{
         width: 100% !important;
+    }
+    .successMessage,.errorMessage{
+        width: 100% !important;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 40vw;
+        object-fit: cover;
     }
 }

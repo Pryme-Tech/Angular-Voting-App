@@ -66,13 +66,35 @@ export class ElectionsComponent implements OnInit {
   })
 
   addElectionSubmit(){
-    this.addElectionForm.controls['userToken'].setValue('fddff')
+    this.process = true
+    this.addElectionForm.controls['userToken'].setValue(localStorage.getItem('userT'))
     this.http.post(`${environment.apiKey}elections/add`,this.addElectionForm.getRawValue()).subscribe(
       res=>{
         console.log(res)
+
+        this.process = false
+
+        let addElection = document.getElementById('addElection') as HTMLElement
+        addElection.classList.remove('d-flex')
+        addElection.classList.add('d-none')
+        let result = JSON.parse(JSON.stringify(res))
+        this.successMessage = result.msg
+
+        this.getUserElections()
+
+        setTimeout(() => {
+          this.successMessage = ""
+        }, 3000);
       },
       err=>{
         console.log(err)
+
+        this.process = false
+        this.errorMessage = err.error.msg
+
+        setTimeout(() => {
+          this.errorMessage = ""
+        }, 4000);
       }
     )
     console.log(this.addElectionForm.getRawValue())
@@ -82,6 +104,8 @@ export class ElectionsComponent implements OnInit {
 
   errorMessage = ''
   successMessage = ''
+
+  process = false
 
   noVotingAdded:any = ''
   votings:any = []
@@ -134,7 +158,27 @@ export class ElectionsComponent implements OnInit {
     
   }
 
+  userElections:any = []
+
+  getUserElections(){
+
+    this.http.get(`${environment.apiKey}elections/userElections/${localStorage.getItem('userT')}`).subscribe(
+      res=>{
+        console.log(res)
+        let result = JSON.parse(JSON.stringify(res))
+        this.userElections = result
+        console.log(this.userElections)
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+
+  }
+
   constructor(private http:HttpClient , private fb : FormBuilder, private users: UsersService, private route : Router ) {
+
+    this.getUserElections()
 
     users.userDetails().subscribe(
       res=>{
@@ -221,14 +265,18 @@ export class ElectionsComponent implements OnInit {
 
    ngAfterViewInit(){
 
-    const createdElection = document.querySelectorAll('.createdElection')
+    setTimeout(() => {
 
-    const manageElections = document.querySelectorAll('.manage')
+      const createdElection = document.querySelectorAll('.createdElection')
 
-    createdElection.forEach( (election:any) => {
-       election.addEventListener( 'mouseover',()=> election.querySelector('.manage').classList.add('d-flex')  )
-       election.addEventListener( 'mouseleave',()=> election.querySelector('.manage').classList.remove('d-flex')  )
-    }) 
+      const manageElections = document.querySelectorAll('.manage')
+
+      createdElection.forEach( (election:any) => {
+        election.addEventListener( 'mouseover',()=> election.querySelector('.manage').classList.add('d-flex')  )
+        election.addEventListener( 'mouseleave',()=> election.querySelector('.manage').classList.remove('d-flex')  )
+     })
+      
+    }, 1000); 
 
     // manageElections.forEach( (election:any) => election.addEventListener( 'mouseover',()=> election.classList.remove('d-none') )  )
 

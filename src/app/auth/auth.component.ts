@@ -90,7 +90,7 @@ export class AuthComponent implements OnInit {
 
     this.process = false
 
-    localStorage.setItem('token',result.token)
+    localStorage.setItem('userT',result.token)
 
     setTimeout(()=>{
       this.successMessage=''
@@ -141,7 +141,7 @@ export class AuthComponent implements OnInit {
 
     let result = JSON.parse(JSON.stringify(res))
 
-    localStorage.setItem('token',result.token)
+    localStorage.setItem('userT',result.token)
 
     this.successMessage = result.msg
 
