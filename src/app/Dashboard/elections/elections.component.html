@@ -117,7 +117,7 @@
 
 
 
-<div *ngIf="process" class="bg-dark d-flex justify-content-center align-items-center flex-column" style="opacity: 80%; z-index: 99; position: absolute; top:0; width: 100%; height: 100vh;" > <i class="fas fa-cog fa-spin fa-5x"></i> <p class="fa-2x font-weight-bold"> PROCESSING... </p> </div>
+<div *ngIf="process" class="bg-dark d-flex justify-content-center align-items-center flex-column" style="opacity: 80%; z-index: 99; position: absolute; top:0; width: 100%; height: calc(var(--vh, 1vh) * 100);" > <i class="fas fa-cog fa-spin fa-5x"></i> <p class="fa-2x font-weight-bold"> PROCESSING... </p> </div>
 
 <div *ngIf="successMessage || errorMessage" class="px-3 d-flex justify-content-center align-items-center fixed-top" style="height: calc(var(--vh, 1vh) * 100); background-color: rgba(0, 0, 0, 0.664); "  >
 
