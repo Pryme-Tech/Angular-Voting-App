@@ -62,7 +62,7 @@ export class ElectionsComponent implements OnInit {
   addElectionForm = this.fb.group({
     electionName : [''],
     electionImage : [''],
-    userToken : ['']
+    userToken : ['userT']
   })
 
   addElectionSubmit(){
