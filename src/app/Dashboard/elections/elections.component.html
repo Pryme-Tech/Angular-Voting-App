@@ -31,10 +31,8 @@
 				<button (click)="this.addElection.classList.toggle('d-flex')" class="btn btn-success"> <i class="fa-solid fa-square-plus"></i> Add a new election </button>
 			</div>
 
-			<pre >{{userElections | json}}</pre>
+			<div *ngIf="userElections.length > 0" class="container py-3 " style=" height: 90%; overflow-y: scroll;" >
 
-			<div *ngIf="userElections.length > 1" class="container py-3 " style=" height: 90%; overflow-y: scroll;" >
-<h1>ABCDDDDDD</h1>
 			<div class="row g-2">
 
 				<div *ngFor="let userElection of userElections" class="col-md-4 ">
